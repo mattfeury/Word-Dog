@@ -72,8 +72,8 @@
 	<div id="body">
 		<p>
 			<?php 
-				$this->load->helper('url');
-				echo anchor('users', 'Login or Register');
+				//$this->load->helper('url');
+				//echo anchor('users', 'Login or Register');
 			?>
 		</p>
 	</div>
