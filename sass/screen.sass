@@ -5,3 +5,89 @@
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
 
 @import compass/reset
+@import compass/css3/
+
+$border-width: 2px
+$border-color: #b0e68b
+$main-text-color: #93a488
+$main-bg: #e8f8dc
+
+$header-height: 50px
+
+// Basic resetting of things.
+html, body
+  width: 100%
+  height: 100%
+  min-height: 100%
+  color: $main-text-color
+
+// Dialog stuff.
+#shim
+  display: none
+  position: fixed
+  top: 0
+  left: 0
+  width: 100%
+  height: 100%
+  z-index: 1
+
+  background-color: gray
+  +opacity(0.5)
+
+.dialog
+  display: none
+  position: fixed
+  top: 30%
+  left: 30%
+  width: 40%
+  z-index: 2
+
+  background-color: #9ee170
+  color: white
+  padding: 10px
+  border: 4px solid white
+
+  &.current
+    display: block
+
+  &.current ~ #shim
+    display: block
+
+// Actual app stuff. TODO break me into different sass files.
+h1
+  font-size: 28px
+  font-weight: bold
+  margin-bottom: 12px
+h2
+  font-size: 22px
+  font-weight: bold
+  margin-bottom: 8px
+
+
+button
+  border: $border-width solid $border-color
+  background-color: white
+  color: $main-text-color
+  font-size: 18px
+  cursor: pointer
+
+body
+  background-color: #fff
+  font: 13px/20px normal Helvetica, Arial, sans-serif
+  color: #4F5155
+
+header
+  float: left
+  width: 100%
+  padding: 10px
+  background: white
+  border-bottom: $border-width solid $border-color
+
+#content
+  background-color: $main-bg
+  height: 100%
+
+  #container
+    padding-top: 125px
+    margin: auto
+    width: 80%
