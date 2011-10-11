@@ -43,6 +43,21 @@
     </form>
   </div>
   <div class="signup dialog">
+    <? 
+    $attributes = array('class' => 'signup');
+    echo form_open('users/register', $attributes);
+    ?>
+      <h2>Sign Up</h2>
+
+      <label>Email: <input name="email" class="email" type="text" /></label>
+      <label>Password: <input name="password" type="password" /></label>
+      <label>Name: <input name="name" type="text" /></label>
+      <label>School: <input name="school" type="text" /></label>
+      <label>Grade: <input name="grade" type="text" /></label>
+
+      <input class="submit" type="submit" />
+    </form>
+
   </div>
   <div id="shim"></div>
 </div>
