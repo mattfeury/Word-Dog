@@ -3,8 +3,8 @@
 <head>
 	<meta charset="utf-8">
 	<title>Word, Dog (beta)</title>
-
-  <link href="stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
+  <script src="<?= base_url() ?>scripts/jquery-1.6.4.min.js"></script>
+  <link href="<?= base_url() ?>stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
 </head>
 <body>
 
