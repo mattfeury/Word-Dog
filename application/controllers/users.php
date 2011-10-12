@@ -56,10 +56,12 @@ class Users extends CI_Controller {
     $u->school = $school;
     $u->grade = $grade;
 
+    // This will attempt to upsert into the database.
+    // It'll also check all the model's validation rules.
+    // If it is successful, the user object will be updated (with a unique id)
     $u->save();
 
     if (! empty($u->id)) {
-      //TODO set session stuff
       $this->_setSessionForUser($email);
       redirect('/users');
     } else {

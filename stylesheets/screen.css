@@ -67,16 +67,15 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   display: block;
 }
 
-/* line 20, ../sass/screen.sass */
+/* line 19, ../sass/screen.sass */
 html, body {
   width: 100%;
   height: 100%;
   min-height: 100%;
-  color: #93a488;
-  font-family: "Lucida Grande", Arial, sans-serif;
+  color: #97a488;
 }
 
-/* line 28, ../sass/screen.sass */
+/* line 26, ../sass/screen.sass */
 #shim {
   display: none;
   position: fixed;
@@ -90,7 +89,7 @@ html, body {
   opacity: 0.5;
 }
 
-/* line 40, ../sass/screen.sass */
+/* line 38, ../sass/screen.sass */
 .dialog {
   display: none;
   position: fixed;
@@ -103,55 +102,52 @@ html, body {
   padding: 10px;
   border: 4px solid white;
 }
-/* line 53, ../sass/screen.sass */
+/* line 51, ../sass/screen.sass */
 .dialog .close {
   position: absolute;
   top: 5px;
   right: 5px;
 }
-/* line 58, ../sass/screen.sass */
+/* line 56, ../sass/screen.sass */
 .dialog.current {
   display: block;
 }
-/* line 61, ../sass/screen.sass */
+/* line 59, ../sass/screen.sass */
 .dialog.current ~ #shim {
   display: block;
 }
 
-/* line 65, ../sass/screen.sass */
+/* line 63, ../sass/screen.sass */
 body {
   background-color: #e8f8dc;
-  font: 13px/20px normal Helvetica, Arial, sans-serif;
-  color: #4f5155;
+  font: 13px/20px "Lucida Grande", Arial, sans-serif;
 }
-/* line 70, ../sass/screen.sass */
+/* line 69, ../sass/screen.sass */
 body .logged-out, body .logged-in {
   display: none;
 }
-/* line 72, ../sass/screen.sass */
+/* line 71, ../sass/screen.sass */
 body.logged-out .logged-out, body.logged-in .logged-in {
   display: inline-block;
 }
 
-/* line 75, ../sass/screen.sass */
+/* line 74, ../sass/screen.sass */
 h1 {
   font-size: 28px;
-  font-weight: bold;
   margin-bottom: 12px;
 }
 
-/* line 79, ../sass/screen.sass */
+/* line 78, ../sass/screen.sass */
 h2 {
   font-size: 22px;
-  font-weight: bold;
   margin-bottom: 8px;
 }
 
-/* line 84, ../sass/screen.sass */
+/* line 83, ../sass/screen.sass */
 button, a {
   border: 2px solid #b0e68b;
   background-color: white;
-  color: #93a488;
+  color: #97a488;
   font-size: 18px;
   padding: 3px 5px;
   margin: 2px;
@@ -161,7 +157,7 @@ button, a {
   font-family: "Lucida Grande", Arial, sans-serif;
 }
 
-/* line 97, ../sass/screen.sass */
+/* line 96, ../sass/screen.sass */
 header {
   background: white;
   border-bottom: 2px solid #b0e68b;
@@ -169,24 +165,39 @@ header {
   overflow: hidden;
   *zoom: 1;
 }
-/* line 103, ../sass/screen.sass */
+/* line 102, ../sass/screen.sass */
 header .home {
   float: left;
 }
-/* line 106, ../sass/screen.sass */
+/* line 105, ../sass/screen.sass */
 header > div {
   float: right;
 }
 
-/* line 110, ../sass/screen.sass */
+/* line 108, ../sass/screen.sass */
+#container {
+  width: 80%;
+  margin: auto;
+}
+/* line 112, ../sass/screen.sass */
 #container #content {
   padding-top: 20px;
-  margin: auto;
-  width: 80%;
 }
 
 /* line 117, ../sass/screen.sass */
 form label {
   display: block;
   margin: 5px 0px;
+}
+
+/* line 125, ../sass/screen.sass */
+.landing #container {
+  width: 50%;
+  text-align: center;
+}
+/* line 129, ../sass/screen.sass */
+.landing #container .about {
+  display: block;
+  margin: auto;
+  padding: 60px;
 }

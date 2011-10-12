@@ -10,11 +10,10 @@
 
 $border-width: 2px
 $border-color: #b0e68b
-$main-text-color: #93a488
+$main-text-color: #97a488
 $main-bg: #e8f8dc
 
 $header-height: 50px
-$default-fonts: 'Lucida Grande', Arial, sans-serif
 
 // Basic resetting of things.
 html, body
@@ -22,7 +21,6 @@ html, body
   height: 100%
   min-height: 100%
   color: $main-text-color
-  font-family: $default-fonts
 
 // Dialog stuff.
 #shim
@@ -64,8 +62,9 @@ html, body
 // Actual app stuff. TODO break me into different sass files.
 body
   background-color: $main-bg  
-  font: 13px/20px normal Helvetica, Arial, sans-serif
-  color: #4F5155
+  font: 13px/20px 'Lucida Grande', Arial, sans-serif
+  //Helvetica, Arial, sans-serif
+  //color: #4F5155
 
   .logged-out, .logged-in
     display: none
@@ -74,11 +73,11 @@ body
 
 h1
   font-size: 28px
-  font-weight: bold
+  //font-weight: bold
   margin-bottom: 12px
 h2
   font-size: 22px
-  font-weight: bold
+  //font-weight: bold
   margin-bottom: 8px
 
 button, a
@@ -92,7 +91,7 @@ button, a
   cursor: pointer
   text-decoration: none
   line-height: normal
-  font-family: $default-fonts
+  font-family: 'Lucida Grande', Arial, sans-serif
 
 header
   background: white
@@ -107,13 +106,27 @@ header
     float: right
 
 #container
+  width: 80%
+  margin: auto
+
   #content
     padding-top: 20px
-    margin: auto
-    width: 80%
 
 // Form stuffs
 form
   label
     display: block
     margin: 5px 0px
+
+// Page specific stuff
+// These are currently defined by a class tag
+// with the name of the controller that served the page.
+.landing
+  #container
+    width: 50%
+    text-align: center
+
+    .about
+      display: block
+      margin: auto
+      padding: 60px
