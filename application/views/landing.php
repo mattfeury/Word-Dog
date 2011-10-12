@@ -27,8 +27,8 @@
     <button id="signup" class="dialog-opener">Sign Up</button>
   </div>
 </header>
-<section id="content">
-  <section id="container">
+<section id="container">
+  <section id="content">
     <h1>WordDog. Putting the Word in Word, Dog.</h1>
 
     <button>Do Something</button>
@@ -44,8 +44,8 @@
     ?>
       <h2>Login</h2>
 
-      <input name="email" class="email" type="text" />
-      <input name="password" class="password" type="password" />
+      <label>Email: <input name="email" class="email" type="text" /></label>
+      <label>Password: <input name="password" class="password" type="password" /></label>
       <input class="submit" type="submit" />
     </form>
     <button class="close">Close</button>

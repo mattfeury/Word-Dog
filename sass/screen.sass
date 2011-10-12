@@ -6,6 +6,7 @@
 
 @import compass/reset
 @import compass/css3/
+@import "compass/utilities/general/clearfix"
 
 $border-width: 2px
 $border-color: #b0e68b
@@ -47,6 +48,11 @@ html, body
   padding: 10px
   border: 4px solid white
 
+  .close
+    position: absolute
+    top: 5px
+    right: 5px
+
   &.current
     display: block
 
@@ -71,23 +77,25 @@ button
   cursor: pointer
 
 body
-  background-color: #fff
+  background-color: $main-bg  
   font: 13px/20px normal Helvetica, Arial, sans-serif
   color: #4F5155
 
 header
-  float: left
-  width: 100%
-  padding: 10px
   background: white
   border-bottom: $border-width solid $border-color
+  padding: 10px
+  +clearfix
 
-#content
-  background-color: $main-bg
-  height: 100%
+  .home
+    float: left
 
-  #container
-    padding-top: 125px
+  > div
+    float: right
+
+#container
+  #content
+    padding-top: 20px
     margin: auto
     width: 80%
 

@@ -67,7 +67,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   display: block;
 }
 
-/* line 18, ../sass/screen.sass */
+/* line 19, ../sass/screen.sass */
 html, body {
   width: 100%;
   height: 100%;
@@ -75,7 +75,7 @@ html, body {
   color: #93a488;
 }
 
-/* line 25, ../sass/screen.sass */
+/* line 26, ../sass/screen.sass */
 #shim {
   display: none;
   position: fixed;
@@ -89,7 +89,7 @@ html, body {
   opacity: 0.5;
 }
 
-/* line 37, ../sass/screen.sass */
+/* line 38, ../sass/screen.sass */
 .dialog {
   display: none;
   position: fixed;
@@ -102,30 +102,36 @@ html, body {
   padding: 10px;
   border: 4px solid white;
 }
-/* line 50, ../sass/screen.sass */
+/* line 51, ../sass/screen.sass */
+.dialog .close {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+/* line 56, ../sass/screen.sass */
 .dialog.current {
   display: block;
 }
-/* line 53, ../sass/screen.sass */
+/* line 59, ../sass/screen.sass */
 .dialog.current ~ #shim {
   display: block;
 }
 
-/* line 57, ../sass/screen.sass */
+/* line 63, ../sass/screen.sass */
 h1 {
   font-size: 28px;
   font-weight: bold;
   margin-bottom: 12px;
 }
 
-/* line 61, ../sass/screen.sass */
+/* line 67, ../sass/screen.sass */
 h2 {
   font-size: 22px;
   font-weight: bold;
   margin-bottom: 8px;
 }
 
-/* line 66, ../sass/screen.sass */
+/* line 72, ../sass/screen.sass */
 button {
   border: 2px solid #b0e68b;
   background-color: white;
@@ -134,35 +140,38 @@ button {
   cursor: pointer;
 }
 
-/* line 73, ../sass/screen.sass */
+/* line 79, ../sass/screen.sass */
 body {
-  background-color: white;
+  background-color: #e8f8dc;
   font: 13px/20px normal Helvetica, Arial, sans-serif;
   color: #4f5155;
 }
 
-/* line 78, ../sass/screen.sass */
+/* line 84, ../sass/screen.sass */
 header {
-  float: left;
-  width: 100%;
-  padding: 10px;
   background: white;
   border-bottom: 2px solid #b0e68b;
+  padding: 10px;
+  overflow: hidden;
+  *zoom: 1;
+}
+/* line 90, ../sass/screen.sass */
+header .home {
+  float: left;
+}
+/* line 93, ../sass/screen.sass */
+header > div {
+  float: right;
 }
 
-/* line 85, ../sass/screen.sass */
-#content {
-  background-color: #e8f8dc;
-  height: 100%;
-}
-/* line 89, ../sass/screen.sass */
-#content #container {
-  padding-top: 125px;
+/* line 97, ../sass/screen.sass */
+#container #content {
+  padding-top: 20px;
   margin: auto;
   width: 80%;
 }
 
-/* line 96, ../sass/screen.sass */
+/* line 104, ../sass/screen.sass */
 form label {
   display: block;
   margin: 5px 0px;
