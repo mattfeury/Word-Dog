@@ -10,7 +10,7 @@
        var id=$(this).attr('id');
        $('.dialog.' + id).addClass('current');
      });
-     $('.close').click(function(event){
+     $('.dialog .close').click(function(event){
        $(this).closest('.dialog').removeClass('current');
      });
    });
