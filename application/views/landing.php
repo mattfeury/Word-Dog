@@ -10,6 +10,9 @@
        var id=$(this).attr('id');
        $('.dialog.' + id).addClass('current');
      });
+     $('.close').click(function(event){
+       $(this).closest('.dialog').removeClass('current');
+     });
    });
    </script>
   <link href="<?= base_url() ?>stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
@@ -49,6 +52,7 @@
       <input name="password" class="password" type="password" />
       <input class="submit" type="submit" />
     </form>
+    <button class="close">Close</button>
   </div>
   <div class="signup dialog">
     <? 
@@ -65,7 +69,7 @@
 
       <input class="submit" type="submit" />
     </form>
-
+    <button class="close">Close</button>
   </div>
   <div id="shim"></div>
 </div>
