@@ -41,6 +41,10 @@
 $route['default_controller'] = "landing";
 $route['404_override'] = '';
 
+$route['logout'] = 'users/logout';
+$route['login'] = 'users/login';
+//$route['home'] = 'users/index';
+
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

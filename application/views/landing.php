@@ -20,11 +20,13 @@
 <body class="<?= $this->session->userdata('logged_in') ? 'logged-in' : 'logged-out' ?>">
 
 <header>
-  <button class="home">Home</button>
+  <?= anchor('/', 'Home', 'class="home"'); ?>
 
   <div class="session">
-    <button id="login" class="dialog-opener">Login</button>
-    <button id="signup" class="dialog-opener">Sign Up</button>
+    <button id="login" class="dialog-opener logged-out">Login</button>
+    <button id="signup" class="dialog-opener logged-out">Sign Up</button>
+    <span class="logged-in">Logged In, <?= $this->session->userdata('email') ?></span>
+    <?= anchor('/users', 'Teacher Zone', 'class="logged-in"'); ?>
   </div>
 </header>
 <section id="container">
@@ -40,7 +42,7 @@
   <div class="login dialog">
     <? 
     $attributes = array('class' => 'login');
-    echo form_open('users/login', $attributes);
+    echo form_open('login', $attributes);
     ?>
       <h2>Login</h2>
 

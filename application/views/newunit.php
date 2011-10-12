@@ -10,15 +10,15 @@
 <body>
 
 <header>
-  <button class="teacherzone">Teacher Zone</button>
+  <?= anchor('/users', 'Teacher Zone', 'class="teacherzone home"'); ?>
 
   <div class="session">
     <button class="editaccount">Edit Account</button>
-    <button class="logout">Log Out</button>
+    <?= anchor('/logout', 'Log Out', 'class="logout"'); ?>
   </div>
 </header>
-<section id="content">
-  <section id="container">
+<section id="container">
+  <section id="content">
       
     <form>
       Name of Unit: <input type="text" name="unitname" />
