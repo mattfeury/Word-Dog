@@ -17,7 +17,7 @@
    </script>
   <link href="<?= base_url() ?>stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
 </head>
-<body>
+<body class="<?= $this->session->userdata('logged_in') ? 'logged-in' : 'logged-out' ?>">
 
 <header>
   <button class="home">Home</button>

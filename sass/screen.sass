@@ -60,6 +60,16 @@ html, body
     display: block
 
 // Actual app stuff. TODO break me into different sass files.
+body
+  background-color: $main-bg  
+  font: 13px/20px normal Helvetica, Arial, sans-serif
+  color: #4F5155
+
+  .logged-out, .logged-in
+    display: none
+  &.logged-out .logged-out, &.logged-in .logged-in
+    display: inline-block
+
 h1
   font-size: 28px
   font-weight: bold
