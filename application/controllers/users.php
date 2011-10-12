@@ -3,9 +3,7 @@
 class Users extends CI_Controller {
 
   public function index() {
-    //TODO load teacher zone view
-    //$this->load->view('');
-    echo "TEACHAR ZONE";
+    $this->load->view('teacher');
   }
 
   public function login() {
@@ -26,5 +24,9 @@ class Users extends CI_Controller {
         redirect(base_url());
       }
     }
+  }
+  
+  public function create() {
+    $this->load->view('newunit');
   }
 }

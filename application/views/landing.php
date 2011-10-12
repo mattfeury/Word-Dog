@@ -20,11 +20,7 @@
   <section id="container">
     <h1>WordDog. Putting the Word in Word, Dog.</h1>
 
-    <div>
-      <p>
-        <button>Do Something</button>
-      </p>
-    </div>
+    <button>Do Something</button>
 
     <p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds</p>
   </section>
