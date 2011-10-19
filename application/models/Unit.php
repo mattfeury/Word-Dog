@@ -2,6 +2,9 @@
 
 class Unit extends DataMapper {
   
+  var $has_one = array('user');
+  var $has_many = array('lesson');
+  
   var $validation = array(
     'name' => array(
       'label' => 'Name',

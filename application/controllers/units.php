@@ -16,17 +16,28 @@ class Units extends CI_Controller {
   }
 
   public function add() {
+    $username = $this->session->userdata('email');
+    $user = new User();
+    $user->where('email', $username)->get();
+    
     $name = $this->input->post('unitname', TRUE);
+    //$sentence = $this->input->post('sentence', TRUE);
+    //$image = $this->input->post('picture', TRUE);
 
-    $u = new Unit();
-    $u->name = $name;
+    //$lesson = new Lesson();
+    //$lesson->sentence = $sentence;
+    //$lesson->image = $image;
 
-    $u->save();
+    $unit = new Unit();
+    $unit->name = $name;
 
-    $success = $u->add();
+    $unit->save();
+    $user->save($unit);
 
-    if ($success) {
-      //$this->_setSessionForUser($email);
+    //$lessonSuccess = $lesson->add();
+    $unitSuccess = $unit->add();
+
+    if ($unitSuccess) {
       redirect('/units');
     } else {
       //TODO return errors

@@ -1,6 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class User extends DataMapper {
+  
   var $has_many = array('unit');
 
   var $validation = array(

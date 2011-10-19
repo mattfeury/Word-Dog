@@ -9,13 +9,17 @@
 </header>
 <section id="container">
   <section id="content">
-    <h2>List of Units</h2>
 
+    <h2>List of Units</h2>
     <ul>
-      <li>Dick and Jane <button>Edit</button></li> 
-      <li>Little Red Riding Hood <button>Edit</button></li>
-      <li>See Spot Run <button>Edit</button></li>   
-      <li>The Three Little Pigs <button>Edit</button></li>   
+      <?
+      $u = new Unit();
+      $u->get();
+      foreach ($u->all as $unit) {
+          $unit->user->get();
+          echo '<li>' . $unit->name . ' by ' . $unit->user->name . '<button>Edit</button></li>';
+      }
+      ?>
     </ul>
 
     <?= anchor('users/create', 'Create New Unit'); ?>

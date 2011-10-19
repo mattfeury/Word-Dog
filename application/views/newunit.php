@@ -1,4 +1,4 @@
-<? $this->load->view('head'); ?>
+  <? $this->load->view('head'); ?>
 <header>
   <?= anchor('/users', 'Teacher Zone', 'class="teacherzone home"'); ?>
 
@@ -10,7 +10,10 @@
 <section id="container">
   <section id="content">
       
-    <form>
+    <? 
+    $attributes = array('class' => 'add');
+    echo form_open('units/add', $attributes);
+    ?>
       Name of Unit: <input type="text" name="unitname" />
       <p>
         <!--The names should be incremented for each new sentence-->
