@@ -11,15 +11,15 @@
   <section id="content">
       
     <? 
-    $attributes = array('class' => 'add');
-    echo form_open('units/add', $attributes);
+    $attributes = array('class' => 'edit');
+    echo form_open('units/update/' . $id, $attributes);
     ?>
-      Name of Unit: <input type="text" name="unitname" />
+      Name of Unit: <input type="text" name="unitname" value="<?= $name;?>" />
       <p>
         <!--The names should be incremented for each new sentence-->
-        Sentence: <input type="text" name="sentence" />
-        Picture: <input type="file" name="picture" />
-        <!-- Question: <input type="text" name="question" />
+        Sentence: <input type="text" name="sentence" value = "<?= $lesson->sentence;?>" />
+        Picture: <input type="file" name="picture" value = "<?= $lesson->image;?>"/>
+        <!--Question: <input type="text" name="question" />
         Three answer choices: Indicate the correct answer by selecting the corresponding radio button.
         <input type="radio" name="answers1" value="A"> <input type="text" name="A" />
         <input type="radio" name="answers1" value="B"> <input type="text" name="B" />

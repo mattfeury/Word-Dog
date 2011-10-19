@@ -13,12 +13,24 @@ class Unit extends DataMapper {
   );
 
   function add() {
-    // this will encrypt the password
     $this->validate()->get();
 
     // if there was no matching record, this user would be completely cleared.
     if (empty($this->id)) {
       $this->error_message('add', 'Unit name required');
+      return false;
+    }
+    else {
+      return true;
+    }
+  }
+  
+  function edit() {
+    $this->validate()->get();
+
+    // if there was no matching record, this user would be completely cleared.
+    if (empty($this->id)) {
+      $this->error_message('edit', 'Unit name required');
       return false;
     }
     else {

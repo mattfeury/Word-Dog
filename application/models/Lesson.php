@@ -2,6 +2,8 @@
 
 class Lesson extends DataMapper {
   
+  var $has_one = array('unit');
+  
   var $validation = array(
     'sentence' => array(
       'label' => 'Sentence',

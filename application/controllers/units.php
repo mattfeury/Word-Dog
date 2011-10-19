@@ -21,17 +21,18 @@ class Units extends CI_Controller {
     $user->where('email', $username)->get();
     
     $name = $this->input->post('unitname', TRUE);
-    //$sentence = $this->input->post('sentence', TRUE);
-    //$image = $this->input->post('picture', TRUE);
+    $sentence = $this->input->post('sentence', TRUE);
+    $image = $this->input->post('picture', TRUE);
 
-    //$lesson = new Lesson();
-    //$lesson->sentence = $sentence;
-    //$lesson->image = $image;
+    $lesson = new Lesson();
+    $lesson->sentence = $sentence;
+    $lesson->image = $image;
 
     $unit = new Unit();
     $unit->name = $name;
 
-    $unit->save();
+    $lesson->save();
+    $unit->save($lesson);
     $user->save($unit);
 
     //$lessonSuccess = $lesson->add();
@@ -44,6 +45,43 @@ class Units extends CI_Controller {
       redirect(base_url());
     }
 
+  }
+  
+  public function edit($id) {
+    $unit = new Unit();
+    $unit->where('id', $id)->get();
+    $lesson = $unit->lesson->get();
+    //pass unit id to edit view
+    $this->load->view('editunit', $unit, $lesson);
+
+  }
+  
+  public function update($id) {
+    $unit = new Unit();
+    $lesson = new Lesson();
+    $unit->where('id', $id)->get();
+    $lesson = $unit->lesson->get();
+    
+    $name = $this->input->post('unitname', TRUE);
+    $sentence = $this->input->post('sentence', TRUE);
+    $image = $this->input->post('picture', TRUE);
+
+    $lesson->sentence = $sentence;
+    $lesson->image = $image;
+
+    $unit->name = $name;
+
+    $lesson->save();
+    $unit->save($lesson);
+    
+    $unitSuccess = $unit->edit();
+
+    if ($unitSuccess) {
+      redirect('/units');
+    } else {
+      //TODO return errors
+      redirect(base_url());
+    }
   }
 
 }

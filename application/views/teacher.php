@@ -17,7 +17,7 @@
       $u->get();
       foreach ($u->all as $unit) {
           $unit->user->get();
-          echo '<li>' . $unit->name . ' by ' . $unit->user->name . '<button>Edit</button></li>';
+          echo '<li>' . $unit->name . ' by ' . $unit->user->name . anchor('/units/edit/' . $unit->id, 'Edit', 'class="editunit"');
       }
       ?>
     </ul>
