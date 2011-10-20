@@ -12,76 +12,100 @@ class Units extends CI_Controller {
   }
 
   public function create() {
-    $this->load->view('newunit');
+    $data = array();
+    $data['unit'] = new Unit();
+    $data['lessons'] = array();
+
+    $session_data = array('current_unit' => false);
+    $this->session->set_userdata($session_data);    
+
+    $this->load->view('unit', $data);
   }
-
-  public function add() {
-    $username = $this->session->userdata('email');
-    $user = new User();
-    $user->where('email', $username)->get();
-    
-    $name = $this->input->post('unitname', TRUE);
-    $sentence = $this->input->post('sentence', TRUE);
-    $image = $this->input->post('picture', TRUE);
-
-    $lesson = new Lesson();
-    $lesson->sentence = $sentence;
-    $lesson->image = $image;
-
-    $unit = new Unit();
-    $unit->name = $name;
-
-    $lesson->save();
-    $unit->save($lesson);
-    $user->save($unit);
-
-    //$lessonSuccess = $lesson->add();
-    $unitSuccess = $unit->add();
-
-    if ($unitSuccess) {
-      redirect('/units');
-    } else {
-      //TODO return errors
-      redirect(base_url());
-    }
-
-  }
-  
+ 
   public function edit($id) {
     $unit = new Unit();
-    $unit->where('id', $id)->get();
-    $lesson = $unit->lesson->get();
-    //pass unit id to edit view
-    $this->load->view('editunit', $unit, $lesson);
 
+    $unit->id = $id;
+    $unit->validate()->get();
+
+    $lessons = $unit->lesson->get();
+
+    $session_data = array('current_unit' => $id);
+    $this->session->set_userdata($session_data);    
+
+    $data = array();
+    $data['unit'] = $unit;
+    $data['lessons'] = $lessons;
+
+    $this->load->view('unit', $data);
   }
-  
-  public function update($id) {
+
+  /**
+   * Handles form input to upsert a unit/lesson
+   */
+  public function update() {
+
+    $unitId = $this->session->userdata('current_unit');
+    $isNew = $unitId == false;
+
+    $lessonsJson = $this->input->post('lessons_json', TRUE);
+    $unitName = $this->input->post('unit', TRUE);
+
+    /*
+		$config['upload_path'] = './uploads/';
+		$config['allowed_types'] = 'gif|jpg|png';
+		$config['max_size']	= '100';
+		$config['max_width']  = '1024';
+		$config['max_height']  = '768';
+    $config['overwrite']     = FALSE;
+
+		$this->load->library('upload', $config);
+    $field_name = 'picture';
+    $this->upload->do_upload($field_name);
+    */
+
+    $lessons = json_decode($lessonsJson);
+
+    $email = $this->session->userdata('email');
+    $user = new User();
+    $user->email = $email;
+    $user->validate()->get();
+    
     $unit = new Unit();
-    $lesson = new Lesson();
-    $unit->where('id', $id)->get();
-    $lesson = $unit->lesson->get();
-    
-    $name = $this->input->post('unitname', TRUE);
-    $sentence = $this->input->post('sentence', TRUE);
-    $image = $this->input->post('picture', TRUE);
 
-    $lesson->sentence = $sentence;
-    $lesson->image = $image;
-
-    $unit->name = $name;
-
-    $lesson->save();
-    $unit->save($lesson);
-    
-    $unitSuccess = $unit->edit();
-
-    if ($unitSuccess) {
-      redirect('/units');
+    if ($isNew) {
+      //echo 'new';
+      //
     } else {
-      //TODO return errors
-      redirect(base_url());
+      $unit->id = $unitId;
+      $unit->where('id', $unitId)->get();
     }
+
+    $unit->name = $unitName;
+    $unit->save();
+
+    if ($isNew)
+      $user->save($unit);
+
+    $old = $unit->lessons->get();
+    $old->delete_all();
+
+    // insert lessons
+    foreach($lessons as $lesson) {
+      if (isset($lesson->sentence)) {
+        $newLesson = new Lesson();
+        $newLesson->sentence = $lesson->sentence;
+        if (isset($lesson->image))
+          $newLesson->image = $lesson->image;
+        if (isset($lesson->question))
+          $newLesson->question = $lesson->question;
+        $newLesson->save($unit);
+      }
+    }
+
+    //TODO handle errors and return
+
+    redirect('/units');
   }
 
 }

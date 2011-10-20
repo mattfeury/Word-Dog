@@ -5,6 +5,8 @@ class Unit extends DataMapper {
   var $has_one = array('user');
   var $has_many = array('lesson');
   
+  var $default_order_by = array('id' => 'asc');
+  
   var $validation = array(
     'name' => array(
       'label' => 'Name',
@@ -12,29 +14,5 @@ class Unit extends DataMapper {
     )    
   );
 
-  function add() {
-    $this->validate()->get();
-
-    // if there was no matching record, this user would be completely cleared.
-    if (empty($this->id)) {
-      $this->error_message('add', 'Unit name required');
-      return false;
-    }
-    else {
-      return true;
-    }
-  }
-  
-  function edit() {
-    $this->validate()->get();
-
-    // if there was no matching record, this user would be completely cleared.
-    if (empty($this->id)) {
-      $this->error_message('edit', 'Unit name required');
-      return false;
-    }
-    else {
-      return true;
-    }
-  }
+  //TODO consider making 'upsert'
 }

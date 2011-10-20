@@ -8,12 +8,15 @@
 @import compass/css3/
 @import "compass/utilities/general/clearfix"
 
-$border-width: 2px
 $border-color: #b0e68b
 $main-text-color: #97a488
 $main-bg: #e8f8dc
 
+//'Myriad Pro', 
+$main-fonts: 'Lucida Grande', Arial, sans-serif
+
 $header-height: 50px
+$border-width: 2px
 
 // Basic resetting of things.
 html, body
@@ -21,6 +24,9 @@ html, body
   height: 100%
   min-height: 100%
   color: $main-text-color
+
+.templates, .template
+  display: none
 
 // Dialog stuff.
 #shim
@@ -62,7 +68,7 @@ html, body
 // Actual app stuff. TODO break me into different sass files.
 body
   background-color: $main-bg  
-  font: 13px/20px 'Lucida Grande', Arial, sans-serif
+  font: 13px/20px $main-fonts
   //Helvetica, Arial, sans-serif
   //color: #4F5155
 
@@ -91,7 +97,7 @@ button, a
   cursor: pointer
   text-decoration: none
   line-height: normal
-  font-family: 'Lucida Grande', Arial, sans-serif
+  font-family: $main-fonts
 
 header
   background: white

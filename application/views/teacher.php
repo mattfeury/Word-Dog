@@ -3,6 +3,7 @@
   <?= anchor('/', 'Home', 'class="home"'); ?>
 
   <div class="session">
+    <span class="logged-in">Logged In, <?= $this->session->userdata('email') ?></span>
     <button class="editaccount">Edit Account</button>
     <?= anchor('/logout', 'Log Out', 'class="logged-in logout"'); ?>
   </div>
@@ -22,7 +23,7 @@
       ?>
     </ul>
 
-    <?= anchor('users/create', 'Create New Unit'); ?>
+    <?= anchor('units/create', 'Create New Unit'); ?>
   </section>
 </section>
 <? $this->load->view('tail'); ?>

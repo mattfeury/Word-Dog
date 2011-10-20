@@ -3,6 +3,7 @@
 class Lesson extends DataMapper {
   
   var $has_one = array('unit');
+  var $default_order_by = array('id' => 'asc');
   
   var $validation = array(
     'sentence' => array(
@@ -14,18 +15,4 @@ class Lesson extends DataMapper {
       'rules' => array('trim')
     )    
   );
-
-  function add() {
-    // this will encrypt the password
-    $this->validate()->get();
-
-    // if there was no matching record, this user would be completely cleared.
-    if (empty($this->id)) {
-      $this->error_message('add', 'Sentence required');
-      return false;
-    }
-    else {
-      return true;
-    }
-  }
 }

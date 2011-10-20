@@ -11,10 +11,6 @@ class Users extends CI_Controller {
     $this->load->view('teacher');
   }
 
-  public function create() {
-    $this->load->view('newunit');
-  }
-
   public function logout() {
     //TODO decide if we should destroy everything here
     //we could just as well unset the necessary fields
