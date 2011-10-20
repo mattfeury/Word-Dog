@@ -8,7 +8,7 @@ class Users extends CI_Controller {
       return;
     }
 
-    $this->load->view('teacher');
+    //$this->load->view('teacher');
   }
 
   public function logout() {

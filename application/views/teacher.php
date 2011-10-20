@@ -14,11 +14,8 @@
     <h2>List of Units</h2>
     <ul>
       <?
-      $u = new Unit();
-      $u->get();
-      foreach ($u->all as $unit) {
-          $unit->user->get();
-          echo '<li>' . $unit->name . ' by ' . $unit->user->name . anchor('/units/edit/' . $unit->id, 'Edit', 'class="editunit"');
+      foreach ($units as $unit) {
+        echo '<li>' . $unit->name . ' ' . anchor('/units/edit/' . $unit->id, 'Edit', 'class="editunit"');
       }
       ?>
     </ul>

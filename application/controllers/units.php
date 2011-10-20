@@ -8,7 +8,16 @@ class Units extends CI_Controller {
       return;
     }
 
-    $this->load->view('teacher');
+    $email = $this->session->userdata('email');
+    $user = new User();
+    $user->email = $email;
+    $user->validate()->get();
+
+    $units = $user->units->get();
+
+    $data['units'] = $units;
+
+    $this->load->view('teacher', $data);
   }
 
   public function create() {
