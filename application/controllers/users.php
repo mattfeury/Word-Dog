@@ -30,7 +30,7 @@ class Users extends CI_Controller {
 
     if ($success) {
       $this->_setSessionForUser($email);
-      redirect('/users');
+      redirect('/units');
     } else {
       //TODO return errors
       redirect(base_url());
