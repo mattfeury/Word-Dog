@@ -19,6 +19,19 @@ class Units extends CI_Controller {
 
     $this->load->view('teacher', $data);
   }
+  
+  public function show($id) {
+    $user = new User();
+    $user->id = $id;
+    $user->validate()->get();
+    
+    $units = $user->unit->get();
+    
+    $data = array();
+    $data['units'] = $units;
+    
+		$this->load->view('unitlist', $data);
+	}
 
   public function create() {
     $data = array();

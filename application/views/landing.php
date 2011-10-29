@@ -19,8 +19,7 @@
         'src' => 'images/12-oz.gif',
         'class' => 'about'
       )); ?>
-    <button>Do Something</button>
-
+    <?= anchor('/users/show', 'Find My Teacher', 'id="teacherlist"'); ?>
     <p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds</p>
   </section>
 </section>
