@@ -84,7 +84,7 @@ h1
 h2
   font-size: 22px
   //font-weight: bold
-  margin-bottom: 8px
+  margin-bottom: 20px
 
 button, a
   border: $border-width solid $border-color
@@ -98,6 +98,10 @@ button, a
   text-decoration: none
   line-height: normal
   font-family: $main-fonts
+
+//this should be moved  
+.block
+  display: block
 
 header
   background: white
@@ -117,6 +121,10 @@ header
 
   #content
     padding-top: 20px
+  
+    #action-menu
+      padding-top: 20px
+      text-align: center
 
 // Form stuffs
 form
@@ -136,3 +144,10 @@ form
       display: block
       margin: auto
       padding: 60px
+
+.users, .units, .activities
+  #content
+    background: white
+    border: $border-width solid $border-color
+    margin: 40px 0px
+    padding: 20px 40px

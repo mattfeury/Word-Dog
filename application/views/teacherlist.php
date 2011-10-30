@@ -6,12 +6,12 @@
 <section id="container">
   <section id="content">
 
-    <h2>Pick a Teacher Below</h2>
+    <h2>Pick a teacher below:</h2>
     <ul>
       <?
       
       foreach ($users as $user) {
-        echo '<li>' . anchor('/units/show/' . $user->id, $user->name . ' ' . $user->school . ' ' . $user->grade, 'class="unitlist"');
+        echo '<li>' . anchor('/units/show/' . $user->id, $user->name, 'class="unitlist block"');
       }
       ?>
     </ul>

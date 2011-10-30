@@ -145,7 +145,7 @@ h1 {
 /* line 84, ../sass/screen.sass */
 h2 {
   font-size: 22px;
-  margin-bottom: 8px;
+  margin-bottom: 20px;
 }
 
 /* line 89, ../sass/screen.sass */
@@ -162,7 +162,12 @@ button, a {
   font-family: "Lucida Grande", Arial, sans-serif;
 }
 
-/* line 102, ../sass/screen.sass */
+/* line 103, ../sass/screen.sass */
+.block {
+  display: block;
+}
+
+/* line 106, ../sass/screen.sass */
 header {
   background: white;
   border-bottom: 2px solid #b0e68b;
@@ -170,39 +175,52 @@ header {
   overflow: hidden;
   *zoom: 1;
 }
-/* line 108, ../sass/screen.sass */
+/* line 112, ../sass/screen.sass */
 header .home {
   float: left;
 }
-/* line 111, ../sass/screen.sass */
+/* line 115, ../sass/screen.sass */
 header > div {
   float: right;
 }
 
-/* line 114, ../sass/screen.sass */
+/* line 118, ../sass/screen.sass */
 #container {
   width: 80%;
   margin: auto;
 }
-/* line 118, ../sass/screen.sass */
+/* line 122, ../sass/screen.sass */
 #container #content {
   padding-top: 20px;
 }
+/* line 125, ../sass/screen.sass */
+#container #content #action-menu {
+  padding-top: 20px;
+  text-align: center;
+}
 
-/* line 123, ../sass/screen.sass */
+/* line 131, ../sass/screen.sass */
 form label {
   display: block;
   margin: 5px 0px;
 }
 
-/* line 131, ../sass/screen.sass */
+/* line 139, ../sass/screen.sass */
 .landing #container {
   width: 50%;
   text-align: center;
 }
-/* line 135, ../sass/screen.sass */
+/* line 143, ../sass/screen.sass */
 .landing #container .about {
   display: block;
   margin: auto;
   padding: 60px;
+}
+
+/* line 149, ../sass/screen.sass */
+.users #content, .units #content, .activities #content {
+  background: white;
+  border: 2px solid #b0e68b;
+  margin: 40px 0px;
+  padding: 20px 40px;
 }

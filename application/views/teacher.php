@@ -11,16 +11,17 @@
 <section id="container">
   <section id="content">
 
-    <h2>List of Units</h2>
+    <h2>Edit a Unit</h2>
     <ul>
       <?
       foreach ($units as $unit) {
-        echo '<li>' . $unit->name . ' ' . anchor('/units/edit/' . $unit->id, 'Edit', 'class="editunit"');
+        echo '<li>' . anchor('/units/edit/' . $unit->id, $unit->name, 'class="editunit block"');
       }
       ?>
     </ul>
-
-    <?= anchor('units/create', 'Create New Unit'); ?>
+    <section id="action-menu">
+      <?= anchor('units/create', 'Create New Unit', 'class="center"'); ?>
+    </section>
   </section>
 </section>
 <? $this->load->view('tail'); ?>

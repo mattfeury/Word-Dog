@@ -13,14 +13,13 @@
 <section id="container">
   <section id="content">
     <h1 class="blurb">Welcome to English Practice App!</h1>
-    <h4 class="blurb">Putting the Word in Word, Dog.</h4>
 
     <?= img(array(
         'src' => 'images/12-oz.gif',
         'class' => 'about'
       )); ?>
     <?= anchor('/users/show', 'Find My Teacher', 'id="teacherlist"'); ?>
-    <p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds</p>
+    <!--<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds</p>-->
   </section>
 </section>
 <div class="dialogs">
