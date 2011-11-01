@@ -15,7 +15,7 @@
     <ul>
       <?
       foreach ($units as $unit) {
-        echo '<li>' . $unit->name . ' ' . anchor('/units/edit/' . $unit->id, 'Edit', 'class="editunit"');
+        echo '<li>' . $unit->name . ' ' . anchor('/units/edit/' . $unit->id, 'Edit', 'class="editunit"') . '</li>';
       }
       ?>
     </ul>

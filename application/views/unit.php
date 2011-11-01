@@ -1,6 +1,6 @@
   <? $this->load->view('head'); ?>
 <header>
-  <?= anchor('/users', 'Teacher Zone', 'class="teacherzone home"'); ?>
+  <?= anchor('/units', 'Teacher Zone', 'class="teacherzone home"'); ?>
 
   <div class="session">
     <button class="editaccount">Edit Account</button>
