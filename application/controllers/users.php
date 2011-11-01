@@ -10,6 +10,13 @@ class Users extends CI_Controller {
 
     //$this->load->view('teacher');
   }
+  
+  public function show() {
+    $user = new User();
+		$user->limit(5)->get();
+    $data['users'] = $user;
+		$this->load->view('teacherlist', $data);
+	}
 
   public function logout() {
     //TODO decide if we should destroy everything here
@@ -30,7 +37,7 @@ class Users extends CI_Controller {
 
     if ($success) {
       $this->_setSessionForUser($email);
-      redirect('/users');
+      redirect('/units');
     } else {
       //TODO return errors
       redirect(base_url());
