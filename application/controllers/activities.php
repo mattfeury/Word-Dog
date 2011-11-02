@@ -14,6 +14,6 @@ class Activities extends CI_Controller {
     $data = array();
     $data['unit'] = $unit;
     
-		$this->load->view('activitylist', $data);
+		$this->load->view('activities', $data);
 	}
 }

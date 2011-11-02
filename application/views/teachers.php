@@ -11,7 +11,7 @@
       <?
       
       foreach ($users as $user) {
-        echo '<li>' . anchor('/units/show/' . $user->id, $user->name, 'class="unitlist block"');
+        echo '<li>' . anchor('/units/show/' . $user->id, $user->name, 'class="user"');
       }
       ?>
     </ul>

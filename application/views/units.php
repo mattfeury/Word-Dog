@@ -9,9 +9,9 @@
     <h2>Pick a unit below:</h2>
     <ul>
       <?
-      $attributes = array('id' => 'unit');
+      $attributes = array('id' => 'unit', 'class="units"');
       foreach ($units as $unit) {
-        echo '<li>' . anchor('/activities/show/' . $unit->id , $unit->name, 'class="activitylist block"');
+        echo '<li>' . anchor('/activities/show/' . $unit->id , $unit->name, 'class="unit"');
       }
       ?>
     </ul>
