@@ -66,7 +66,7 @@ class Users extends CI_Controller {
 
     if (! empty($u->id)) {
       $this->_setSessionForUser($email);
-      redirect('/users');
+      redirect('/units');
     } else {
       //TODO return errors
       redirect(base_url());

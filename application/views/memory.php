@@ -26,6 +26,7 @@ $(document).ready(function(){
       .toggleClass('covered')
       //clear input
       .val('');
+     $('.reinforcement').html('');
      $('.go').toggleClass('covered');
      var isCovered = $('.go').hasClass('covered');
      $('.cover').html( (isCovered ? 'Cover' : 'Uncover') );
@@ -38,6 +39,11 @@ $(document).ready(function(){
      $('.reinforcement').removeClass( (isCorrect ? 'incorrect' : 'correct') );   
        
    });
+   $('.sentence').keypress(function(e) {
+           if(e.which == 13) {
+               $('.go').click();
+           }
+       });
  });
  </script>
 <? $this->load->view('tail'); ?>
