@@ -9,7 +9,7 @@
     <h2>Pick an activity and a level:</h2>
     <ul>
       <?
-      echo '<li>' . anchor('/activities/show/' . $unit->id , 'Writing Sentences', 'class="activity"');
+      echo '<li class="activity">' . anchor('/memory/show/' . $unit->id , 'Memory') . '</li>';
       ?>
     </ul>
 

@@ -135,20 +135,32 @@ body .logged-out, body .logged-in {
 body.logged-out .logged-out, body.logged-in .logged-in {
   display: inline-block;
 }
-
 /* line 80, ../sass/screen.sass */
+body .covered {
+  display: none;
+}
+/* line 83, ../sass/screen.sass */
+body .correct {
+  color: #009900;
+}
+/* line 86, ../sass/screen.sass */
+body .incorrect {
+  color: red;
+}
+
+/* line 89, ../sass/screen.sass */
 h1 {
   font-size: 28px;
   margin-bottom: 12px;
 }
 
-/* line 84, ../sass/screen.sass */
+/* line 93, ../sass/screen.sass */
 h2 {
   font-size: 22px;
   margin-bottom: 20px;
 }
 
-/* line 89, ../sass/screen.sass */
+/* line 98, ../sass/screen.sass */
 button, a {
   border: 2px solid #b0e68b;
   background-color: white;
@@ -162,7 +174,7 @@ button, a {
   font-family: "Lucida Grande", Arial, sans-serif;
 }
 
-/* line 102, ../sass/screen.sass */
+/* line 111, ../sass/screen.sass */
 header {
   background: white;
   border-bottom: 2px solid #b0e68b;
@@ -170,49 +182,63 @@ header {
   overflow: hidden;
   *zoom: 1;
 }
-/* line 108, ../sass/screen.sass */
+/* line 117, ../sass/screen.sass */
 header .home {
   float: left;
 }
-/* line 111, ../sass/screen.sass */
+/* line 120, ../sass/screen.sass */
 header > div {
   float: right;
 }
 
-/* line 114, ../sass/screen.sass */
+/* line 123, ../sass/screen.sass */
 #container {
   width: 80%;
   margin: auto;
 }
-/* line 118, ../sass/screen.sass */
+/* line 127, ../sass/screen.sass */
 #container #content {
   padding-top: 20px;
 }
-/* line 121, ../sass/screen.sass */
+/* line 130, ../sass/screen.sass */
+#container #content .reinforcement {
+  font-size: 32px;
+  text-align: center;
+}
+/* line 134, ../sass/screen.sass */
+#container #content #lesson {
+  text-align: center;
+  padding: 60px;
+}
+/* line 138, ../sass/screen.sass */
+#container #content #lesson .sentence {
+  font-size: 28px;
+}
+/* line 141, ../sass/screen.sass */
 #container #content #action-menu {
   padding-top: 20px;
   text-align: center;
 }
 
-/* line 127, ../sass/screen.sass */
+/* line 147, ../sass/screen.sass */
 form label {
   display: block;
   margin: 5px 0px;
 }
 
-/* line 135, ../sass/screen.sass */
+/* line 155, ../sass/screen.sass */
 .landing #container {
   width: 50%;
   text-align: center;
 }
-/* line 139, ../sass/screen.sass */
+/* line 159, ../sass/screen.sass */
 .landing #container .about {
   display: block;
   margin: auto;
   padding: 60px;
 }
 
-/* line 145, ../sass/screen.sass */
+/* line 165, ../sass/screen.sass */
 .users #content, .units #content, .activities #content {
   background: white;
   border: 2px solid #b0e68b;
@@ -220,7 +246,7 @@ form label {
   padding: 20px 40px;
 }
 
-/* line 152, ../sass/screen.sass */
-li .unit, li .user {
+/* line 172, ../sass/screen.sass */
+li.unit button, li.unit a, li.user button, li.user a {
   display: block;
 }
