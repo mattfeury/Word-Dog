@@ -215,30 +215,36 @@ header > div {
   font-size: 28px;
 }
 /* line 141, ../sass/screen.sass */
+#container #content #lesson input.sentence {
+  width: 80%;
+  min-width: 500px;
+  border: 2px solid #b0e68b;
+}
+/* line 147, ../sass/screen.sass */
 #container #content #action-menu {
   padding-top: 20px;
   text-align: center;
 }
 
-/* line 147, ../sass/screen.sass */
+/* line 153, ../sass/screen.sass */
 form label {
   display: block;
   margin: 5px 0px;
 }
 
-/* line 155, ../sass/screen.sass */
+/* line 161, ../sass/screen.sass */
 .landing #container {
   width: 50%;
   text-align: center;
 }
-/* line 159, ../sass/screen.sass */
+/* line 165, ../sass/screen.sass */
 .landing #container .about {
   display: block;
   margin: auto;
   padding: 60px;
 }
 
-/* line 165, ../sass/screen.sass */
+/* line 171, ../sass/screen.sass */
 .users #content, .units #content, .activities #content {
   background: white;
   border: 2px solid #b0e68b;
@@ -246,7 +252,7 @@ form label {
   padding: 20px 40px;
 }
 
-/* line 172, ../sass/screen.sass */
+/* line 178, ../sass/screen.sass */
 li.unit button, li.unit a, li.user button, li.user a {
   display: block;
 }
