@@ -174,11 +174,7 @@ button, a {
   font-family: "Lucida Grande", Arial, sans-serif;
 }
 
-<<<<<<< HEAD
-/* line 102, ../sass/screen.sass */
-=======
 /* line 111, ../sass/screen.sass */
->>>>>>> 15bb713971a2600319a64f516390de7c6ec9107a
 header {
   background: white;
   border-bottom: 2px solid #b0e68b;
@@ -186,39 +182,20 @@ header {
   overflow: hidden;
   *zoom: 1;
 }
-<<<<<<< HEAD
-/* line 108, ../sass/screen.sass */
-header .home {
-  float: left;
-}
-/* line 111, ../sass/screen.sass */
-=======
 /* line 117, ../sass/screen.sass */
 header .home {
   float: left;
 }
 /* line 120, ../sass/screen.sass */
->>>>>>> 15bb713971a2600319a64f516390de7c6ec9107a
 header > div {
   float: right;
 }
 
-<<<<<<< HEAD
-/* line 114, ../sass/screen.sass */
-=======
 /* line 123, ../sass/screen.sass */
->>>>>>> 15bb713971a2600319a64f516390de7c6ec9107a
 #container {
   width: 80%;
   margin: auto;
 }
-<<<<<<< HEAD
-/* line 118, ../sass/screen.sass */
-#container #content {
-  padding-top: 20px;
-}
-/* line 121, ../sass/screen.sass */
-=======
 /* line 127, ../sass/screen.sass */
 #container #content {
   padding-top: 20px;
@@ -244,47 +221,30 @@ header > div {
   border: 2px solid #b0e68b;
 }
 /* line 147, ../sass/screen.sass */
->>>>>>> 15bb713971a2600319a64f516390de7c6ec9107a
 #container #content #action-menu {
   padding-top: 20px;
   text-align: center;
 }
 
-<<<<<<< HEAD
-/* line 127, ../sass/screen.sass */
-=======
 /* line 153, ../sass/screen.sass */
->>>>>>> 15bb713971a2600319a64f516390de7c6ec9107a
 form label {
   display: block;
   margin: 5px 0px;
 }
 
-<<<<<<< HEAD
-/* line 135, ../sass/screen.sass */
-=======
 /* line 161, ../sass/screen.sass */
->>>>>>> 15bb713971a2600319a64f516390de7c6ec9107a
 .landing #container {
   width: 50%;
   text-align: center;
 }
-<<<<<<< HEAD
-/* line 139, ../sass/screen.sass */
-=======
 /* line 165, ../sass/screen.sass */
->>>>>>> 15bb713971a2600319a64f516390de7c6ec9107a
 .landing #container .about {
   display: block;
   margin: auto;
   padding: 60px;
 }
 
-<<<<<<< HEAD
-/* line 145, ../sass/screen.sass */
-=======
 /* line 171, ../sass/screen.sass */
->>>>>>> 15bb713971a2600319a64f516390de7c6ec9107a
 .users #content, .units #content, .activities #content {
   background: white;
   border: 2px solid #b0e68b;
@@ -292,12 +252,7 @@ form label {
   padding: 20px 40px;
 }
 
-<<<<<<< HEAD
-/* line 152, ../sass/screen.sass */
-.units .unit {
-=======
 /* line 178, ../sass/screen.sass */
 li.unit button, li.unit a, li.user button, li.user a {
->>>>>>> 15bb713971a2600319a64f516390de7c6ec9107a
   display: block;
 }
