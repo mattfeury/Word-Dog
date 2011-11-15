@@ -11,7 +11,7 @@
       <?
       $attributes = array('id' => 'unit', 'class="units"');
       foreach ($units as $unit) {
-        echo '<li class="unit">' . anchor('/activities/show/' . $unit->id , $unit->name) . '</li>';
+        echo '<li class="unit">' . anchor('/activities/with/' . $unit->id , $unit->name) . '</li>';
       }
       ?>
     </ul>

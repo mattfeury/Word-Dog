@@ -8,9 +8,11 @@
 
     <h2>Pick an activity and a level:</h2>
     <ul>
-      <?
-      echo '<li class="activity">' . anchor('/memory/show/' . $unit->id , 'Memory') . '</li>';
-      ?>
+      <? foreach($activities as $key => $activity): ?>
+
+      <?= '<li class="activity">' . anchor('/activities/play/' . $key . '/' . $unit->id , $activity) . '</li>' ?>
+        <? endforeach; ?>
+
     </ul>
 
   </section>
