@@ -12,15 +12,15 @@
   <section id="content">
 
     <h2>Edit a Unit</h2>
-    <ul>
+    <ul class="units">
       <?
       foreach ($units as $unit) {
-        echo '<li>' . anchor('/units/edit/' . $unit->id, $unit->name, 'class="editunit block"') . '</li>';
+        echo '<li>' . anchor('/units/edit/' . $unit->id, $unit->name, 'class="unit"') . '</li>';
       }
       ?>
     </ul>
     <section id="action-menu">
-      <?= anchor('units/create', 'Create New Unit', 'class="center"'); ?>
+      <?= anchor('units/create', 'Create New Unit'); ?>
     </section>
   </section>
 </section>

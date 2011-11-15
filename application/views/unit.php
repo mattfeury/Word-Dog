@@ -56,8 +56,15 @@
   </ul>
 </div>
 <script type="text/javascript">
+  function renameFileInputs() {
+    $('.lesson:not(.template) .picture').each(function(i) {
+      $(this).attr('name', 'picture' + i);
+    });
+  }
   $(function() {
     //DOM ready
+    renameFileInputs();
+
     $('#add-sentence').click(function() {
       var $newLesson = $('.lesson.template').clone();
       $newLesson.removeClass('template');
@@ -66,6 +73,7 @@
         .append($newLesson.hide());
       $newLesson.slideDown();
 
+      renameFileInputs();
       return false;
     });
     $('.lessons').delegate('.lesson .remove', 'click', function() {
@@ -73,6 +81,7 @@
         .closest('.lesson')
         .slideUp(function() {
           $(this).remove();
+          renameFileInputs();
         });
       return false;
     });
