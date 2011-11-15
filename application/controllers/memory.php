@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Activities extends CI_Controller {
+class Memory extends CI_Controller {
 
   public function index() {
     
@@ -14,6 +14,6 @@ class Activities extends CI_Controller {
     $data = array();
     $data['unit'] = $unit;
     
-		$this->load->view('activities', $data);
+		$this->load->view('memory', $data);
 	}
 }

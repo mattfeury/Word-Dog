@@ -15,7 +15,7 @@ class Users extends CI_Controller {
     $user = new User();
 		$user->limit(5)->get();
     $data['users'] = $user;
-		$this->load->view('teacherlist', $data);
+		$this->load->view('teachers', $data);
 	}
 
   public function logout() {
@@ -66,7 +66,7 @@ class Users extends CI_Controller {
 
     if (! empty($u->id)) {
       $this->_setSessionForUser($email);
-      redirect('/users');
+      redirect('/units');
     } else {
       //TODO return errors
       redirect(base_url());

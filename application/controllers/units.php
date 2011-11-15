@@ -30,7 +30,7 @@ class Units extends CI_Controller {
     $data = array();
     $data['units'] = $units;
     
-		$this->load->view('unitlist', $data);
+		$this->load->view('units', $data);
 	}
 
   public function create() {

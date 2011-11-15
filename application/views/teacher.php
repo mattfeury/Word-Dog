@@ -15,13 +15,13 @@
     <ul class="units">
       <?
       foreach ($units as $unit) {
-        echo '<li>' . anchor('/units/edit/' . $unit->id, $unit->name, 'class="unit"') . '</li>';
+        echo '<li class="unit">' . anchor('/units/edit/' . $unit->id, $unit->name) . '</li>';
       }
       ?>
     </ul>
-    <section id="action-menu">
+    <div id="action-menu">
       <?= anchor('units/create', 'Create New Unit'); ?>
-    </section>
+    </div>
   </section>
 </section>
 <? $this->load->view('tail'); ?>
