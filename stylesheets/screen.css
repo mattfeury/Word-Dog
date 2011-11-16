@@ -229,75 +229,85 @@ header .home {
 header > div {
   float: right;
 }
-
 /* line 157, ../sass/screen.sass */
+header .score {
+  font-size: 32px;
+  line-height: 34px;
+}
+/* line 161, ../sass/screen.sass */
+header .score .percentage {
+  display: inline-block;
+  margin-left: 10px;
+}
+
+/* line 165, ../sass/screen.sass */
 #container {
   width: 80%;
   margin: auto;
 }
-/* line 161, ../sass/screen.sass */
+/* line 169, ../sass/screen.sass */
 #container #content {
   padding-top: 20px;
 }
-/* line 164, ../sass/screen.sass */
+/* line 172, ../sass/screen.sass */
 #container #content .reinforcement {
   font-size: 32px;
   text-align: center;
 }
-/* line 168, ../sass/screen.sass */
+/* line 176, ../sass/screen.sass */
 #container #content #lesson {
   text-align: center;
   padding: 60px;
 }
-/* line 172, ../sass/screen.sass */
+/* line 180, ../sass/screen.sass */
 #container #content #lesson .sentence {
   font-size: 28px;
 }
-/* line 175, ../sass/screen.sass */
+/* line 183, ../sass/screen.sass */
 #container #content #lesson input.sentence {
   width: 80%;
   min-width: 500px;
   border: 2px solid #b0e68b;
 }
-/* line 180, ../sass/screen.sass */
+/* line 188, ../sass/screen.sass */
 #container #content #action-menu {
   padding-top: 20px;
   text-align: center;
 }
 
-/* line 186, ../sass/screen.sass */
+/* line 194, ../sass/screen.sass */
 form label {
   display: block;
   margin: 5px 0px;
 }
 
-/* line 194, ../sass/screen.sass */
+/* line 202, ../sass/screen.sass */
 .landing #container {
   width: 50%;
   text-align: center;
 }
-/* line 198, ../sass/screen.sass */
+/* line 206, ../sass/screen.sass */
 .landing #container .about {
   display: block;
   margin: auto;
   padding: 60px;
 }
 
-/* line 204, ../sass/screen.sass */
+/* line 212, ../sass/screen.sass */
 body.activities .play {
   overflow: hidden;
   *zoom: 1;
 }
-/* line 207, ../sass/screen.sass */
+/* line 215, ../sass/screen.sass */
 body.activities .play .activities {
   float: left;
 }
-/* line 209, ../sass/screen.sass */
+/* line 217, ../sass/screen.sass */
 body.activities .play .levels {
   float: right;
 }
 
-/* line 213, ../sass/screen.sass */
+/* line 221, ../sass/screen.sass */
 .users #content, .units #content, .activities #content {
   background: white;
   border: 2px solid #b0e68b;
@@ -305,25 +315,25 @@ body.activities .play .levels {
   padding: 20px 40px;
 }
 
-/* line 220, ../sass/screen.sass */
+/* line 228, ../sass/screen.sass */
 .units h2 {
   display: inline;
 }
-/* line 223, ../sass/screen.sass */
+/* line 231, ../sass/screen.sass */
 .units input.unit, .units input.sentence {
   border: 2px solid #b0e68b;
 }
-/* line 226, ../sass/screen.sass */
+/* line 234, ../sass/screen.sass */
 .units input.unit {
   width: 300px;
   height: 18px;
 }
-/* line 230, ../sass/screen.sass */
+/* line 238, ../sass/screen.sass */
 .units input.sentence {
   width: 86%;
 }
 
-/* line 234, ../sass/screen.sass */
+/* line 242, ../sass/screen.sass */
 li.unit button, li.unit a, li.user button, li.user a {
   display: block;
 }
