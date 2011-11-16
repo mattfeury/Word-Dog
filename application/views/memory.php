@@ -52,8 +52,12 @@ $(document).ready(function(){
      $('.reinforcement').addClass( (isCorrect ? 'correct' : 'incorrect') ); 
      $('.reinforcement').removeClass( (isCorrect ? 'incorrect' : 'correct') );
 
-     if (isCorrect)
+     if (isCorrect) {
+       correct();
        setTimeout(function() { renderNextLesson(); $('.cover').click() }, 1000);
+     } else {
+        incorrect();
+     }
        
    });
    $('.sentence').keypress(function(e) {
