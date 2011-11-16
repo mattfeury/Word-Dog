@@ -259,45 +259,45 @@ header > div {
   min-width: 500px;
   border: 2px solid #b0e68b;
 }
-/* line 181, ../sass/screen.sass */
+/* line 180, ../sass/screen.sass */
 #container #content #action-menu {
   padding-top: 20px;
   text-align: center;
 }
 
-/* line 187, ../sass/screen.sass */
+/* line 186, ../sass/screen.sass */
 form label {
   display: block;
   margin: 5px 0px;
 }
 
-/* line 195, ../sass/screen.sass */
+/* line 194, ../sass/screen.sass */
 .landing #container {
   width: 50%;
   text-align: center;
 }
-/* line 199, ../sass/screen.sass */
+/* line 198, ../sass/screen.sass */
 .landing #container .about {
   display: block;
   margin: auto;
   padding: 60px;
 }
 
-/* line 205, ../sass/screen.sass */
+/* line 204, ../sass/screen.sass */
 body.activities .play {
   overflow: hidden;
   *zoom: 1;
 }
-/* line 208, ../sass/screen.sass */
+/* line 207, ../sass/screen.sass */
 body.activities .play .activities {
   float: left;
 }
-/* line 210, ../sass/screen.sass */
+/* line 209, ../sass/screen.sass */
 body.activities .play .levels {
   float: right;
 }
 
-/* line 214, ../sass/screen.sass */
+/* line 213, ../sass/screen.sass */
 .users #content, .units #content, .activities #content {
   background: white;
   border: 2px solid #b0e68b;
@@ -305,25 +305,25 @@ body.activities .play .levels {
   padding: 20px 40px;
 }
 
-/* line 221, ../sass/screen.sass */
+/* line 220, ../sass/screen.sass */
 .units h2 {
   display: inline;
 }
-/* line 224, ../sass/screen.sass */
+/* line 223, ../sass/screen.sass */
 .units input.unit, .units input.sentence {
   border: 2px solid #b0e68b;
 }
-/* line 227, ../sass/screen.sass */
+/* line 226, ../sass/screen.sass */
 .units input.unit {
   width: 300px;
   height: 18px;
 }
-/* line 231, ../sass/screen.sass */
+/* line 230, ../sass/screen.sass */
 .units input.sentence {
   width: 86%;
 }
 
-/* line 235, ../sass/screen.sass */
+/* line 234, ../sass/screen.sass */
 li.unit button, li.unit a, li.user button, li.user a {
   display: block;
 }

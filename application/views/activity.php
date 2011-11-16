@@ -21,6 +21,9 @@
 </section>
 <script type="text/javascript">
   $(document).ready(function() {
+    //Hide at first so we initially slide down. Purely asthetic
+    $('.levels').hide();
+
     function addLevelForUnit(level, unit) {
       $('.levels').append(
         $('<li/>')
