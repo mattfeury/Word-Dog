@@ -73,26 +73,26 @@ class Units extends CI_Controller {
     $lessonsJson = $this->input->post('lessons_json', TRUE);
     $unitName = $this->input->post('unit', TRUE);
 
-    /*
-		$config['upload_path'] = './uploads/';
-		$config['allowed_types'] = 'gif|jpg|png';
-		$config['max_size']	= '100';
-		$config['max_width']  = '1024';
-		$config['max_height']  = '768';
+    // Config image upload goodies
+    $field_name = 'picture';
+    $config['upload_path'] = './uploads';
+    $config['allowed_types'] = 'gif|jpg|jpeg|png';
+    $config['max_size'] = '2024';
+    $config['max_width']  = '1024';
+    $config['max_height']  = '768';
     $config['overwrite']     = FALSE;
 
-		$this->load->library('upload', $config);
-    $field_name = 'picture';
-    $this->upload->do_upload($field_name);
-    */
+    $this->load->library('upload', $config);
 
+    // Save the shtuffs
     $lessons = json_decode($lessonsJson);
 
     $email = $this->session->userdata('email');
     $user = new User();
     $user->email = $email;
     $user->validate()->get();
-    
+
+    // Top level unit. Add or modify existing
     $unit = new Unit();
 
     if ($isNew) {
@@ -109,20 +109,33 @@ class Units extends CI_Controller {
     if ($isNew)
       $user->save($unit);
 
+    // Delete old lessons for this unit, if any.
     $old = $unit->lessons->get();
     $old->delete_all();
 
-    // insert lessons
+    // Insert lessons
+    $i = 0;
     foreach($lessons as $lesson) {
+      $imageUploaded = false;
+      $image = null;
+
+      if ($this->upload->do_upload($field_name . $i)) {
+        $data = $this->upload->data();
+        $imageUploaded = $data['is_image'];
+        $image = $data['file_name'];
+      }
+      
       if (isset($lesson->sentence)) {
         $newLesson = new Lesson();
         $newLesson->sentence = $lesson->sentence;
-        if (isset($lesson->image))
-          $newLesson->image = $lesson->image;
+        if ($imageUploaded)
+          $newLesson->image = $image;
         if (isset($lesson->question))
           $newLesson->question = $lesson->question;
         $newLesson->save($unit);
       }
+
+      $i++;
     }
 
     //TODO handle errors and return

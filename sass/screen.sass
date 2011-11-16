@@ -76,7 +76,16 @@ body
     display: none
   &.logged-out .logged-out, &.logged-in .logged-in
     display: inline-block
-
+    
+  .covered
+    display: none
+    
+  .correct
+    color: #009900
+  
+  .incorrect
+    color: #ff0000
+    
 h1
   font-size: 28px
   //font-weight: bold
@@ -117,11 +126,28 @@ header
 
   #content
     padding-top: 20px
+    
+    .reinforcement
+      font-size: 32px
+      text-align: center
+      
+    #lesson
+      text-align: center
+      padding: 60px
+      
+      .sentence
+        font-size: 28px
+        
+      input.sentence
+        width: 80%
+        min-width: 500px
+        border: 2px solid #B0E68B
+        
   
     #action-menu
       padding-top: 20px
       text-align: center
-
+    
 // Form stuffs
 form
   label
@@ -148,6 +174,7 @@ form
     margin: 40px 0px
     padding: 20px 40px
     
-li
-  .unit, .user
+li.unit, li.user
+  button, a
     display: block
+   

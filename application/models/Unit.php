@@ -14,5 +14,14 @@ class Unit extends DataMapper {
     )    
   );
 
-  //TODO consider making 'upsert'
+  function pruned() {
+    $pruned = new stdClass;
+    $pruned->id = $this->id;
+    $pruned->name = $this->name;
+    $pruned->lessons = array();
+    foreach ($this->lessons->get() as $lesson)
+      $pruned->lessons[] = $lesson->pruned();
+
+    return $pruned;
+  }
 }
