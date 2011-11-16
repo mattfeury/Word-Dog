@@ -30,9 +30,12 @@ class Activities extends CI_Controller {
     $unit = new Unit();
     $unit->id = $unitId;
     $unit->validate()->get();
-    
+    //$unit->lessons->get();
+    $pruned = $unit->pruned();
+
     $data = array();
-    $data['unit'] = $unit;
+    //print_r($pruned);
+    $data['unit_json'] = json_encode($pruned);
 
     $activityView = self::$activitiesById[$activity];
  

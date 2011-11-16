@@ -1,7 +1,7 @@
 <? $this->load->view('head'); ?>
+<? $this->load->view('activity_data'); ?>
 <header>
   <?= anchor('/', 'Home', 'class="home"'); ?>
-
 </header>
 <section id="container">
   <section id="content">
@@ -10,7 +10,7 @@
     <h2>Memorize the sentence then type it:</h2>
     <div class="reinforcement"></div>
     <?
-    echo '<div id="lesson"><span class="sentence">' . $unit->lesson->get()->sentence . '</span><input name="sentence" class="sentence covered" type="text" autocomplete="off"/></div>';
+    echo '<div id="lesson"><span class="sentence"></span><input name="sentence" class="sentence covered" type="text" autocomplete="off"/></div>';
     ?>
     <div id="action-menu">
       <button class="cover">Cover</button>
@@ -19,8 +19,20 @@
   </section>
 </section>
 <script>
+  // We must define this!
+  // Callback for renderNextLesson()
+  function defineActivityForLesson(lesson) {
+    $('#lesson')
+      .find('.sentence')
+        .text(lesson['sentence']);
+  }
+
 //Cover for memory
 $(document).ready(function(){
+
+  //load first lesson
+  renderNextLesson();
+
    $('.cover').click(function(event){
      $('.sentence')
       .toggleClass('covered')
@@ -36,7 +48,10 @@ $(document).ready(function(){
      var isCorrect = ($('input').val()) == ($('.sentence').html());
      $('.reinforcement').html( (isCorrect ? 'Correct!' : 'Incorrect') );
      $('.reinforcement').addClass( (isCorrect ? 'correct' : 'incorrect') ); 
-     $('.reinforcement').removeClass( (isCorrect ? 'incorrect' : 'correct') );   
+     $('.reinforcement').removeClass( (isCorrect ? 'incorrect' : 'correct') );
+
+     if (isCorrect)
+       setTimeout(function() { renderNextLesson(); $('.cover').click() }, 1000);
        
    });
    $('.sentence').keypress(function(e) {

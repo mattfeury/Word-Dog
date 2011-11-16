@@ -15,4 +15,15 @@ class Lesson extends DataMapper {
       'rules' => array('trim')
     )    
   );
+
+  function pruned() {
+    $pruned = new stdClass;
+    $pruned->id = $this->id;
+    $pruned->sentence = $this->sentence;
+    $pruned->image = $this->image;
+    $pruned->questions = $this->question;
+
+    return $pruned;
+  }
+  
 }
