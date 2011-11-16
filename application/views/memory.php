@@ -45,7 +45,8 @@ $(document).ready(function(){
    });
    //check answer
    $('.go').click(function(event){
-     var isCorrect = ($('input').val()) == ($('.sentence').html());
+     console.log(($('span.sentence').text()));
+     var isCorrect = ($('input').val()) === ($('.sentence').html());
      $('.reinforcement').html( (isCorrect ? 'Correct!' : 'Incorrect') );
      $('.reinforcement').addClass( (isCorrect ? 'correct' : 'incorrect') ); 
      $('.reinforcement').removeClass( (isCorrect ? 'incorrect' : 'correct') );
