@@ -18,16 +18,6 @@
   </section>
 </section>
 <script>
-  // We must define this!
-  // Callback for renderNextLesson()
-  function defineActivityForLesson(lesson) {
-    $('#lesson')
-      .find('.sentence')
-        .text(lesson['sentence']);
-  }
-
-$(document).ready(function(){
-  
   function jumble(word) {
 
       // Rand function will return 2-part array
@@ -73,20 +63,30 @@ $(document).ready(function(){
 
   }
   
+  // We must define this!
+  // Callback for renderNextLesson()
+  function defineActivityForLesson(lesson) {
+    $('#lesson')
+      .find('.sentence')
+        .text(lesson['sentence']);
+
+    originalSentence = $('#lesson span.sentence').text();
+    jumbledSentence = originalSentence;
+
+    //prevent a jumbed sentence that's the same
+    while(jumbledSentence == originalSentence) {
+      jumbledSentence = jumble(originalSentence);
+    }
+
+    //remove commas and uppercase on presentation
+    $('#lesson span.sentence').text(jumbledSentence.toLowerCase().replace(/\./g,' '));
+  }
+
+$(document).ready(function(){
+  
   //load first lesson
   renderNextLesson();
   
-  originalSentence = $('#lesson span.sentence').text();
-  jumbledSentence = originalSentence;
-  
-  //prevent a jumbed sentence that's the same
-  while(jumbledSentence == originalSentence) {
-    jumbledSentence = jumble(originalSentence);
-  }
-  
-  //remove commas and uppercase on presentation
-  $('#lesson span.sentence').text(jumbledSentence.toLowerCase().replace(/\./g,' '));
-
    $('.cover').click(function(event){
      $('.sentence')
       .toggleClass('covered')
@@ -105,7 +105,7 @@ $(document).ready(function(){
      $('.reinforcement').removeClass( (isCorrect ? 'incorrect' : 'correct') );
 
      if (isCorrect)
-       setTimeout(function() { renderNextLesson(); $('.cover').click() }, 1000);
+       setTimeout(function() { renderNextLesson(); $('#lesson input').val(''); }, 1000);
        
    });
    $('.sentence').keypress(function(e) {
