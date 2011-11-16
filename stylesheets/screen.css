@@ -187,10 +187,7 @@ button, a, input.submit, input.save, .substitute {
   font-family: "Lucida Grande", Arial, sans-serif;
 }
 
-<<<<<<< HEAD
-/* line 113, ../sass/screen.sass */
-=======
-/* line 121, ../sass/screen.sass */
+/* line 123, ../sass/screen.sass */
 .file-holder {
   position: relative;
   width: 145px;
@@ -198,12 +195,12 @@ button, a, input.submit, input.save, .substitute {
   overflow: hidden;
   cursor: pointer;
 }
-/* line 128, ../sass/screen.sass */
+/* line 130, ../sass/screen.sass */
 .file-holder .substitute {
   position: relative;
   z-index: 0;
 }
-/* line 132, ../sass/screen.sass */
+/* line 134, ../sass/screen.sass */
 .file-holder input {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
   opacity: 0;
@@ -216,8 +213,7 @@ button, a, input.submit, input.save, .substitute {
   top: 0;
 }
 
-/* line 143, ../sass/screen.sass */
->>>>>>> Some more SASS
+/* line 145, ../sass/screen.sass */
 header {
   background: white;
   border-bottom: 2px solid #b0e68b;
@@ -225,135 +221,83 @@ header {
   overflow: hidden;
   *zoom: 1;
 }
-<<<<<<< HEAD
-/* line 119, ../sass/screen.sass */
+/* line 151, ../sass/screen.sass */
 header .home {
   float: left;
 }
-/* line 122, ../sass/screen.sass */
-=======
-/* line 149, ../sass/screen.sass */
-header .home {
-  float: left;
-}
-/* line 152, ../sass/screen.sass */
->>>>>>> Some more SASS
+/* line 154, ../sass/screen.sass */
 header > div {
   float: right;
 }
 
-<<<<<<< HEAD
-/* line 125, ../sass/screen.sass */
-=======
-/* line 155, ../sass/screen.sass */
->>>>>>> Some more SASS
+/* line 157, ../sass/screen.sass */
 #container {
   width: 80%;
   margin: auto;
 }
-<<<<<<< HEAD
-/* line 129, ../sass/screen.sass */
+/* line 161, ../sass/screen.sass */
 #container #content {
   padding-top: 20px;
 }
-/* line 132, ../sass/screen.sass */
-=======
-/* line 159, ../sass/screen.sass */
-#container #content {
-  padding-top: 20px;
-}
-/* line 162, ../sass/screen.sass */
->>>>>>> Some more SASS
+/* line 164, ../sass/screen.sass */
 #container #content .reinforcement {
   font-size: 32px;
   text-align: center;
 }
-<<<<<<< HEAD
-/* line 136, ../sass/screen.sass */
-=======
-/* line 166, ../sass/screen.sass */
->>>>>>> Some more SASS
+/* line 168, ../sass/screen.sass */
 #container #content #lesson {
   text-align: center;
   padding: 60px;
 }
-<<<<<<< HEAD
-/* line 140, ../sass/screen.sass */
+/* line 172, ../sass/screen.sass */
 #container #content #lesson .sentence {
   font-size: 28px;
 }
-/* line 143, ../sass/screen.sass */
-=======
-/* line 170, ../sass/screen.sass */
-#container #content #lesson .sentence {
-  font-size: 28px;
-}
-/* line 173, ../sass/screen.sass */
->>>>>>> Some more SASS
+/* line 175, ../sass/screen.sass */
 #container #content #lesson input.sentence {
   width: 80%;
   min-width: 500px;
   border: 2px solid #b0e68b;
 }
-<<<<<<< HEAD
-/* line 149, ../sass/screen.sass */
-=======
-/* line 179, ../sass/screen.sass */
->>>>>>> Some more SASS
+/* line 181, ../sass/screen.sass */
 #container #content #action-menu {
   padding-top: 20px;
   text-align: center;
 }
 
-<<<<<<< HEAD
-/* line 155, ../sass/screen.sass */
-=======
-/* line 185, ../sass/screen.sass */
->>>>>>> Some more SASS
+/* line 187, ../sass/screen.sass */
 form label {
   display: block;
   margin: 5px 0px;
 }
 
-<<<<<<< HEAD
-/* line 163, ../sass/screen.sass */
-=======
-/* line 193, ../sass/screen.sass */
->>>>>>> Some more SASS
+/* line 195, ../sass/screen.sass */
 .landing #container {
   width: 50%;
   text-align: center;
 }
-<<<<<<< HEAD
-/* line 167, ../sass/screen.sass */
-=======
-/* line 197, ../sass/screen.sass */
->>>>>>> Some more SASS
+/* line 199, ../sass/screen.sass */
 .landing #container .about {
   display: block;
   margin: auto;
   padding: 60px;
 }
 
-<<<<<<< HEAD
-/* line 173, ../sass/screen.sass */
+/* line 205, ../sass/screen.sass */
 body.activities .play {
   overflow: hidden;
   *zoom: 1;
 }
-/* line 176, ../sass/screen.sass */
+/* line 208, ../sass/screen.sass */
 body.activities .play .activities {
   float: left;
 }
-/* line 178, ../sass/screen.sass */
+/* line 210, ../sass/screen.sass */
 body.activities .play .levels {
   float: right;
 }
 
-/* line 182, ../sass/screen.sass */
-=======
-/* line 203, ../sass/screen.sass */
->>>>>>> Some more SASS
+/* line 214, ../sass/screen.sass */
 .users #content, .units #content, .activities #content {
   background: white;
   border: 2px solid #b0e68b;
@@ -361,29 +305,25 @@ body.activities .play .levels {
   padding: 20px 40px;
 }
 
-<<<<<<< HEAD
-/* line 189, ../sass/screen.sass */
-=======
-/* line 210, ../sass/screen.sass */
+/* line 221, ../sass/screen.sass */
 .units h2 {
   display: inline;
 }
-/* line 213, ../sass/screen.sass */
+/* line 224, ../sass/screen.sass */
 .units input.unit, .units input.sentence {
   border: 2px solid #b0e68b;
 }
-/* line 216, ../sass/screen.sass */
+/* line 227, ../sass/screen.sass */
 .units input.unit {
   width: 300px;
   height: 18px;
 }
-/* line 220, ../sass/screen.sass */
+/* line 231, ../sass/screen.sass */
 .units input.sentence {
   width: 86%;
 }
 
-/* line 224, ../sass/screen.sass */
->>>>>>> Some more SASS
+/* line 235, ../sass/screen.sass */
 li.unit button, li.unit a, li.user button, li.user a {
   display: block;
 }
