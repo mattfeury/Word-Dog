@@ -3,7 +3,7 @@
   <?= anchor('/units', 'Teacher Zone', 'class="teacherzone home"'); ?>
 
   <div class="session">
-    <button class="editaccount">Edit Account</button>
+    <?= anchor('/users/modify', 'Edit Account'); ?>
     <?= anchor('/logout', 'Log Out', 'class="logged-in logout"'); ?>
   </div>
 </header>
