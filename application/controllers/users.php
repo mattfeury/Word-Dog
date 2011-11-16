@@ -66,7 +66,7 @@ class Users extends CI_Controller {
 
     if (! empty($u->id)) {
       $this->_setSessionForUser($email);
-      redirect('/users');
+      redirect('/units');
     } else {
       //TODO return errors
       redirect(base_url());
@@ -81,4 +81,42 @@ class Users extends CI_Controller {
     $this->session->set_userdata($session_data);
 
   }
+  
+    public function modify() {
+    $email = $this->session->userdata('email');
+	
+	$user = new User();
+    $user->where('email', $email)->get();
+		
+	$data['user'] = $user;
+    $this->load->view('account', $data);
+
+  }
+  
+  public function changeAccount() {
+    $email = $this->input->post('email', TRUE);
+	$oldpassword = $this->input->post('oldpassword', TRUE);
+	$newpassword1 = $this->input->post('newpassword1', TRUE);
+    $newpassword2 = $this->input->post('newpassword2', TRUE);
+    $name = $this->input->post('name', TRUE);
+	$school = $this->input->post('school', TRUE);
+    $grade = $this->input->post('grade', TRUE);
+
+	$u = new User();
+	$oldemail = $this->session->userdata('email');
+    $u->where('email', $oldemail)->get();
+		
+    $u->email = $email;
+    $u->name = $name;
+    $u->school = $school;
+    $u->grade = $grade;
+	
+	if(md5($oldpassword) == $u->password)
+		if($newpassword1 == $newpassword2)
+			$u->password = $newpassword1;				
+
+    $u->save();
+	$data['user'] = $u;
+	$this->load->view('account', $data);
+}
 }
