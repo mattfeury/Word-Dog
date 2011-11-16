@@ -5,13 +5,14 @@
 </header>
 <section id="container">
   <section id="content">
-
     <h1>Memory</h1>
     <h2>Memorize the sentence then type it:</h2>
     <div class="reinforcement"></div>
-    <?
-    echo '<div id="lesson"><span class="sentence"></span><input name="sentence" class="sentence covered" type="text" autocomplete="off"/></div>';
-    ?>
+  
+    <div id="lesson">
+      <span class="sentence"></span>
+      <input name="sentence" class="sentence covered" type="text" autocomplete="off" />
+    </div>
     <div id="action-menu">
       <button class="cover">Cover</button>
       <button class="go covered">Go</button>

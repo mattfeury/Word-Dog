@@ -101,6 +101,8 @@ button, a
   color: $main-text-color
   font-size: 18px
 
+  display: inline-block
+
   padding: 3px 5px
   margin: 2px
   cursor: pointer
@@ -167,6 +169,15 @@ form
       margin: auto
       padding: 60px
 
+body.activities
+  .play
+    +clearfix
+
+    .activities
+      float: left
+    .levels
+      float: right
+
 .users, .units, .activities
   #content
     background: white
@@ -177,4 +188,3 @@ form
 li.unit, li.user
   button, a
     display: block
-   
