@@ -27,7 +27,7 @@
       .find('.attempts')
         .text(ATTEMPTS)
       .end()
-      .find('.percentages')
+      .find('.percentage')
         .text(getPercentage());
   }
   $(function() {
