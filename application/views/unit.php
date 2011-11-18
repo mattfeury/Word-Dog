@@ -21,6 +21,10 @@
             <label>Sentence: <input type="text" class="sentence" name="sentence" value="<?= $lesson->sentence;?>" /></label>
             <fieldset>
               <label for="picture">Picture:</label>
+              <?= $lesson->image != '' ? '<img src="' . base_url()  . 'uploads/' . $lesson->image . '" />' : '' ?>
+              <!--<input type="radio" name="image-upload" value="current" checked />Current image
+              <input type="radio" name="image-upload" value="new" />New image-->
+              <div class='image-name'></div>
               <div class="file-holder">
                 <div class="substitute">Upload Image</div>
                 <input type="file" class="picture" name="picture" />
@@ -51,7 +55,7 @@
     <li class="template lesson">
       <label>Sentence: <input type="text" class="sentence" name="sentence" value="" /></label>
       <fieldset>
-        <label for="picture">Picture:</label>
+        <label for="picture">Picture:<span class='image-name'></span></label>
         <div class="file-holder">
           <div class="substitute">Upload Image</div>
           <input type="file" class="picture" name="picture" />
@@ -84,6 +88,14 @@
   $(function() {
     //DOM ready
     renameFileInputs();
+    
+    $('input[type=file]').change(function(e){
+      //$in=$(this);
+      //$in.next().html($in.val());
+      var $uploadtext = $(this).parent().find('.picture').val().split("\\").pop()
+      console.log($(this).parent().siblings('.image-name').text($uploadtext));
+      //console.log($lesson.find('.picture').val().split("\\").pop());
+    });
 
     $('#add-sentence').click(function() {
       var $newLesson = $('.lesson.template').clone();
@@ -111,11 +123,20 @@
       var lessons = [];
       $('.lesson:not(.template)').each(function(i, item) {
         var $lesson = $(item),
-            sentence = $lesson.find('.sentence').val(),
-            imgFile = $lesson.find('.picture').val().split("\\").pop();
+            sentence = $lesson.find('.sentence').val();
+            imgFile = '';
             //question = $lesson.find('.
-
+            
+        //pass user uploaded image filename   
+        if($lesson.find('.picture').val() != '') { 
+          imgFile = $lesson.find('.picture').val().split("\\").pop();
+        //else, pass image filename that's there
+        } else {
+          imgFile = $lesson.find('.image-name').text();
+        }
+        
         var lesson = {};
+        
         lesson['sentence'] = sentence;
         lesson['image'] = imgFile;
         //lesson['question'] = imgFile;

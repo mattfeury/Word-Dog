@@ -75,6 +75,8 @@ class Units extends CI_Controller {
 
     // Config image upload goodies
     $field_name = 'picture';
+    //unique filename based on timestamp and unit id
+    $config['file_name'] = $unitId + uniqid();
     $config['upload_path'] = './uploads';
     $config['allowed_types'] = 'gif|jpg|jpeg|png';
     $config['max_size'] = '2024';
@@ -112,24 +114,31 @@ class Units extends CI_Controller {
     // Delete old lessons for this unit, if any.
     $old = $unit->lessons->get();
     $old->delete_all();
-
     // Insert lessons
     $i = 0;
     foreach($lessons as $lesson) {
       $imageUploaded = false;
       $image = null;
-
+      
+      //get image filename of uploaded
       if ($this->upload->do_upload($field_name . $i)) {
         $data = $this->upload->data();
         $imageUploaded = $data['is_image'];
         $image = $data['file_name'];
+      //else, get image filename that's there
+      } else {
+        $imageUploaded = true;
+        $image = $lesson->image;
       }
+
       
       if (isset($lesson->sentence)) {
         $newLesson = new Lesson();
         $newLesson->sentence = $lesson->sentence;
         if ($imageUploaded)
           $newLesson->image = $image;
+        else
+          //get image from view
         if (isset($lesson->question))
           $newLesson->question = $lesson->question;
         $newLesson->save($unit);
