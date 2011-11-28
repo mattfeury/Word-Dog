@@ -138,8 +138,8 @@ class Units extends CI_Controller {
 
         // Questions
         // These should be encoded as json (prior to this point by the client)
-        if (isset($lesson->question))
-          $newLesson->question = $lesson->question;
+        if (isset($lesson->questions))
+          $newLesson->questions = $lesson->questions;
 
         // Save new lesson. Reference it to the unit
         $newLesson->save($unit);
