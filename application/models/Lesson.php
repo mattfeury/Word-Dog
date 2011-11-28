@@ -36,7 +36,7 @@ class Lesson extends DataMapper {
     ),
     // See note above about questions
     'questions' => array(
-      'get_rules' => array('json_to_questions')
+      'get_rules' => array('json_as_array')
     )
   );
 
@@ -50,7 +50,7 @@ class Lesson extends DataMapper {
     return $pruned;
   }
 
-  function _json_to_questions($field) // optional second parameter is not used
+  function _json_as_array($field) // optional second parameter is not used
   {
     if (!empty($this->{$field})) {
       $this->{$field} = json_decode($this->{$field}, true);
