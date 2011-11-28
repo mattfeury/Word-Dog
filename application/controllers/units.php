@@ -66,7 +66,6 @@ class Units extends CI_Controller {
    * Handles form input to upsert a unit/lesson
    */
   public function update() {
-
     $unitId = $this->session->userdata('current_unit');
     $isNew = $unitId == false;
 
@@ -76,7 +75,7 @@ class Units extends CI_Controller {
     // Config image upload goodies
     $field_name = 'picture';
     //unique filename based on timestamp and unit id
-    $config['file_name'] = $unitId + uniqid();
+    $config['file_name'] = uniqid($unitId . "-0-");
     $config['upload_path'] = './uploads';
     $config['allowed_types'] = 'gif|jpg|jpeg|png';
     $config['max_size'] = '2024';
@@ -97,10 +96,7 @@ class Units extends CI_Controller {
     // Top level unit. Add or modify existing
     $unit = new Unit();
 
-    if ($isNew) {
-      //echo 'new';
-      //
-    } else {
+    if (! $isNew) {
       $unit->id = $unitId;
       $unit->where('id', $unitId)->get();
     }
@@ -114,33 +110,38 @@ class Units extends CI_Controller {
     // Delete old lessons for this unit, if any.
     $old = $unit->lessons->get();
     $old->delete_all();
+
     // Insert lessons
     $i = 0;
     foreach($lessons as $lesson) {
       $imageUploaded = false;
       $image = null;
-      
-      //get image filename of uploaded
-      if ($this->upload->do_upload($field_name . $i)) {
-        $data = $this->upload->data();
-        $imageUploaded = $data['is_image'];
-        $image = $data['file_name'];
-      //else, get image filename that's there
-      } else {
-        $imageUploaded = true;
-        $image = $lesson->image;
-      }
+      $config['file_name'] = uniqid($unitId . "-".$i."-");
+      $this->upload->initialize($config);
 
-      
+      // If sentence is defined, this is a valid lesson as everything else is optional.
       if (isset($lesson->sentence)) {
         $newLesson = new Lesson();
         $newLesson->sentence = $lesson->sentence;
+
+        // Image
+        // If one was sent to be uploaded, use it. Otherwise, use the old one (may not exist)
+        if ($this->upload->do_upload($field_name . $i)) {
+          $data = $this->upload->data();
+          $imageUploaded = $data['is_image'];
+          $image = $data['file_name'];
+        }
         if ($imageUploaded)
           $newLesson->image = $image;
-        else
-          //get image from view
+        else if (isset($lesson->image))
+          $newLesson->image = $lesson->image;
+
+        // Questions
+        // These should be encoded as json (prior to this point by the client)
         if (isset($lesson->question))
           $newLesson->question = $lesson->question;
+
+        // Save new lesson. Reference it to the unit
         $newLesson->save($unit);
       }
 

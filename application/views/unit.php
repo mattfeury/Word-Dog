@@ -24,7 +24,7 @@
               <?= $lesson->image != '' ? '<img src="' . base_url()  . 'uploads/' . $lesson->image . '" />' : '' ?>
               <!--<input type="radio" name="image-upload" value="current" checked />Current image
               <input type="radio" name="image-upload" value="new" />New image-->
-              <div class='image-name'></div>
+              <div class='image-name'><?= $lesson->image ?></div>
               <div class="file-holder">
                 <div class="substitute">Upload Image</div>
                 <input type="file" class="picture" name="picture" />
@@ -55,20 +55,24 @@
     <li class="template lesson">
       <label>Sentence: <input type="text" class="sentence" name="sentence" value="" /></label>
       <fieldset>
-        <label for="picture">Picture:<span class='image-name'></span></label>
+        <label for="picture">Picture:</label>
+        <!--<input type="radio" name="image-upload" value="current" checked />Current image
+        <input type="radio" name="image-upload" value="new" />New image-->
+        <div class='image-name'></div>
         <div class="file-holder">
           <div class="substitute">Upload Image</div>
           <input type="file" class="picture" name="picture" />
         </div>
       </fieldset>
       <fieldset>
-      <!-- Question: <input type="text" class="question" name="question" />
+      <!-- Question: <input type="text" name="question" />
       Three answer choices: Indicate the correct answer by selecting the corresponding radio button.
-      <input type="radio" name="answers" value="A"> <input type="text" name="A" />
-      <input type="radio" name="answers" value="B"> <input type="text" name="B" />
-      <input type="radio" name="answers" value="C"> <input type="text" name="C" />
+      <input type="radio" name="answers1" value="A"> <input type="text" name="A" />
+      <input type="radio" name="answers1" value="B"> <input type="text" name="B" />
+      <input type="radio" name="answers1" value="C"> <input type="text" name="C" />
       <button>Add Question</button>-->
       </fieldset>
+
       
       <button class="remove">(x)</button>
     </li>
@@ -89,12 +93,9 @@
     //DOM ready
     renameFileInputs();
     
-    $('input[type=file]').change(function(e){
-      //$in=$(this);
-      //$in.next().html($in.val());
-      var $uploadtext = $(this).parent().find('.picture').val().split("\\").pop()
-      console.log($(this).parent().siblings('.image-name').text($uploadtext));
-      //console.log($lesson.find('.picture').val().split("\\").pop());
+    $('input[type=file]').live('change', function(e){
+      var $uploadtext = $(this).val().split("\\").pop();
+      $(this).parent().siblings('.image-name').text($uploadtext);
     });
 
     $('#add-sentence').click(function() {
@@ -123,7 +124,7 @@
       var lessons = [];
       $('.lesson:not(.template)').each(function(i, item) {
         var $lesson = $(item),
-            sentence = $lesson.find('.sentence').val();
+            sentence = $lesson.find('.sentence').val(),
             imgFile = '';
             //question = $lesson.find('.
             
