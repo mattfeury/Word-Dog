@@ -4,29 +4,68 @@ class Activities extends CI_Controller {
 
   public static $activitiesById = array(
     0 => array(
-          'id' => 'write_sentence',
+          'view' => 'write_sentence', //TODO
           'name' => 'Write Sentence',
-          'numLevels' => 3),
+          'data' => array()),
     1 => array(
-          'id' => 'answer_questions',
-          'name' => 'Answer Questions',
-          'numLevels' => 3),
+          'view' => 'answer_questions', //TODO
+          'name' => 'Answer Questions1',
+          'data' => array(
+                      'show-choices' => true
+                    )),
     2 => array(
-          'id' => 'memory',
-          'name' => 'Memory',
-          'numLevels' => 3),
+          'view' => 'answer_questions', //TODO
+          'name' => 'Answer Questions2',
+          'data' => array(
+                      'show-choices' => false
+                    )),
+
+    // Memory
     3 => array(
-          'id' => 'fill_blank',
-          'name' => 'Fill in the Blank',
-          'numLevels' => 3),
+          'view' => 'memory',
+          'name' => 'Memory Static1',
+          'data' => array(
+                      'hide-picture' => false
+                    )),
     4 => array(
-          'id' => 'jumble',
-          'name' => 'Word Jumble',
-          'numLevels' => 3),
+          'view' => 'memory', //TODO
+          'name' => 'Memory Static2',
+          'data' => array(
+                      'hide-picture' => true,
+                      'choose-timer' => true
+                    )),
     5 => array(
-          'id' => 'multiple_choice',
-          'name' => 'Multiple Choice',
-          'numLevels' => 3)
+          'view' => 'memory', //TODO
+          'name' => 'Memory Flash',
+          'data' => array(
+                      'hide-picture' => true
+                    )),
+
+    // Jumble
+    6 => array(
+          'view' => 'jumble',
+          'name' => 'Word Jumble1',
+          'data' => array()),
+    7 => array(
+          'view' => 'jumble',
+          'name' => 'Word Jumble2',
+          'data' => array()),
+    8 => array(
+          'view' => 'jumble',
+          'name' => 'Jumble / Memory Static1',
+          'data' => array()),
+    9 => array(
+          'view' => 'jumble',
+          'name' => 'Jumble / Memory Static2',
+          'data' => array()),
+    10 => array(
+          'view' => 'jumble',
+          'name' => 'Jumble / Memory Flash1',
+          'data' => array())
+        
+    // Cloze
+    // Multiple Choice
+    // Still plenty more TODO
   );
 
   public function index() {
@@ -44,7 +83,7 @@ class Activities extends CI_Controller {
 		$this->load->view('activity', $data);
   }
 	
-	public function play($activity, $unitId, $level = 1) {
+	public function play($activityId, $unitId, $level = 1) {
     $unit = new Unit();
     $unit->id = $unitId;
     $unit->validate()->get();
@@ -57,8 +96,8 @@ class Activities extends CI_Controller {
     $data['unit_json'] = json_encode($pruned);
     $data['level'] = $level;
 
-    $activityView = self::$activitiesById[$activity];
+    $activity = self::$activitiesById[$activityId];
  
-		$this->load->view($activityView['id'], $data);
+		$this->load->view($activity['view'], $data);
 	}
 }

@@ -10,7 +10,7 @@
     <div class="play">
       <ul class="activities">
         <? foreach($activities as $key => $activity): ?>
-          <li class="activity" data-id="<?= $key ?>" data-levels="<?= $activity['numLevels'] ?>"><?= anchor('/activities/play/' . $key . '/' . $unit->id , $activity['name']) ?></li>
+          <li class="activity" data-id="<?= $key ?>"><?= anchor('/activities/play/' . $key . '/' . $unit->id , $activity['name']) ?></li>
         <? endforeach; ?>
       </ul>
       <ol class="levels">
@@ -52,7 +52,7 @@
 
         $('.levels').slideDown();
       });
-      return false;
+      //return false;
     });
     $('.level').live('click', function() {
       var $activity = $('.activity.selected');
