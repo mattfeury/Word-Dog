@@ -16,7 +16,7 @@
     updateScore();
   }
   function getPercentage() {
-    return (CORRECT / ATTEMPTS * 100 + '').split('.').shift() + '%';
+    return ((CORRECT / ATTEMPTS * 100 || 0) + '').split('.').shift() + '%';
   }
   function updateScore() {
     console.log('new score ' + ATTEMPTS + ' / ' + CORRECT);
