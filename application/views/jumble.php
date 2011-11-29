@@ -13,7 +13,7 @@
     echo '<div id="lesson"><span class="sentence"></span><input name="sentence" class="sentence" type="text" autocomplete="off"/></div>';
     ?>
     <div id="action-menu">
-      <button class="go covered">Go</button>
+      <button class="go">Go</button>
     </div>
   </section>
 </section>
@@ -87,16 +87,6 @@ $(document).ready(function(){
   //load first lesson
   renderNextLesson();
   
-   $('.cover').click(function(event){
-     $('.sentence')
-      .toggleClass('covered')
-      //clear input
-      .val('');
-     $('.reinforcement').html('');
-     $('.go').toggleClass('covered');
-     var isCovered = $('.go').hasClass('covered');
-     $('.cover').html( (isCovered ? 'Cover' : 'Uncover') );
-   });
    //check answer
    $('.go').click(function(event){
      var isCorrect = ($('input').val()) === originalSentence;

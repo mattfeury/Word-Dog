@@ -10,6 +10,7 @@
     <div class="reinforcement"></div>
   
     <div id="lesson">
+      <img />
       <span class="sentence"></span>
       <input name="sentence" class="sentence covered" type="text" autocomplete="off" />
     </div>
@@ -26,6 +27,11 @@
     $('#lesson')
       .find('.sentence')
         .text(lesson['sentence']);
+    //var $imgpath = base_url().concat('uploads/').concat(lesson['image']);
+    //console.log($imgpath);
+    //$('#lesson')
+    //  .find('img')
+    //    .attr('src', $imgpath);
   }
 
 //Cover for memory
@@ -33,7 +39,9 @@ $(document).ready(function(){
 
   //load first lesson
   renderNextLesson();
-
+  
+  var level = location.hash;
+  
    $('.cover').click(function(event){
      $('.sentence')
       .toggleClass('covered')
@@ -46,7 +54,6 @@ $(document).ready(function(){
    });
    //check answer
    $('.go').click(function(event){
-     console.log(($('span.sentence').text()));
      var isCorrect = ($('input').val()) === ($('.sentence').html());
      $('.reinforcement').html( (isCorrect ? 'Correct!' : 'Incorrect') );
      $('.reinforcement').addClass( (isCorrect ? 'correct' : 'incorrect') ); 
