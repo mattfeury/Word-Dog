@@ -10,7 +10,7 @@
     <h2>Write a sentence for the picture below:</h2>
     <div class="reinforcement"></div>
     <?
-    echo '<div id="lesson"><input name="sentence" class="sentence" type="text" autocomplete="off"/></div>';
+    echo '<div id="lesson"><img class="picture" src="' . base_url() . '"/><input name="sentence" class="sentence" type="text" autocomplete="off"/></div>';
     ?>
     <div id="action-menu">
       <button class="go">Go</button>
@@ -21,10 +21,12 @@
   // We must define this!
   // Callback for renderNextLesson()
   function defineActivityForLesson(lesson) {
+    baseURL = $('#lesson')
+      .find('.picture')
+        .attr('src');
     $('#lesson')
-      .find('.sentence')
-        .text(lesson['sentence']);
-
+      .find('.picture')
+        .attr('src', baseURL + '/uploads/' + lesson['image']);
   }
   
   function endsWith(str, suffix) {

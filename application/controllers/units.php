@@ -75,7 +75,7 @@ class Units extends CI_Controller {
     // Config image upload goodies
     $field_name = 'picture';
     //unique filename based on timestamp and unit id
-    $config['file_name'] = uniqid($unitId . "-0-", true);
+    $config['file_name'] = uniqid($unitId . "-0-");
     $config['upload_path'] = './uploads';
     $config['allowed_types'] = 'gif|jpg|jpeg|png';
     $config['max_size'] = '2024';
@@ -116,7 +116,7 @@ class Units extends CI_Controller {
     foreach($lessons as $lesson) {
       $imageUploaded = false;
       $image = null;
-      $config['file_name'] = uniqid($unitId . "-".$i."-", true);
+      $config['file_name'] = uniqid($unitId . "-".$i."-");
       $this->upload->initialize($config);
 
       // If sentence is defined, this is a valid lesson as everything else is optional.
@@ -131,6 +131,7 @@ class Units extends CI_Controller {
           $imageUploaded = $data['is_image'];
           $image = $data['file_name'];
         }
+
         if ($imageUploaded)
           $newLesson->image = $image;
         else if (isset($lesson->image))
