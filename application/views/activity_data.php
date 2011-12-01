@@ -19,7 +19,6 @@
     return ((CORRECT / ATTEMPTS * 100 || 0) + '').split('.').shift() + '%';
   }
   function updateScore() {
-    console.log('new score ' + ATTEMPTS + ' / ' + CORRECT);
     $('header .score')
       .find('.correct')
         .text(CORRECT)
@@ -64,6 +63,7 @@
   }
 
   // Utilites
+  var BASE_SRC = "<?= base_url() ?>";
 
   // Cookie helper functions borrowed from quirksmode.org
   function createCookie(name,value,days) {

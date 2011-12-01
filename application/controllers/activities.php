@@ -4,7 +4,7 @@ class Activities extends CI_Controller {
 
   public static $activitiesById = array(
     0 => array(
-          'view' => 'write_sentence', //TODO
+          'view' => 'write_sentence',
           'name' => 'Write Sentence',
           'data' => array()),
     1 => array(

@@ -10,7 +10,6 @@
     <h2>Write a sentence for the picture below:</h2>
     <div class="reinforcement"></div>
     <div id="lesson">
-      <input type="hidden" id="baseURL" value="<?=base_url() ?>">
       <img class="picture" />
       <input name="sentence" class="sentence" type="text" autocomplete="off"/>
     </div>
@@ -23,12 +22,9 @@
   // We must define this!
   // Callback for renderNextLesson()
   function defineActivityForLesson(lesson) {
-    baseURL = $('#lesson')
-      .find('#baseURL')
-        .val();
     $('#lesson')
       .find('.picture')
-        .attr('src', baseURL + '/uploads/' + lesson['image']);
+        .attr('src', BASE_SRC + '/uploads/' + lesson['image']);
   }
   
   function endsWith(str, suffix) {

@@ -10,7 +10,6 @@
     <h2>Choose an answer to the question below:</h2>
     <div class="reinforcement"></div>
       <div id="lesson">
-        <input type="hidden" id="baseURL" value="<?=base_url() ?>">
         <img class="picture" />
         <div class="question"></div>
         <div class="answers"></div>
@@ -28,13 +27,9 @@
   // Callback for renderNextLesson()
   function defineActivityForLesson(lesson) {
     if(questionNum == 0) {
-      //show image
-      baseURL = $('#lesson')
-        .find('#baseURL')
-          .val();
       $('#lesson')
         .find('.picture')
-          .attr('src', baseURL + '/uploads/' + lesson['image']);
+          .attr('src', BASE_SRC + '/uploads/' + lesson['image']);
     }
     //show question    
     $('#lesson')
