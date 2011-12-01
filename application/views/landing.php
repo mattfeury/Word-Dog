@@ -12,10 +12,10 @@
 </header>
 <section id="container">
   <section id="content">
-    <h1 class="blurb">Welcome to English Practice App!</h1>
+    <h1 class="blurb">Welcome to Word Dog, the English Practice App!</h1>
 
     <?= img(array(
-        'src' => 'images/12-oz.gif',
+        'src' => 'images/dotty-animated.gif',
         'class' => 'about'
       )); ?>
     <?= anchor('/users/show', 'Find My Teacher', 'id="teachers"'); ?>

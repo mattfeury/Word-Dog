@@ -14,56 +14,118 @@
       echo form_open_multipart('units/update', $attributes);
     ?>
       <h2>Name of Unit:</h2>
-      <input type="text" name="unit" value="<?= $unit->name ?>" />
+      <input type="text" class="unit" name="unit" value="<?= $unit->name ?>" />
       <ul class="lessons">
-        <? foreach($lessons as $lesson): ?>
-          <li class="lesson">
+        <? $i=0; foreach($lessons as $lesson): ?>
+          <li class="lesson removable">
             <label>Sentence: <input type="text" class="sentence" name="sentence" value="<?= $lesson->sentence;?>" /></label>
-            <label>Picture: <input type="file" class="picture" name="picture" value="<?= $lesson->image;?>" /></label>
             <fieldset>
-            <!-- Question: <input type="text" name="question" />
-            Three answer choices: Indicate the correct answer by selecting the corresponding radio button.
-            <input type="radio" name="answers1" value="A"> <input type="text" name="A" />
-            <input type="radio" name="answers1" value="B"> <input type="text" name="B" />
-            <input type="radio" name="answers1" value="C"> <input type="text" name="C" />
-            <button>Add Question</button>-->
+              <label for="picture">Picture:</label>
+              <?= $lesson->image != '' ? '<img src="' . base_url()  . 'uploads/' . $lesson->image . '" />' : '' ?>
+              <!--<input type="radio" name="image-upload" value="current" checked />Current image
+              <input type="radio" name="image-upload" value="new" />New image-->
+              <div class='image-name'><?= $lesson->image ?></div>
+              <div class="file-holder">
+                <div class="substitute">Upload Image</div>
+                <input type="file" class="picture" name="picture" />
+              </div>
             </fieldset>
+            <fieldset>
+              <ul class="questions">
+                <? $j=0; foreach($lesson->questions as $question): ?>        
+                  <li class="question removable">
+                    <label>Question: <input type="text" class="question-text" name="question<?= $j ?>" value="<?= $question['question'] ?>" /></label>
+                    <label>Answers
+                      <? $k=0; foreach($question['answers'] as $answer): ?> 
+                        <input type="text" class="answer <?= $k ?>" name="<?= $j ?>" value="<?= $answer ?>" />
+                        <input type="radio" class="answer" name="answers<?= $i . '-' . $j ?>" value="<?= $k ?>" <?= ($k==$question['answer']) ? 'checked' : '' ?>>
+                      <? $k++; endforeach; ?>
+                    </label>
+                    <button class="remove">(x)</button>
+                  </li>
+                <? $j++; endforeach; ?>
+              </ul>
+
+              <button class="add-question">Add Question</button>
+            </fieldset>
+
             <button class="remove">(x)</button>
           </li>
-        <? endforeach; ?>
+        <? $i++; endforeach; ?>
       </ul>
       <button id="add-sentence">Add Sentence</button>
 
       <input type="hidden" class="lessons_json" name="lessons_json" value="[]" />
-      <input type="submit" value="Save" />
+      <input type="submit" class="save" value="Save" />
     </form>
 
   </section>
 </section>
 <div class="templates">
   <ul>
-    <li class="template lesson">
+    <li class="template lesson removable">
       <label>Sentence: <input type="text" class="sentence" name="sentence" value="" /></label>
-      <label>Picture: <input type="file" class="picture" name="picture" value="" /></label>
-      <!-- Question: <input type="text" class="question" name="question" />
-      Three answer choices: Indicate the correct answer by selecting the corresponding radio button.
-      <input type="radio" name="answers" value="A"> <input type="text" name="A" />
-      <input type="radio" name="answers" value="B"> <input type="text" name="B" />
-      <input type="radio" name="answers" value="C"> <input type="text" name="C" />
-      <button>Add Question</button>-->
+      <fieldset>
+        <label for="picture">Picture:</label>
+        <!--<input type="radio" name="image-upload" value="current" checked />Current image
+        <input type="radio" name="image-upload" value="new" />New image-->
+        <div class='image-name'></div>
+        <div class="file-holder">
+          <div class="substitute">Upload Image</div>
+          <input type="file" class="picture" name="picture" />
+        </div>
+      </fieldset>
+      <fieldset>
+        <ul class="questions">
+          <li class="question removable">
+            <label>Question: <input type="text" class="question-text" name="question0" /></label>
+            <label>Answers
+              <input type="text" class="answer 0" name="0" /><input type="radio" class="answer" name="answers0" value="0" checked>
+              <input type="text" class="answer 1" name="1" /><input type="radio" class="answer" name="answers0" value="1">
+              <input type="text" class="answer 2" name="2" /><input type="radio" class="answer" name="answers0" value="2">
+            </label>
+            <button class="remove">(x)</button>
+          </li>
+        </ul>
+
+        <button class="add-question">Add Question</button>
+      </fieldset>
+      
       <button class="remove">(x)</button>
     </li>
   </ul>
 </div>
 <script type="text/javascript">
-  function renameFileInputs() {
-    $('.lesson:not(.template) .picture').each(function(i) {
-      $(this).attr('name', 'picture' + i);
+  function renameInputs() {
+    $('.lesson:not(.template)').each(function(i) {
+      $(this)
+        .find('.picture')
+          .attr('name', 'picture' + i)
+          .attr('id', 'picture' + i)
+          .closest('.file-holder')
+            .siblings('label')
+              .attr('for', 'picture' + i);
+
+      var $questions = $(this).find('.questions .question');
+      $questions.each(function(j, item) {
+        $(this)
+          .find('.question-text')
+            .attr('name', 'question' + j)
+          .end()
+          .find('[type=radio]')
+            //identify question and answer index in radio button name
+            .attr('name', 'answers' + i + '-' + j);
+      });
     });
   }
   $(function() {
     //DOM ready
-    renameFileInputs();
+    renameInputs();
+    
+    $('input[type=file]').live('change', function(e){
+      var $uploadtext = $(this).val().split("\\").pop();
+      $(this).parent().siblings('.image-name').text($uploadtext);
+    });
 
     $('#add-sentence').click(function() {
       var $newLesson = $('.lesson.template').clone();
@@ -73,18 +135,61 @@
         .append($newLesson.hide());
       $newLesson.slideDown();
 
-      renameFileInputs();
+      renameInputs();
       return false;
     });
-    $('.lessons').delegate('.lesson .remove', 'click', function() {
+    $('.add-question').click(function() {
+      var $newQuestion = $('.lesson.template .question').clone();
+      
       $(this)
-        .closest('.lesson')
+        .siblings('.questions')
+        .append($newQuestion.hide());
+      $newQuestion.slideDown();
+      renameInputs();
+      
+      return false;
+    });
+    
+    $('.lessons').delegate('.remove', 'click', function() {
+      $(this)
+        .closest('.removable')
         .slideUp(function() {
           $(this).remove();
-          renameFileInputs();
+          renameInputs();
         });
       return false;
     });
+
+    function decodeQuestionsToJson($questions) {
+      var questions = [];
+
+      function decodeQuestion($question) {
+        var question = {},
+            answers = [];
+
+        question["question"] = ($question.find('.question-text').val() || '').trim();
+        question["answer"] = parseInt($question.find('.answer:checked').val());
+
+        $question.find('.answer:text').each(function(i, answer) {
+          answers.push($(answer).val());
+          //TODO maybe mark the answer here. only if we have issues about ordering returned by .each
+        });
+
+        question["answers"] = answers;
+
+        if (question.question && question.answer < answers.length)
+          return question;
+        else
+          return false;
+      }
+      $questions.find('.question').each(function(i, question) {
+        var question = decodeQuestion($(question));
+        if (question)
+          questions.push(question);
+      });
+      console.log(questions);
+      return JSON.stringify(questions);
+    };
 
     $('#unit').submit(function() {
       // This is the backbone here.
@@ -92,13 +197,22 @@
       $('.lesson:not(.template)').each(function(i, item) {
         var $lesson = $(item),
             sentence = $lesson.find('.sentence').val(),
-            imgFile = $lesson.find('.picture').val().split("\\").pop();
-            //question = $lesson.find('.
+            imgFile = '',
+            questionJson = decodeQuestionsToJson($lesson.find('.questions'));
+            
+        //pass user uploaded image filename   
+        if($lesson.find('.picture').val() != '') { 
+          imgFile = $lesson.find('.picture').val().split("\\").pop();
+        //else, pass image filename that's there
+        } else {
+          imgFile = $lesson.find('.image-name').text();
+        }
 
         var lesson = {};
+
         lesson['sentence'] = sentence;
         lesson['image'] = imgFile;
-        //lesson['question'] = imgFile;
+        lesson['questions'] = questionJson;
 
         lessons.push(lesson);
       });

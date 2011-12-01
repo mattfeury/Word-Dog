@@ -5,13 +5,15 @@
 </header>
 <section id="container">
   <section id="content">
-
     <h1>Memory</h1>
     <h2>Memorize the sentence then type it:</h2>
     <div class="reinforcement"></div>
-    <?
-    echo '<div id="lesson"><span class="sentence"></span><input name="sentence" class="sentence covered" type="text" autocomplete="off"/></div>';
-    ?>
+  
+    <div id="lesson">
+      <img />
+      <span class="sentence"></span>
+      <input name="sentence" class="sentence covered" type="text" autocomplete="off" />
+    </div>
     <div id="action-menu">
       <button class="cover">Cover</button>
       <button class="go covered">Go</button>
@@ -25,6 +27,11 @@
     $('#lesson')
       .find('.sentence')
         .text(lesson['sentence']);
+    //var $imgpath = base_url().concat('uploads/').concat(lesson['image']);
+    //console.log($imgpath);
+    //$('#lesson')
+    //  .find('img')
+    //    .attr('src', $imgpath);
   }
 
 //Cover for memory
@@ -32,7 +39,9 @@ $(document).ready(function(){
 
   //load first lesson
   renderNextLesson();
-
+  
+  var level = location.hash;
+  
    $('.cover').click(function(event){
      $('.sentence')
       .toggleClass('covered')
@@ -45,13 +54,17 @@ $(document).ready(function(){
    });
    //check answer
    $('.go').click(function(event){
-     var isCorrect = ($('input').val()) == ($('.sentence').html());
+     var isCorrect = ($('input').val()) === ($('.sentence').html());
      $('.reinforcement').html( (isCorrect ? 'Correct!' : 'Incorrect') );
      $('.reinforcement').addClass( (isCorrect ? 'correct' : 'incorrect') ); 
      $('.reinforcement').removeClass( (isCorrect ? 'incorrect' : 'correct') );
 
-     if (isCorrect)
+     if (isCorrect) {
+       correct();
        setTimeout(function() { renderNextLesson(); $('.cover').click() }, 1000);
+     } else {
+        incorrect();
+     }
        
    });
    $('.sentence').keypress(function(e) {

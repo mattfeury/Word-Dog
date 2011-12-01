@@ -11,6 +11,7 @@
 $border-color: #b0e68b
 $main-text-color: #97a488
 $main-bg: #e8f8dc
+$input-font-size: 18px
 
 //'Myriad Pro', 
 $main-fonts: 'Lucida Grande', Arial, sans-serif
@@ -39,21 +40,31 @@ html, body
   z-index: 1
 
   background-color: gray
-  +opacity(0.5)
+  +opacity(0.7)
 
 .dialog
   display: none
   position: fixed
   top: 30%
   left: 30%
-  width: 40%
+  width: 350px
   z-index: 2
+  text-align: center
 
   background-color: #9ee170
   color: white
-  padding: 10px
-  border: 4px solid white
-
+  padding: 15px
+  border: 3px solid white
+  
+  label
+    text-align: right
+    padding-right: 14%
+    font-size: 16px
+  
+    input
+      width: 180px
+      height: 18px
+  
   .close
     position: absolute
     top: 5px
@@ -81,25 +92,27 @@ body
     display: none
     
   .correct
-    color: #009900
+    color: #78C149
   
   .incorrect
-    color: #ff0000
+    color: #C62F12
     
 h1
   font-size: 28px
   //font-weight: bold
-  margin-bottom: 12px
+  margin-bottom: 20px
 h2
   font-size: 22px
   //font-weight: bold
   margin-bottom: 20px
 
-button, a
+button, a, input.submit, input.save, .substitute
   border: $border-width solid $border-color
   background-color: white
   color: $main-text-color
-  font-size: 18px
+  font-size: $input-font-size
+
+  display: inline-block
 
   padding: 3px 5px
   margin: 2px
@@ -107,6 +120,28 @@ button, a
   text-decoration: none
   line-height: normal
   font-family: $main-fonts
+  
+.file-holder
+  position: relative
+  width: 145px
+  height: 33px
+  overflow: hidden
+  cursor: pointer
+  
+  .substitute
+    position: relative
+    z-index: 0
+    
+  input
+    +opacity(0)
+    width: 141px
+    height: 33px
+    z-index: 1
+
+    position: absolute
+    margin: 0
+    left: 0
+    top: 0
 
 header
   background: white
@@ -120,12 +155,20 @@ header
   > div
     float: right
 
+  .score
+    font-size: 32px
+    line-height: 34px
+
+    .percentage
+      display: inline-block
+      margin-left: 10px
+
 #container
   width: 80%
   margin: auto
 
   #content
-    padding-top: 20px
+    padding-top: 40px
     
     .reinforcement
       font-size: 32px
@@ -135,14 +178,13 @@ header
       text-align: center
       padding: 60px
       
-      .sentence
+      .sentence, .question, .answers
         font-size: 28px
         
       input.sentence
         width: 80%
         min-width: 500px
-        border: 2px solid #B0E68B
-        
+        border: $border-width solid $border-color
   
     #action-menu
       padding-top: 20px
@@ -152,7 +194,13 @@ header
 form
   label
     display: block
-    margin: 5px 0px
+    margin: 10px 0px
+    font-size: $input-font-size
+    
+  input
+    font-size: $input-font-size
+    color: #ADB7A5
+    padding-left: 5px
 
 // Page specific stuff
 // These are currently defined by a class tag
@@ -167,6 +215,15 @@ form
       margin: auto
       padding: 60px
 
+body.activities
+  .play
+    +clearfix
+
+    .activities
+      float: left
+    .levels
+      float: right
+
 .users, .units, .activities
   #content
     background: white
@@ -174,7 +231,32 @@ form
     margin: 40px 0px
     padding: 20px 40px
     
+.units
+  h2
+    display: inline
+  
+  input.unit, input.sentence
+    border: $border-width solid $border-color
+    
+  input.unit
+    width: 300px
+    height: 20px
+    
+  input.sentence
+    width: 86%
+   
 li.unit, li.user
   button, a
     display: block
-   
+
+li.lesson
+  border: $border-width solid $border-color
+  padding-left: 10px
+  padding-bottom: 10px
+  margin: 20px 0px
+  
+  .image-name
+    padding-left: 20px
+    padding-bottom: 10px
+    font-size: $input-font-size
+    color: #ADB7A5

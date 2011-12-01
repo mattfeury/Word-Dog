@@ -1,6 +1,6 @@
   <? $this->load->view('head'); ?>
 <header>
-  <?= anchor('/users', 'Teacher Zone', 'class="teacherzone home"'); ?>
+  <?= anchor('/units', 'Teacher Zone', 'class="teacherzone home"'); ?>
 
   <div class="session">
     <?= anchor('/logout', 'Log Out', 'class="logged-in logout"'); ?>
@@ -13,15 +13,17 @@
     //print_r( $user);
 	  echo form_open('users/changeAccount');
     ?>
-	
-	  Name: <input type="text" name="name" value= "<?= $user->name ?>"/><br>
-      Email: <input type="email" name="email" value= "<?= $user->email ?>"/><br>
-      School: <input type="text" name="school" value= "<?= $user->school ?>"/><br>
-      Grade: <input type="text" name="grade" value= "<?= $user->grade ?>"/><br>
+	  
+	  <h2>Account Information</h2>
+	  
+	  <label>Name: <input type="text" class="info" name="name" value= "<?= $user->name ?>"/></label>
+    <label>Email: <input type="email" class="info" name="email" value= "<?= $user->email ?>"/></label>
+    <label>School: <input type="text" class="info" name="school" value= "<?= $user->school ?>"/></label>
+    <label>Grade: <input type="text" class="info" name="grade" value= "<?= $user->grade ?>"/></label>
 			
-      Old Password: <input type="password" name="oldpassword" /><br>
-	  New Password: <input type="password" name="newpassword1" /><br>
-	  Re-type Password: <input type="password" name="newpassword2" /><br>
+    <label>Old Password: <input type="password" class="info" name="oldpassword" /></label>
+	  <label>New Password: <input type="password" class="info" name="newpassword1" /></label>
+	  <label>Re-type Password: <input type="password" class="info" name="newpassword2" /></label>
 	  
       
 	  <input class="submit" type="submit" />

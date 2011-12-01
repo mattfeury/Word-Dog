@@ -82,13 +82,13 @@ class Users extends CI_Controller {
 
   }
   
-    public function modify() {
+  public function modify() {
     $email = $this->session->userdata('email');
 	
-	$user = new User();
+    $user = new User();
     $user->where('email', $email)->get();
 		
-	$data['user'] = $user;
+    $data['user'] = $user;
     $this->load->view('account', $data);
 
   }
