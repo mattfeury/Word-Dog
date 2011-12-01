@@ -16,7 +16,7 @@
       <h2>Name of Unit:</h2>
       <input type="text" class="unit" name="unit" value="<?= $unit->name ?>" />
       <ul class="lessons">
-        <? foreach($lessons as $lesson): ?>
+        <? $i=0; foreach($lessons as $lesson): ?>
           <li class="lesson removable">
             <label>Sentence: <input type="text" class="sentence" name="sentence" value="<?= $lesson->sentence;?>" /></label>
             <fieldset>
@@ -32,18 +32,18 @@
             </fieldset>
             <fieldset>
               <ul class="questions">
-                <? $i=0; foreach($lesson->questions as $question): ?>        
+                <? $j=0; foreach($lesson->questions as $question): ?>        
                   <li class="question removable">
-                    <label>Question: <input type="text" class="question-text" name="question<?= $i ?>" value="<?= $question['question'] ?>" /></label>
+                    <label>Question: <input type="text" class="question-text" name="question<?= $j ?>" value="<?= $question['question'] ?>" /></label>
                     <label>Answers
-                      <? $j=0; foreach($question['answers'] as $answer): ?>        
-                        <input type="text" class="answer <?= $j ?>" name="<?= $j ?>" value="<?= $answer ?>" />
-                        <input type="radio" class="answer" name="answers<?= $i ?>" value="<?= $j ?>" <?= ($j==$question['answer']) ? 'checked' : '' ?>>
-                      <? $j++; endforeach; ?>
+                      <? $k=0; foreach($question['answers'] as $answer): ?> 
+                        <input type="text" class="answer <?= $k ?>" name="<?= $j ?>" value="<?= $answer ?>" />
+                        <input type="radio" class="answer" name="answers<?= $i . '-' . $j ?>" value="<?= $k ?>" <?= ($k==$question['answer']) ? 'checked' : '' ?>>
+                      <? $k++; endforeach; ?>
                     </label>
                     <button class="remove">(x)</button>
                   </li>
-                <? $i++; endforeach; ?>
+                <? $j++; endforeach; ?>
               </ul>
 
               <button class="add-question">Add Question</button>
@@ -51,7 +51,7 @@
 
             <button class="remove">(x)</button>
           </li>
-        <? endforeach; ?>
+        <? $i++; endforeach; ?>
       </ul>
       <button id="add-sentence">Add Sentence</button>
 
@@ -107,13 +107,14 @@
               .attr('for', 'picture' + i);
 
       var $questions = $(this).find('.questions .question');
-      $questions.each(function(i, item) {
+      $questions.each(function(j, item) {
         $(this)
           .find('.question-text')
-            .attr('name', 'question' + i)
+            .attr('name', 'question' + j)
           .end()
           .find('[type=radio]')
-            .attr('name', 'answers' + i);
+            //identify question and answer index in radio button name
+            .attr('name', 'answers' + i + '-' + j);
       });
     });
   }
@@ -139,13 +140,13 @@
     });
     $('.add-question').click(function() {
       var $newQuestion = $('.lesson.template .question').clone();
-
+      
       $(this)
         .siblings('.questions')
         .append($newQuestion.hide());
       $newQuestion.slideDown();
-
       renameInputs();
+      
       return false;
     });
     
@@ -186,7 +187,7 @@
         if (question)
           questions.push(question);
       });
-
+      console.log(questions);
       return JSON.stringify(questions);
     };
 
