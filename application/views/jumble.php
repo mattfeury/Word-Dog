@@ -9,9 +9,10 @@
     <h1>Jumble</h1>
     <h2>Unjumble the sentence below:</h2>
     <div class="reinforcement"></div>
-    <?
-    echo '<div id="lesson"><span class="sentence"></span><input name="sentence" class="sentence" type="text" autocomplete="off"/></div>';
-    ?>
+    <div id="lesson">
+      <span class="sentence"></span>
+      <input name="sentence" class="sentence" type="text" autocomplete="off"/>
+    </div>
     <div id="action-menu">
       <button class="go">Go</button>
     </div>

@@ -61,11 +61,39 @@ class Activities extends CI_Controller {
     10 => array(
           'view' => 'jumble',
           'name' => 'Jumble / Memory Flash1',
-          'data' => array())
+          'data' => array()),
         
     // Cloze
+    11 => array(
+          'view' => 'cloze',
+          'name' => 'Fill in the Blank1',
+          'data' => array()),
+    12 => array(
+          'view' => 'cloze',
+          'name' => 'Fill in the Blank2',
+          'data' => array()),
+    13 => array(
+          'view' => 'cloze',
+          'name' => 'Fill in the Blank3',
+          'data' => array()),
+    14 => array(
+          'view' => 'cloze',
+          'name' => 'Fill in the Blank / Memory Static',
+          'data' => array()),
+    15 => array(
+          'view' => 'cloze',
+          'name' => 'Fill in the Blank / Memory Flash',
+          'data' => array()),
+    
     // Multiple Choice
-    // Still plenty more TODO
+    16 => array(
+          'view' => 'multiple_choice',
+          'name' => 'Multiple Choice',
+          'data' => array()),
+    17 => array(
+          'view' => 'multiple_choice',
+          'name' => 'Multiple Choice / Memory',
+          'data' => array()),
   );
 
   public function index() {
