@@ -33,6 +33,7 @@
       <label>Email: <input name="email" class="email" type="text" /></label>
       <label>Password: <input name="password" class="password" type="password" /></label>
       <input class="submit" type="submit" />
+	  
     </form>
     <button class="close">Close</button>
   </div>

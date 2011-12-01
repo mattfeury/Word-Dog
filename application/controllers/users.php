@@ -118,5 +118,9 @@ class Users extends CI_Controller {
     $u->save();
 	$data['user'] = $u;
 	$this->load->view('account', $data);
-}
+	}
+	
+	public function forgot($token){
+		$this->load->view('forgot');
+	}
 }

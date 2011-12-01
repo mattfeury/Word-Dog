@@ -5,6 +5,7 @@
   <div class="session">
     <span class="logged-in">Logged In, <?= $this->session->userdata('email') ?></span>
     <?= anchor('/users/modify', 'Edit Account'); ?>
+	<?= anchor('/users/forgot', 'Forgot Password'); ?>
     <?= anchor('/logout', 'Log Out', 'class="logged-in logout"'); ?>
   </div>
 </header>
