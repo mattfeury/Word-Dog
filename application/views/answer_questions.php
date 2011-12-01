@@ -29,7 +29,7 @@
     if(questionNum == 0) {
       $('#lesson')
         .find('.picture')
-          .attr('src', BASE_SRC + '/uploads/' + lesson['image']);
+          .attr('src', BASE_SRC + 'uploads/' + lesson['image']);
     }
     //show question    
     $('#lesson')

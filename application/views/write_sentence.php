@@ -24,7 +24,7 @@
   function defineActivityForLesson(lesson) {
     $('#lesson')
       .find('.picture')
-        .attr('src', BASE_SRC + '/uploads/' + lesson['image']);
+        .attr('src', BASE_SRC + 'uploads/' + lesson['image']);
   }
   
   function endsWith(str, suffix) {
