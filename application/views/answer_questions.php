@@ -63,7 +63,8 @@
     } else {
       $('.answers').hide();
       $('.answer').show();
-      answer = answerString;
+      //strip period and make lower case for comparison
+      answer = answerString.toLowerCase().replace(/\./g,'');
     }
     currLesson = lesson;
   }
@@ -78,8 +79,9 @@ $(document).ready(function(){
      var $input;
      if(!config.hideChoices)
       $input = $('input[name="answers0"]:checked').val();
-     else 
-      $input = $('input[name="answer"]').val();     
+     else
+      //strip period and make lower case for comparison 
+      $input = $('input[name="answer"]').val().toLowerCase().replace(/\./g,'');     
      
      var isCorrect = ($input == answer);
      $('.reinforcement').html( (isCorrect ? 'Correct!' : 'Incorrect') );
