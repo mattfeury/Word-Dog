@@ -2,6 +2,7 @@
 
 class Activities extends CI_Controller {
 
+  // TODO INSTRUCTIONS
   public static $activitiesById = array(
     0 => array(
           'view' => 'write_sentence',
@@ -71,15 +72,24 @@ class Activities extends CI_Controller {
     12 => array(
           'view' => 'cloze',
           'name' => 'Fill in the Blank1',
-          'data' => array()),
+          'data' => array(
+                      'display-picture' => true,
+                      'show-choices' => true
+                    )),
     13 => array(
           'view' => 'cloze',
           'name' => 'Fill in the Blank2',
-          'data' => array()),
+          'data' => array(
+                      'display-picture' => false,
+                      'show-choices' => true
+                    )),
     14 => array(
           'view' => 'cloze',
           'name' => 'Fill in the Blank3',
-          'data' => array()),
+          'data' => array(
+                      'display-picture' => false,
+                      'show-choices' => false
+                    )),
     15 => array(
           'view' => 'cloze',
           'name' => 'Fill in the Blank / Memory Static',

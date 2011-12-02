@@ -313,8 +313,20 @@ body.activities .play .activities {
 body.activities .play .levels {
   float: right;
 }
-
 /* line 228, ../sass/screen.sass */
+body.activities .missing .guess {
+  display: none;
+}
+/* line 231, ../sass/screen.sass */
+body.activities .missing.guessing .guess {
+  display: inline-block;
+}
+/* line 233, ../sass/screen.sass */
+body.activities .missing.guessing button {
+  display: none;
+}
+
+/* line 237, ../sass/screen.sass */
 .users #content, .units #content, .activities #content {
   background: white;
   border: 2px solid #b0e68b;
@@ -322,37 +334,37 @@ body.activities .play .levels {
   padding: 20px 40px;
 }
 
-/* line 235, ../sass/screen.sass */
+/* line 244, ../sass/screen.sass */
 .units h2 {
   display: inline;
 }
-/* line 238, ../sass/screen.sass */
+/* line 247, ../sass/screen.sass */
 .units input.unit, .units input.sentence {
   border: 2px solid #b0e68b;
 }
-/* line 241, ../sass/screen.sass */
+/* line 250, ../sass/screen.sass */
 .units input.unit {
   width: 300px;
   height: 20px;
 }
-/* line 245, ../sass/screen.sass */
+/* line 254, ../sass/screen.sass */
 .units input.sentence {
   width: 86%;
 }
 
-/* line 249, ../sass/screen.sass */
+/* line 258, ../sass/screen.sass */
 li.unit button, li.unit a, li.user button, li.user a {
   display: block;
 }
 
-/* line 252, ../sass/screen.sass */
+/* line 261, ../sass/screen.sass */
 li.lesson {
   border: 2px solid #b0e68b;
   padding-left: 10px;
   padding-bottom: 10px;
   margin: 20px 0px;
 }
-/* line 258, ../sass/screen.sass */
+/* line 267, ../sass/screen.sass */
 li.lesson .image-name {
   padding-left: 20px;
   padding-bottom: 10px;
