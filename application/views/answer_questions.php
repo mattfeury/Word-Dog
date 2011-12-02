@@ -35,12 +35,26 @@
     $('#lesson')
       .find('.question')
         .text(lesson['questions'][questionNum]['question']);
-    //show answers    
+    //clear previous buttons
     $('#lesson')
       .find('.answers')
-        .html('<p><input type="radio" name="answers0" value="0" checked><label>' + lesson['questions'][questionNum]['answers'][0] + '</label></p><p><input type="radio"  name="answers0" value="1"><label>' + lesson['questions'][questionNum]['answers'][1] + '</label></p><p><input type="radio" name="answers0" value="2"><label>' + lesson['questions'][questionNum]['answers'][2] + '</label></p>');
-
-    answer = lesson['questions'][questionNum]['answer'];
+        .empty();
+    var answers = lesson['questions'][questionNum]['answers'];
+    var answerIndex = lesson['questions'][questionNum]['answer'];
+    var answerString = lesson['questions'][questionNum]['answers'][answerIndex];
+    //randomize answers
+    answers.sort(function() {return 0.5 - Math.random()});
+    
+    $.each(answers, function(i) { 
+      $('#lesson')
+        .find('.answers')                                                           
+          .append('<p><input type="radio" name="answers0" value="' + i + '"/><label>' + answers[i] + '</label></p>');
+    });
+    //check first radio button
+    $('#lesson')
+      .find('input[value="0"]')
+        .attr('checked', true);
+    answer = answers.indexOf(answerString);
     currLesson = lesson;
   }
 
@@ -53,15 +67,22 @@ $(document).ready(function(){
    $('.go').click(function(event){
      //check if starts with upper case and ends with a period
      $input = $('input[name="answers0"]:checked').val();
+     
      var isCorrect = ($input == answer);
      $('.reinforcement').html( (isCorrect ? 'Correct!' : 'Incorrect') );
      $('.reinforcement').addClass( (isCorrect ? 'correct' : 'incorrect') ); 
      $('.reinforcement').removeClass( (isCorrect ? 'incorrect' : 'correct') );
 
-     if (isCorrect && questionNum < currLesson['questions'].length - 1)
+     if (isCorrect && questionNum < currLesson['questions'].length - 1) {
+       correct();
        setTimeout(function() { questionNum++; defineActivityForLesson(currLesson); }, 1000);
-     else if(isCorrect)
-       setTimeout(function() { questionNum = 0; renderNextLesson(); }, 1000);       
+     } else if(isCorrect) {
+       correct();
+       setTimeout(function() { questionNum = 0; renderNextLesson(); }, 1000);
+     // TODO: skip over lesson if no questions
+     } else {
+       incorrect();
+     }     
    });
    $('.sentence').keypress(function(e) {
            if(e.which == 13) {
