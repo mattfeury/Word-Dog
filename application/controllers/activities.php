@@ -30,7 +30,7 @@ class Activities extends CI_Controller {
           'view' => 'memory', //TODO
           'name' => 'Memory Static2',
           'data' => array(
-                      'flashPicture' => true
+                      'coverPicture' => true
                     )),
     5 => array(
           'view' => 'memory', //TODO
@@ -42,7 +42,7 @@ class Activities extends CI_Controller {
           'view' => 'memory', //TODO
           'name' => 'Memory Flash2',
           'data' => array(
-                      'flashPicture' => true,
+                      'coverPicture' => true,
                       'chooseDifficulty' => true                      
                     )),
 
