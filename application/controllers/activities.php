@@ -12,13 +12,13 @@ class Activities extends CI_Controller {
           'view' => 'answer_questions', //TODO
           'name' => 'Answer Questions1',
           'data' => array(
-                      'show-choices' => true
+                      'showChoices' => true
                     )),
     2 => array(
           'view' => 'answer_questions', //TODO
           'name' => 'Answer Questions2',
           'data' => array(
-                      'show-choices' => false
+                      'showChoices' => false
                     )),
 
     // Memory
@@ -30,20 +30,20 @@ class Activities extends CI_Controller {
           'view' => 'memory', //TODO
           'name' => 'Memory Static2',
           'data' => array(
-                      'flash-picture' => true
+                      'flashPicture' => true
                     )),
     5 => array(
           'view' => 'memory', //TODO
           'name' => 'Memory Flash1',
           'data' => array(
-                      'choose-difficulty' => true
+                      'chooseDifficulty' => true
                     )),
     6 => array(
           'view' => 'memory', //TODO
           'name' => 'Memory Flash2',
           'data' => array(
-                      'flash-picture' => true,
-                      'choose-difficulty' => true                      
+                      'flashPicture' => true,
+                      'chooseDifficulty' => true                      
                     )),
 
     // Jumble
@@ -73,22 +73,22 @@ class Activities extends CI_Controller {
           'view' => 'cloze',
           'name' => 'Fill in the Blank1',
           'data' => array(
-                      'display-picture' => true,
-                      'show-choices' => true
+                      'displayPicture' => true,
+                      'showChoices' => true
                     )),
     13 => array(
           'view' => 'cloze',
           'name' => 'Fill in the Blank2',
           'data' => array(
-                      'display-picture' => false,
-                      'show-choices' => true
+                      'displayPicture' => false,
+                      'showChoices' => true
                     )),
     14 => array(
           'view' => 'cloze',
           'name' => 'Fill in the Blank3',
           'data' => array(
-                      'display-picture' => false,
-                      'show-choices' => false
+                      'displayPicture' => false,
+                      'showChoices' => false
                     )),
     15 => array(
           'view' => 'cloze',
@@ -136,9 +136,9 @@ class Activities extends CI_Controller {
 
     $data = array();
     $data['unit_json'] = json_encode($pruned);
-    $data['level'] = $level;
 
     $activity = self::$activitiesById[$activityId];
+    $data['activity_data'] = json_encode($activity['data']);
  
 		$this->load->view($activity['view'], $data);
 	}

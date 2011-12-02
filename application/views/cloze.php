@@ -23,6 +23,10 @@
 var missingWord,
     numChoices = 3; //number of choices to display.
 function defineActivityForLesson(lesson) {
+  $('.reinforcement')
+    .removeClass('incorrect correct')
+    .text('');
+  
   // Remove a random word from the sentence. Replace with button
   var sentence = lesson.sentence,
       split = sentence.split(/\W+/).removeWhere(''), //splits words only (no punctuation)
@@ -39,7 +43,7 @@ function defineActivityForLesson(lesson) {
       .append(
         $('<button/>')
           .addClass('cover')
-          .text('______')
+          .text('?')
       )
       .append(
         $('<input type="text" />')
@@ -53,26 +57,31 @@ function defineActivityForLesson(lesson) {
 
   // Replace image, sentence with missing word, and word choices (if we need to)
   $('#lesson')
-    .find('.picture')
-      .attr('src', BASE_SRC + 'uploads/' + lesson['image'])
-    .end()
     .find('.sentence')
       .html($sentenceWithBlank.html());
 
-  //if choices
-  var otherLessons = getOtherLessons(),  
-      choices = [];
-  choices.push(missingWord);
-  for(var i = 0; i < numChoices - 1; i++)
-    if (otherLessons.length)
-      choices.push(otherLessons.shift().sentence.split(/\W+/).removeWhere('').sort(function() {return 0.5 - Math.random()}).pop());
+  if (config.displayPicture) {
+    $('#lesson')
+      .find('.picture')
+        .attr('src', BASE_SRC + 'uploads/' + lesson['image'])
+      .end();
+  }
 
-  $('#lesson .choices').empty();
-  $.each(choices, function(i, choice) {
-    $('#lesson .choices').append(
-      $('<li/>').text(choice)
-    )
-  });
+  if (config.showChoices) {
+    var otherLessons = getOtherLessons(),  
+        choices = [];
+    choices.push(missingWord);
+    for(var i = 0; i < numChoices - 1; i++)
+      if (otherLessons.length)
+        choices.push(otherLessons.shift().sentence.split(/\W+/).removeWhere('').sort(function() {return 0.5 - Math.random()}).pop());
+
+    $('#lesson .choices').empty();
+    $.each(choices, function(i, choice) {
+      $('#lesson .choices').append(
+        $('<li/>').text(choice)
+      )
+    });
+  }
 }
 
 //check answer
@@ -84,8 +93,12 @@ function checkAnswer() {
   $('.reinforcement').addClass( (isCorrect ? 'correct' : 'incorrect') ); 
   $('.reinforcement').removeClass( (isCorrect ? 'incorrect' : 'correct') );
 
-  if (isCorrect)
+  if (isCorrect) {
+    correct();
     setTimeout(function() { renderNextLesson(); }, 1000);
+  } else {
+    incorrect();
+  }
 
 };
 
@@ -95,7 +108,11 @@ $(document).ready(function(){
   renderNextLesson();
 
   $('.cover').live('click', function() {
-    $(this).closest('.missing').addClass('guessing');
+    $(this)
+      .closest('.missing')
+        .addClass('guessing')
+        .find('input')
+          .focus();
   })
   $('.guess').live('keypress', function(e) {
     if(e.which == 13) {
