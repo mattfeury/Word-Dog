@@ -277,12 +277,12 @@ header .score .percentage {
   text-align: center;
   padding: 60px;
 }
-/* line 197, ../sass/screen.sass */
-#container #content #lesson .sentence, #container #content #lesson .question, #container #content #lesson .answers {
+/* line 181, ../sass/screen.sass */
+#container #content #lesson .sentence, #container #content #lesson .question, #container #content #lesson .answers, #container #content #lesson .answer {
   font-size: 28px;
 }
-/* line 200, ../sass/screen.sass */
-#container #content #lesson input.sentence {
+/* line 184, ../sass/screen.sass */
+#container #content #lesson input.sentence, #container #content #lesson input.answer {
   width: 80%;
   min-width: 500px;
   border: 2px solid #b0e68b;

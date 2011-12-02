@@ -12,13 +12,13 @@ class Activities extends CI_Controller {
           'view' => 'answer_questions', //TODO
           'name' => 'Answer Questions1',
           'data' => array(
-                      'showChoices' => true
+                      'hideChoices' => false
                     )),
     2 => array(
           'view' => 'answer_questions', //TODO
           'name' => 'Answer Questions2',
           'data' => array(
-                      'showChoices' => false
+                      'hideChoices' => true
                     )),
 
     // Memory

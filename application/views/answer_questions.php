@@ -13,6 +13,7 @@
         <img class="picture" />
         <div class="question"></div>
         <div class="answers"></div>
+        <input name="answer" class="answer" type="text" autocomplete="off"/>
       </div>
     <div id="action-menu">
       <button class="go">Go</button>
@@ -35,6 +36,7 @@
     $('#lesson')
       .find('.question')
         .text(lesson['questions'][questionNum]['question']);
+    
     //clear previous buttons
     $('#lesson')
       .find('.answers')
