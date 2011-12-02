@@ -138,7 +138,7 @@
       renameInputs();
       return false;
     });
-    $('.add-question').click(function() {
+    $('.add-question').live('click', function() {
       var $newQuestion = $('.lesson.template .question').clone();
       
       $(this)
