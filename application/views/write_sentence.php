@@ -50,9 +50,12 @@ $(document).ready(function(){
      $('.reinforcement').addClass( (isCorrect ? 'correct' : 'incorrect') ); 
      $('.reinforcement').removeClass( (isCorrect ? 'incorrect' : 'correct') );
 
-     if (isCorrect)
+     if (isCorrect) {
+       correct();
        setTimeout(function() { renderNextLesson(); $('#lesson input').val(''); }, 1000);
-       
+      } else {
+        incorrect();
+      }
    });
    $('.sentence').keypress(function(e) {
            if(e.which == 13) {
