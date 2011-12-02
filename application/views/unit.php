@@ -64,6 +64,7 @@
 <div class="templates">
   <ul>
     <li class="template lesson removable">
+      <button class="remove">(x)</button>
       <label>Sentence: <input type="text" class="sentence" name="sentence" value="" /></label>
       <fieldset>
         <label for="picture">Picture:</label>
@@ -90,9 +91,7 @@
 
         <button class="add-question">Add Question</button>
       </fieldset>
-      
-      <button class="remove">(x)</button>
-    </li>
+          </li>
   </ul>
 </div>
 <script type="text/javascript">
