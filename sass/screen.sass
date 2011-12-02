@@ -44,9 +44,10 @@ html, body
 
 .dialog
   display: none
-  position: fixed
+  position: absolute
   top: 30%
-  left: 30%
+  left: 50%
+  margin-left: -196px
   width: 350px
   z-index: 2
   text-align: center
@@ -56,9 +57,12 @@ html, body
   padding: 15px
   border: 3px solid white
   
+  h2
+    padding-top: 5px
+  
   label
     text-align: right
-    padding-right: 14%
+    padding-right: 13%
     font-size: 16px
   
     input
@@ -69,6 +73,18 @@ html, body
     position: absolute
     top: 5px
     right: 5px
+    background: url('../images/close-white.png') no-repeat
+    border: none
+    width: 34px
+    height: 33px
+    margin: 0
+    padding: 0
+    text-indent: -999px
+    overflow: hidden
+    
+    &:active
+      top: 6px
+      right: 4px
 
   &.current
     display: block
@@ -192,15 +208,34 @@ header
     
 // Form stuffs
 form
+  
   label
     display: block
-    margin: 10px 0px
+    margin: 3px 0px
     font-size: $input-font-size
     
   input
     font-size: $input-font-size
     color: #ADB7A5
     padding-left: 5px
+    
+  input.info
+    border: $border-width solid $border-color
+
+.removable
+  position: relative
+.remove
+  background: url('../images/close.png') no-repeat
+  border: none
+  width: 34px
+  height: 33px
+  padding: 0px
+  text-indent: -999px
+  overflow: hidden
+  position: absolute
+  
+  + *
+    padding-left: 40px
 
 // Page specific stuff
 // These are currently defined by a class tag
@@ -213,7 +248,7 @@ form
     .about
       display: block
       margin: auto
-      padding: 60px
+      padding: 30px  15px
 
 body.activities
   .play
@@ -255,7 +290,7 @@ body.activities
   h2
     display: inline
   
-  input.unit, input.sentence
+  input.unit, input.sentence, input.answer
     border: $border-width solid $border-color
     
   input.unit
@@ -264,6 +299,14 @@ body.activities
     
   input.sentence
     width: 86%
+    
+  input.question-text
+    width: 85%
+    min-width: 500px
+    border: $border-width solid $border-color
+   
+  img
+    height: 200px
    
 li.unit, li.user
   button, a
@@ -271,12 +314,21 @@ li.unit, li.user
 
 li.lesson
   border: $border-width solid $border-color
+  padding-top: 10px
   padding-left: 10px
   padding-bottom: 10px
   margin: 20px 0px
+  position: relative
   
   .image-name
     padding-left: 20px
     padding-bottom: 10px
     font-size: $input-font-size
     color: #ADB7A5
+    
+  li.question
+    display: inline
+    
+  label
+    display: block
+      
