@@ -27,22 +27,22 @@ class Activities extends CI_Controller {
           'name' => 'Memory Static1',
           'data' => array()),
     4 => array(
-          'view' => 'memory', //TODO
+          'view' => 'memory',
           'name' => 'Memory Static2',
           'data' => array(
-                      'flashPicture' => true
+                      'coverPicture' => true
                     )),
     5 => array(
-          'view' => 'memory', //TODO
+          'view' => 'memory',
           'name' => 'Memory Flash1',
           'data' => array(
                       'chooseDifficulty' => true
                     )),
     6 => array(
-          'view' => 'memory', //TODO
+          'view' => 'memory',
           'name' => 'Memory Flash2',
           'data' => array(
-                      'flashPicture' => true,
+                      'coverPicture' => true,
                       'chooseDifficulty' => true                      
                     )),
 

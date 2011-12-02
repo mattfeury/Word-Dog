@@ -45,8 +45,8 @@
   var unit = <?= $unit_json ?>;
   var activity_config = <?= $activity_data ?>;
   window.config = $.extend(window.config || {}, activity_config);
-
   var currentLesson = -1;
+
   function getNextLesson() {
     currentLesson++;
     if (currentLesson < unit.lessons.length)
