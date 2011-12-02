@@ -90,9 +90,7 @@
 
         <button class="add-question">Add Question</button>
       </fieldset>
-      
-      <button class="remove">(x)</button>
-    </li>
+          </li>
   </ul>
 </div>
 <script type="text/javascript">
