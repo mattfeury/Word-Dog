@@ -12,7 +12,8 @@
 </header>
 <section id="container">
   <section id="content">
-    <h1 class="blurb">Welcome to Word Dog, the English Practice App!</h1>
+    <h1 class="blurb">Welcome to Word Dog!</h1>
+    <h2>An English Practice Application</h2>
 
     <?= img(array(
         'src' => 'images/dotty-animated.gif',

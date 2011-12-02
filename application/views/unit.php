@@ -18,6 +18,7 @@
       <ul class="lessons">
         <? $i=0; foreach($lessons as $lesson): ?>
           <li class="lesson removable">
+            <button class="remove">(x)</button>
             <label>Sentence: <input type="text" class="sentence" name="sentence" value="<?= $lesson->sentence;?>" /></label>
             <fieldset>
               <label for="picture">Picture:</label>
@@ -34,22 +35,21 @@
               <ul class="questions">
                 <? $j=0; foreach($lesson->questions as $question): ?>        
                   <li class="question removable">
+                    <button class="remove">(x)</button>
                     <label>Question: <input type="text" class="question-text" name="question<?= $j ?>" value="<?= $question['question'] ?>" /></label>
-                    <label>Answers
+                    <label>Answers:
                       <? $k=0; foreach($question['answers'] as $answer): ?> 
-                        <input type="text" class="answer <?= $k ?>" name="<?= $j ?>" value="<?= $answer ?>" />
                         <input type="radio" class="answer" name="answers<?= $i . '-' . $j ?>" value="<?= $k ?>" <?= ($k==$question['answer']) ? 'checked' : '' ?>>
+                        <input type="text" class="answer <?= $k ?>" name="<?= $j ?>" value="<?= $answer ?>" />
                       <? $k++; endforeach; ?>
                     </label>
-                    <button class="remove">(x)</button>
                   </li>
                 <? $j++; endforeach; ?>
               </ul>
 
               <button class="add-question">Add Question</button>
             </fieldset>
-
-            <button class="remove">(x)</button>
+            
           </li>
         <? $i++; endforeach; ?>
       </ul>
@@ -78,13 +78,13 @@
       <fieldset>
         <ul class="questions">
           <li class="question removable">
-            <label>Question: <input type="text" class="question-text" name="question0" /></label>
-            <label>Answers
-              <input type="text" class="answer 0" name="0" /><input type="radio" class="answer" name="answers0" value="0" checked>
-              <input type="text" class="answer 1" name="1" /><input type="radio" class="answer" name="answers0" value="1">
-              <input type="text" class="answer 2" name="2" /><input type="radio" class="answer" name="answers0" value="2">
-            </label>
             <button class="remove">(x)</button>
+            <label>Question: <input type="text" class="question-text" name="question0" /></label>
+            <label>Answers:
+              <input type="radio" class="answer" name="answers0" value="0" checked><input type="text" class="answer 0" name="0" />
+              <input type="radio" class="answer" name="answers0" value="1"><input type="text" class="answer 1" name="1" />
+              <input type="radio" class="answer" name="answers0" value="2"><input type="text" class="answer 2" name="2" />
+            </label>
           </li>
         </ul>
 
