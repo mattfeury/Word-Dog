@@ -50,61 +50,81 @@ class Activities extends CI_Controller {
     7 => array(
           'view' => 'jumble',
           'name' => 'Word Jumble1',
-          'data' => array()),
+          'data' => array(
+                      'hidePicture' => false
+                    )),
     8 => array(
           'view' => 'jumble',
           'name' => 'Word Jumble2',
-          'data' => array()),
+          'data' => array(
+                      'hidePicture' => true            
+                    )),
     9 => array(
-          'view' => 'jumble',
+          'view' => 'memory',
           'name' => 'Jumble / Memory Static1',
-          'data' => array()),
+          'data' => array(
+                      'jumbleSentence' => true
+                    )),
     10 => array(
-          'view' => 'jumble',
+          'view' => 'memory',
           'name' => 'Jumble / Memory Static2',
-          'data' => array()),
+          'data' => array(
+                      'jumbleSentence' => true,
+                      'coverPicture' => true
+                    )),
     11 => array(
-          'view' => 'jumble',
+          'view' => 'memory',
           'name' => 'Jumble / Memory Flash1',
-          'data' => array()),
-        
-    // Cloze
+          'data' => array(
+                      'jumbleSentence' => true,
+                      'chooseDifficulty' => true
+                    )),
     12 => array(
+          'view' => 'memory',
+          'name' => 'Jumble / Memory Flash2',
+          'data' => array(
+                      'jumbleSentence' => true,
+                      'coverPicture' => true,
+                      'chooseDifficulty' => true
+                    )),
+
+    // Cloze
+    13 => array(
           'view' => 'cloze',
           'name' => 'Fill in the Blank1',
           'data' => array(
                       'displayPicture' => true,
                       'showChoices' => true
                     )),
-    13 => array(
+    14 => array(
           'view' => 'cloze',
           'name' => 'Fill in the Blank2',
           'data' => array(
                       'displayPicture' => false,
                       'showChoices' => true
                     )),
-    14 => array(
+    15 => array(
           'view' => 'cloze',
           'name' => 'Fill in the Blank3',
           'data' => array(
                       'displayPicture' => false,
                       'showChoices' => false
                     )),
-    15 => array(
+    16 => array(
           'view' => 'cloze',
           'name' => 'Fill in the Blank / Memory Static',
           'data' => array()),
-    16 => array(
+    17 => array(
           'view' => 'cloze',
           'name' => 'Fill in the Blank / Memory Flash',
           'data' => array()),
     
     // Multiple Choice
-    17 => array(
+    18 => array(
           'view' => 'multiple_choice',
           'name' => 'Multiple Choice',
           'data' => array()),
-    18 => array(
+    19 => array(
           'view' => 'multiple_choice',
           'name' => 'Multiple Choice / Memory',
           'data' => array()),

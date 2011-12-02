@@ -36,10 +36,15 @@ function defineActivityForLesson(lesson) {
     .removeClass('incorrect correct')
     .text('');
 
+  var sentence = (config.jumbleSentence) ? jumbleSentence(lesson['sentence']) : lesson['sentence'];
+  // because we will check the user's input with 'originalSentence',
+  // it should be defined for jumble or otherwise.
+  originalSentence = lesson['sentence'];
+
   // Replace image and sentence
   $('#lesson')
     .find('span.sentence')
-      .text(lesson['sentence'])
+      .text(sentence)
     .end()
     .find('input.sentence')
       .val('')
@@ -49,7 +54,7 @@ function defineActivityForLesson(lesson) {
 
   if (COVERED)
     uncover();
-  resetCoverTimer(lesson.sentence);
+  resetCoverTimer(sentence);
 }
 var difficulties = [ //seconds per word before hiding
   { name: 'Easy', secsPerWord: .5 },
@@ -134,7 +139,7 @@ $(document).ready(function(){
   
   //check answer
   $('.go').click(function(event){
-    var isCorrect = ($('input').val()) === ($('.sentence').html());
+    var isCorrect = $('input.sentence').val() == originalSentence;
     $('.reinforcement').text( (isCorrect ? 'Correct!' : 'Incorrect') );
     $('.reinforcement').addClass( (isCorrect ? 'correct' : 'incorrect') ); 
     $('.reinforcement').removeClass( (isCorrect ? 'incorrect' : 'correct') );
