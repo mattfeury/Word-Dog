@@ -56,7 +56,15 @@
     $('#lesson')
       .find('input[value="0"]')
         .attr('checked', true);
-    answer = answers.indexOf(answerString);
+    if(!config.hideChoices) {
+      $('.answer').hide();
+      $('.answers').show();
+      answer = answers.indexOf(answerString);
+    } else {
+      $('.answers').hide();
+      $('.answer').show();
+      answer = answerString;
+    }
     currLesson = lesson;
   }
 
@@ -64,11 +72,14 @@ $(document).ready(function(){
   questionNum = 0;
   //load first lesson
   renderNextLesson();
-  
+
    //check answer
    $('.go').click(function(event){
-     //check if starts with upper case and ends with a period
-     $input = $('input[name="answers0"]:checked').val();
+     var $input;
+     if(!config.hideChoices)
+      $input = $('input[name="answers0"]:checked').val();
+     else 
+      $input = $('input[name="answer"]').val();     
      
      var isCorrect = ($input == answer);
      $('.reinforcement').html( (isCorrect ? 'Correct!' : 'Incorrect') );
@@ -86,7 +97,7 @@ $(document).ready(function(){
        incorrect();
      }     
    });
-   $('.sentence').keypress(function(e) {
+   $('.answer').keypress(function(e) {
            if(e.which == 13) {
                $('.go').click();
            }
