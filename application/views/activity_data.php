@@ -61,6 +61,15 @@
   function unitOver() {
     alert("You win. Lesson complete. Do something here like redirecting");
   }
+  //for multiple choice: gets other lessons
+  function getOtherLessons() {
+    var randomLessons = new Array();
+    for(var i=0;i < unit.lessons.length;i++) {
+      if(unit.lessons[i]['id'] != unit.lessons[currentLesson]['id']) 
+        randomLessons.push(unit.lessons[i]);
+    }
+    return randomLessons.sort(function() {return 0.5 - Math.random()});
+  }
 
   // Utilites
   var BASE_SRC = "<?= base_url() ?>";
