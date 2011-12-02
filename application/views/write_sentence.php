@@ -44,7 +44,7 @@ $(document).ready(function(){
    $('.go').click(function(event){
      //check if starts with upper case and ends with a period
      $input = $('input[name="sentence"]').val();
-     console.log($input);
+
      var isCorrect = ($input !== '' && endsWith($input, '.') && isUpperCase($input.slice(0, 1)));
      $('.reinforcement').html( (isCorrect ? 'Correct!' : 'Incorrect') );
      $('.reinforcement').addClass( (isCorrect ? 'correct' : 'incorrect') ); 
