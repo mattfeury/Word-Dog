@@ -224,6 +224,26 @@ body.activities
     .levels
       float: right
 
+  .missing
+    display: inline-block
+    width: 120px
+    min-width: 140px
+
+    button
+      width: inherit
+    input
+      width: inherit
+      border: 1px solid #B0E68B
+      padding: 10px
+
+    .guess
+      display: none
+    &.guessing
+      .guess
+        display: inline-block
+      button
+        display: none
+
 .users, .units, .activities
   #content
     background: white

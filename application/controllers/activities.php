@@ -2,6 +2,7 @@
 
 class Activities extends CI_Controller {
 
+  // TODO INSTRUCTIONS
   public static $activitiesById = array(
     0 => array(
           'view' => 'write_sentence',
@@ -11,86 +12,99 @@ class Activities extends CI_Controller {
           'view' => 'answer_questions', //TODO
           'name' => 'Answer Questions1',
           'data' => array(
-                      'show-choices' => true
+                      'showChoices' => true
                     )),
     2 => array(
           'view' => 'answer_questions', //TODO
           'name' => 'Answer Questions2',
           'data' => array(
-                      'show-choices' => false
+                      'showChoices' => false
                     )),
 
     // Memory
     3 => array(
           'view' => 'memory',
           'name' => 'Memory Static1',
-          'data' => array(
-                      'hide-picture' => false
-                    )),
+          'data' => array()),
     4 => array(
           'view' => 'memory', //TODO
           'name' => 'Memory Static2',
           'data' => array(
-                      'hide-picture' => true,
-                      'choose-timer' => true
+                      'flashPicture' => true
                     )),
     5 => array(
           'view' => 'memory', //TODO
-          'name' => 'Memory Flash',
+          'name' => 'Memory Flash1',
           'data' => array(
-                      'hide-picture' => true
+                      'chooseDifficulty' => true
+                    )),
+    6 => array(
+          'view' => 'memory', //TODO
+          'name' => 'Memory Flash2',
+          'data' => array(
+                      'flashPicture' => true,
+                      'chooseDifficulty' => true                      
                     )),
 
     // Jumble
-    6 => array(
+    7 => array(
           'view' => 'jumble',
           'name' => 'Word Jumble1',
           'data' => array()),
-    7 => array(
+    8 => array(
           'view' => 'jumble',
           'name' => 'Word Jumble2',
           'data' => array()),
-    8 => array(
+    9 => array(
           'view' => 'jumble',
           'name' => 'Jumble / Memory Static1',
           'data' => array()),
-    9 => array(
+    10 => array(
           'view' => 'jumble',
           'name' => 'Jumble / Memory Static2',
           'data' => array()),
-    10 => array(
+    11 => array(
           'view' => 'jumble',
           'name' => 'Jumble / Memory Flash1',
           'data' => array()),
         
     // Cloze
-    11 => array(
-          'view' => 'cloze',
-          'name' => 'Fill in the Blank1',
-          'data' => array()),
     12 => array(
           'view' => 'cloze',
-          'name' => 'Fill in the Blank2',
-          'data' => array()),
+          'name' => 'Fill in the Blank1',
+          'data' => array(
+                      'displayPicture' => true,
+                      'showChoices' => true
+                    )),
     13 => array(
           'view' => 'cloze',
-          'name' => 'Fill in the Blank3',
-          'data' => array()),
+          'name' => 'Fill in the Blank2',
+          'data' => array(
+                      'displayPicture' => false,
+                      'showChoices' => true
+                    )),
     14 => array(
+          'view' => 'cloze',
+          'name' => 'Fill in the Blank3',
+          'data' => array(
+                      'displayPicture' => false,
+                      'showChoices' => false
+                    )),
+    15 => array(
           'view' => 'cloze',
           'name' => 'Fill in the Blank / Memory Static',
           'data' => array()),
-    15 => array(
+    16 => array(
           'view' => 'cloze',
           'name' => 'Fill in the Blank / Memory Flash',
           'data' => array()),
     
     // Multiple Choice
-    16 => array(
+    17 => array(
           'view' => 'multiple_choice',
           'name' => 'Multiple Choice',
           'data' => array()),
-    17 => array(
+    18 => array(
           'view' => 'multiple_choice',
           'name' => 'Multiple Choice / Memory',
           'data' => array()),
@@ -122,9 +136,9 @@ class Activities extends CI_Controller {
 
     $data = array();
     $data['unit_json'] = json_encode($pruned);
-    $data['level'] = $level;
 
     $activity = self::$activitiesById[$activityId];
+    $data['activity_data'] = json_encode($activity['data']);
  
 		$this->load->view($activity['view'], $data);
 	}

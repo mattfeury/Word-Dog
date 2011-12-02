@@ -313,8 +313,36 @@ body.activities .play .activities {
 body.activities .play .levels {
   float: right;
 }
+/* line 227, ../sass/screen.sass */
+body.activities .missing {
+  display: inline-block;
+  width: 120px;
+  min-width: 140px;
+}
+/* line 232, ../sass/screen.sass */
+body.activities .missing button {
+  width: inherit;
+}
+/* line 234, ../sass/screen.sass */
+body.activities .missing input {
+  width: inherit;
+  border: 1px solid #b0e68b;
+  padding: 10px;
+}
+/* line 239, ../sass/screen.sass */
+body.activities .missing .guess {
+  display: none;
+}
+/* line 242, ../sass/screen.sass */
+body.activities .missing.guessing .guess {
+  display: inline-block;
+}
+/* line 244, ../sass/screen.sass */
+body.activities .missing.guessing button {
+  display: none;
+}
 
-/* line 228, ../sass/screen.sass */
+/* line 248, ../sass/screen.sass */
 .users #content, .units #content, .activities #content {
   background: white;
   border: 2px solid #b0e68b;
@@ -322,37 +350,37 @@ body.activities .play .levels {
   padding: 20px 40px;
 }
 
-/* line 235, ../sass/screen.sass */
+/* line 255, ../sass/screen.sass */
 .units h2 {
   display: inline;
 }
-/* line 238, ../sass/screen.sass */
+/* line 258, ../sass/screen.sass */
 .units input.unit, .units input.sentence {
   border: 2px solid #b0e68b;
 }
-/* line 241, ../sass/screen.sass */
+/* line 261, ../sass/screen.sass */
 .units input.unit {
   width: 300px;
   height: 20px;
 }
-/* line 245, ../sass/screen.sass */
+/* line 265, ../sass/screen.sass */
 .units input.sentence {
   width: 86%;
 }
 
-/* line 249, ../sass/screen.sass */
+/* line 269, ../sass/screen.sass */
 li.unit button, li.unit a, li.user button, li.user a {
   display: block;
 }
 
-/* line 252, ../sass/screen.sass */
+/* line 272, ../sass/screen.sass */
 li.lesson {
   border: 2px solid #b0e68b;
   padding-left: 10px;
   padding-bottom: 10px;
   margin: 20px 0px;
 }
-/* line 258, ../sass/screen.sass */
+/* line 278, ../sass/screen.sass */
 li.lesson .image-name {
   padding-left: 20px;
   padding-bottom: 10px;

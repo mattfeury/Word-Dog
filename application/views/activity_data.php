@@ -43,6 +43,9 @@
 
   // Units and lessons
   var unit = <?= $unit_json ?>;
+  var activity_config = <?= $activity_data ?>;
+  window.config = $.extend(window.config || {}, activity_config);
+
   var currentLesson = -1;
   function getNextLesson() {
     currentLesson++;
@@ -73,6 +76,16 @@
 
   // Utilites
   var BASE_SRC = "<?= base_url() ?>";
+  Array.prototype.removeWhere = function() {
+      var what, a= arguments, L= a.length, ax;
+      while(L && this.length){
+          what= a[--L];
+          while((ax= this.indexOf(what))!= -1){
+              this.splice(ax, 1);
+          }
+      }
+      return this;
+  }
 
   // Cookie helper functions borrowed from quirksmode.org
   function createCookie(name,value,days) {
