@@ -11,7 +11,7 @@
     <div class="reinforcement"></div>
     <div id="lesson">
       <img class="picture" />
-      <span class="sentence"></span>
+      <div class="sentence"></div>
       <input name="sentence" class="sentence" type="text" autocomplete="off"/>
     </div>
     <div id="action-menu">
@@ -36,7 +36,7 @@ function defineActivityForLesson(lesson) {
   var jumbledSentence = jumbleSentence(originalSentence);
 
   //remove commas and uppercase on presentation
-  $('#lesson span.sentence').text(jumbledSentence);
+  $('#lesson div.sentence').text(jumbledSentence);
   $('#lesson input').val('');
 }
 

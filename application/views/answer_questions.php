@@ -13,7 +13,7 @@
         <img class="picture" />
         <div class="question"></div>
         <div class="answers"></div>
-        <input name="answer" class="answer" type="text" autocomplete="off"/>
+        <input name="answer" class="sentence" type="text" autocomplete="off"/>
       </div>
     <div id="action-menu">
       <button class="go">Go</button>

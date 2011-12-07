@@ -178,18 +178,19 @@ ul.rows
 .file-holder
   position: relative
   width: 145px
-  height: 33px
+  height: 70px
   overflow: hidden
   cursor: pointer
   
   .substitute
     position: relative
     z-index: 0
+    padding: 20px
     
   input
     +opacity(0)
     width: 141px
-    height: 33px
+    height: 70px
     z-index: 1
     cursor: pointer
 
@@ -235,6 +236,7 @@ header
       
       .sentence, .question, .answers
         font-size: 28px
+        margin: 5px
         
       input.sentence
         width: 80%
@@ -346,36 +348,42 @@ body.activities
     padding: 20px 40px
     
 .units
-  form h2
-    display: inline
-  
-  input.unit, input.sentence, input.answer
-    border: $border-width solid $border-color
-    
-  input.unit
-    width: 300px
-    height: 20px
-    
-  input.sentence
-    width: 86%
-    
-  input.question-text
-    width: 85%
-    min-width: 500px
-    border: $border-width solid $border-color
-   
-  img
-    height: 200px
-   
+  form
+    h2
+      display: inline
+
+    .stretch
+      +clearfix
+      line-height: 1.75em
+      position: relative
+
+      div
+        display: block
+        width: auto
+        position: absolute
+        right: 0
+        left: 0
+        top: 0
+        margin-left: 135px
+        text-align: right
+
+        input
+          width: 95%
+
+    input.unit, input.sentence, input.answer, input.question-text
+      border: $border-width solid $border-color
+      
+    input.unit
+      width: 300px
+      height: 20px
+      
 li.unit, li.user
   button, a
     display: block
 
 li.lesson
   border: $border-width solid $border-color
-  padding-top: 10px
-  padding-left: 10px
-  padding-bottom: 10px
+  padding: 10px
   margin: 20px 0px
   position: relative
   
@@ -384,10 +392,86 @@ li.lesson
     padding-bottom: 10px
     font-size: $input-font-size
     color: #ADB7A5
+
+  .upload-picture
+    +clearfix
+    > label
+      float: left
+
+    .image-holder
+      position: relative
+      margin-left: 18%
+      width: 82%
+      +clearfix
+
+      .image
+        float: left
+        width: 50%
+        text-align: center
+        position: relative
+        height: 200px
+
+        .image-name.old-image
+          display: none
+
+        &.active
+          background-color: $main-bg
+          //.image-name.changed
+            visibility: visible
+
+        label
+          height: 200px
+
+        &.new-image label
+          padding-top: 10%
+
+        img
+          height: 100%
+          max-width: 100%
+
+        .file-holder
+          margin: auto
+
+        input[type=radio]
+          position: absolute
+          top: 5px
+          left: 5px
+          z-index: 2
     
   li.question
-    display: inline
-    
+    display: block
+    .remove
+      z-index: 1
+    &:hover .answer .help
+      visibility: visible
+
+    .answer
+      +clearfix
+
+      .help
+        float: left
+        width: 28%
+        padding: 15px 0
+        visibility: hidden
+        h4
+          font-size: 16px
+        p
+          font-size: 14px
+      .answers
+        float: right
+        text-align: right
+        width: 70%
+        margin-right: 2px
+
+        fieldset.answer
+          margin: 5px 0
+          +clearfix
+
+          input
+            display: inline-block
+            &[type=text]
+              width: 90%
+
   label
     display: block
       

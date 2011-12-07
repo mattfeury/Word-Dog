@@ -19,16 +19,27 @@
         <? $i=0; foreach($lessons as $lesson): ?>
           <li class="lesson removable">
             <button class="remove">(x)</button>
-            <label>Sentence: <input type="text" class="sentence" name="sentence" value="<?= $lesson->sentence;?>" /></label>
-            <fieldset>
-              <label for="picture">Picture:</label>
-              <?= $lesson->image != '' ? '<img src="' . base_url()  . 'uploads/' . $lesson->image . '" />' : '' ?>
-              <!--<input type="radio" name="image-upload" value="current" checked />Current image
-              <input type="radio" name="image-upload" value="new" />New image-->
-              <div class='image-name'><?= $lesson->image ?></div>
-              <div class="file-holder">
-                <div class="substitute">Upload Image</div>
-                <input type="file" class="picture" name="picture" />
+            <label class="stretch"><span>Sentence: </span><div><input type="text" class="sentence" name="sentence" value="<?= $lesson->sentence;?>" /></div></label>
+            <fieldset class="upload-picture">
+              <label>Picture:</label>
+              <div class="image-holder">
+                <div class="image active old-image">
+                  <label>
+                    <?= $lesson->image != '' ? '<img src="' . base_url()  . 'uploads/' . $lesson->image . '" />' : '' ?>
+                    <input type="radio" name="image-upload<?=$i?>" value="current" checked />
+                    <div class='image-name'><?= $lesson->image ?></div>
+                  </label>
+                </div>
+                <div class="image new-image">
+                  <label>
+                    <input type="radio" name="image-upload<?=$i?>" value="new" />
+                    <div class='image-name'></div>
+                    <div class="file-holder">
+                      <div class="substitute">New Image</div>
+                      <input type="file" class="picture" name="picture" />
+                    </div>
+                  </label>
+                </div>
               </div>
             </fieldset>
             <fieldset>
@@ -36,13 +47,24 @@
                 <? $j=0; foreach($lesson->questions as $question): ?>        
                   <li class="question removable">
                     <button class="remove">(x)</button>
-                    <label>Question: <input type="text" class="question-text" name="question<?= $j ?>" value="<?= $question['question'] ?>" /></label>
-                    <label>Answers:
-                      <? $k=0; foreach($question['answers'] as $answer): ?> 
-                        <input type="radio" class="answer" name="answers<?= $i . '-' . $j ?>" value="<?= $k ?>" <?= ($k==$question['answer']) ? 'checked' : '' ?>>
-                        <input type="text" class="answer <?= $k ?>" name="<?= $j ?>" value="<?= $answer ?>" />
-                      <? $k++; endforeach; ?>
-                    </label>
+                    <label class="stretch"><span>Question: </span><div><input type="text" class="question-text" name="question<?= $j ?>" value="<?= $question['question'] ?>" /></div></label>
+                    <div class="answer">
+                      <div class="help">
+                        <h4>Three Answer Choices:</h4>
+                        <p>Indicate the correct answer 
+                        by selecting the corresponding 
+                        radio button.</p>
+                      </div>
+                      <div class="answers">
+                        <? $k=0; foreach($question['answers'] as $answer): ?>
+                          <fieldset class="answer">
+                            <input type="radio" class="answer" name="answers<?= $i . '-' . $j ?>" value="<?= $k ?>" <?= ($k==$question['answer']) ? 'checked' : '' ?>>
+                            <input type="text" class="answer <?= $k ?>" name="<?= $j ?>" value="<?= $answer ?>" />
+                          </fieldset>
+                        <? $k++; endforeach; ?>
+                      </div>
+                    </div>
+                    
                   </li>
                 <? $j++; endforeach; ?>
               </ul>
@@ -65,33 +87,55 @@
   <ul>
     <li class="template lesson removable">
       <button class="remove">(x)</button>
-      <label>Sentence: <input type="text" class="sentence" name="sentence" value="" /></label>
-      <fieldset>
-        <label for="picture">Picture:</label>
-        <!--<input type="radio" name="image-upload" value="current" checked />Current image
-        <input type="radio" name="image-upload" value="new" />New image-->
-        <div class='image-name'></div>
-        <div class="file-holder">
-          <div class="substitute">Upload Image</div>
-          <input type="file" class="picture" name="picture" />
+            <label class="stretch"><span>Sentence: </span><div><input type="text" class="sentence" name="sentence" value="" /></div></label>
+      <fieldset class="upload-picture">
+        <label>Picture:</label>
+        <div class="image-holder">
+          <div class="image active new-image">
+            <label>
+              <input type="radio" name="image-upload1" value="new" checked />
+              <div class='image-name'></div>
+              <div class="file-holder">
+                <div class="substitute">New Image</div>
+                <input type="file" class="picture" name="picture" />
+              </div>
+            </label>
+          </div>
         </div>
       </fieldset>
       <fieldset>
         <ul class="questions">
           <li class="question removable">
             <button class="remove">(x)</button>
-            <label>Question: <input type="text" class="question-text" name="question0" /></label>
-            <label>Answers:
-              <input type="radio" class="answer" name="answers0" value="0" checked><input type="text" class="answer 0" name="0" />
-              <input type="radio" class="answer" name="answers0" value="1"><input type="text" class="answer 1" name="1" />
-              <input type="radio" class="answer" name="answers0" value="2"><input type="text" class="answer 2" name="2" />
-            </label>
+            <label class="stretch"><span>Question: </span><div><input type="text" class="question-text" name="question0" /></div></label>
+            <div class="answer">
+              <div class="help">
+                <h4>Three Answer Choices:</h4>
+                <p>Indicate the correct answer 
+                by selecting the corresponding 
+                radio button.</p>
+              </div>
+              <div class="answers">
+                <fieldset class="answer">
+                  <input type="radio" class="answer" name="answers0" value="0" checked />
+                  <input type="text" class="answer 0" name="0" />
+                </fieldset>
+                <fieldset class="answer">
+                  <input type="radio" class="answer" name="answers0-1" value="1">
+                  <input type="text" class="answer 1" name="1" />
+                </fieldset>
+                <fieldset class="answer">
+                  <input type="radio" class="answer" name="answers0-1" value="2">
+                  <input type="text" class="answer 2" name="2" />
+                </fieldset>
+              </div>
+            </div>
           </li>
         </ul>
 
         <button class="add-question">Add Question</button>
       </fieldset>
-          </li>
+    </li>
   </ul>
 </div>
 <script type="text/javascript">
@@ -100,10 +144,7 @@
       $(this)
         .find('.picture')
           .attr('name', 'picture' + i)
-          .attr('id', 'picture' + i)
-          .closest('.file-holder')
-            .siblings('label')
-              .attr('for', 'picture' + i);
+          .attr('id', 'picture' + i);
 
       var $questions = $(this).find('.questions .question');
       $questions.each(function(j, item) {
@@ -123,7 +164,15 @@
     
     $('input[type=file]').live('change', function(e){
       var $uploadtext = $(this).val().split("\\").pop();
-      $(this).parent().siblings('.image-name').text($uploadtext);
+      $(this).closest('.file-holder').siblings('.image-name').text($uploadtext).addClass('changed');
+    });
+    $('.upload-picture input:radio').live('change', function() {
+      var $holder = $(this).closest('.image');
+      $holder
+        .siblings('.image')
+          .removeClass('active')
+        .end()
+        .addClass('active');
     });
 
     $('#add-sentence').click(function() {
@@ -200,11 +249,12 @@
             questionJson = decodeQuestionsToJson($lesson.find('.questions'));
             
         //pass user uploaded image filename   
-        if($lesson.find('.picture').val() != '') { 
+        if($lesson.find('.image :radio:checked').val() == 'new') { 
           imgFile = $lesson.find('.picture').val().split("\\").pop();
         //else, pass image filename that's there
         } else {
-          imgFile = $lesson.find('.image-name').text();
+          imgFile = $lesson.find('.old-image .image-name').text();
+          $lesson.find('.picture').remove();
         }
 
         var lesson = {};
