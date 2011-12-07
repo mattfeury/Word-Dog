@@ -7,7 +7,7 @@
   <section id="content">
 
     <h1>Multiple Choice</h1>
-    <h2>Choose the best sentence for the picture:</h2>
+    <h2>Choose the sentence that best describes the picture.</h2>
     <div class="reinforcement"></div>
       <div id="lesson">
         <img class="picture" />

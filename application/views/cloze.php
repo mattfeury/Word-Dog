@@ -7,7 +7,7 @@
   <section id="content">
 
     <h1>Fill in the Blank</h1>
-    <h2>Write a sentence for the picture below:</h2>
+    <h2>Find the missing word from the choices below. Type the correct answer into the box.</h2>
     <div class="reinforcement"></div>
     <div id="lesson">
       <img class="picture" />

@@ -6,7 +6,7 @@
 <section id="container">
   <section id="content">
     <h1>Memory</h1>
-    <h2>Memorize the sentence then type it:</h2>
+    <h2>Memorize the sentence and type it into the box.</h2>
     <div class="reinforcement"></div>
 
     <div class="choose-difficulty">

@@ -7,7 +7,7 @@
   <section id="content">
 
     <h1>Write Sentence</h1>
-    <h2>Write a sentence for the picture below:</h2>
+    <h2>Write a sentence for the picture below. Be sure to use correct capitalization and punctuation!</h2>
     <div class="reinforcement"></div>
     <div id="lesson">
       <img class="picture" />

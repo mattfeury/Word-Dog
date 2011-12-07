@@ -208,10 +208,10 @@ button, a, input.submit, input.save, .substitute {
 }
 /* line 142, ../sass/screen.sass */
 button:hover, a:hover, input.submit:hover, input.save:hover, .substitute:hover {
-  -moz-box-shadow: rgba(0, 0, 0, 0.1) 3px 3px 10px 2px;
-  -webkit-box-shadow: rgba(0, 0, 0, 0.1) 3px 3px 10px 2px;
-  -o-box-shadow: rgba(0, 0, 0, 0.1) 3px 3px 10px 2px;
-  box-shadow: rgba(0, 0, 0, 0.1) 3px 3px 10px 2px;
+  -moz-box-shadow: rgba(0, 0, 0, 0.1) 1px 1px 8px 1px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.1) 1px 1px 8px 1px;
+  -o-box-shadow: rgba(0, 0, 0, 0.1) 1px 1px 8px 1px;
+  box-shadow: rgba(0, 0, 0, 0.1) 1px 1px 8px 1px;
 }
 /* line 145, ../sass/screen.sass */
 button:active, a:active, input.submit:active, input.save:active, .substitute:active {
