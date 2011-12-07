@@ -42,10 +42,10 @@ $(document).ready(function(){
   
    //check answer
    $('.go').click(function(event){
-     //check if starts with upper case and ends with a period
+     //check if starts with upper case and ends with a period, comma or question mark
      $input = $('input[name="sentence"]').val();
 
-     var isCorrect = ($input !== '' && endsWith($input, '.') && isUpperCase($input.slice(0, 1)));
+     var isCorrect = ($input !== '' && (endsWith($input, '.') || endsWith($input, '!') || endsWith($input, '?')) && isUpperCase($input.slice(0, 1)));
      $('.reinforcement').html( (isCorrect ? 'Correct!' : 'Incorrect') );
      $('.reinforcement').addClass( (isCorrect ? 'correct' : 'incorrect') ); 
      $('.reinforcement').removeClass( (isCorrect ? 'incorrect' : 'correct') );
