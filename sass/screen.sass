@@ -344,26 +344,37 @@ body.activities
     padding: 20px 40px
     
 .units
-  form h2
-    display: inline
-  
-  input.unit, input.sentence, input.answer
-    border: $border-width solid $border-color
-    
-  input.unit
-    width: 300px
-    height: 20px
-    
-  input.sentence
-    width: 86%
-    
-  input.question-text
-    width: 85%
-    min-width: 500px
-    border: $border-width solid $border-color
-   
-  img
-    height: 200px
+  form
+    h2
+      display: inline
+
+    .stretch
+      +clearfix
+      line-height: 1.75em
+      position: relative
+
+      div
+        display: block
+        width: auto
+        position: absolute
+        right: 0
+        left: 0
+        top: 0
+        margin-left: 135px
+        text-align: right
+
+        input
+          width: 95%
+
+    input.unit, input.sentence, input.answer, input.question-text
+      border: $border-width solid $border-color
+      
+    input.unit
+      width: 300px
+      height: 20px
+      
+    img
+      height: 200px
    
 li.unit, li.user
   button, a
@@ -371,9 +382,7 @@ li.unit, li.user
 
 li.lesson
   border: $border-width solid $border-color
-  padding-top: 10px
-  padding-left: 10px
-  padding-bottom: 10px
+  padding: 10px
   margin: 20px 0px
   position: relative
   
@@ -384,8 +393,39 @@ li.lesson
     color: #ADB7A5
     
   li.question
-    display: inline
-    
+    display: block
+    .remove
+      z-index: 1
+    &:hover .answer .help
+      visibility: visible
+
+    .answer
+      +clearfix
+
+      .help
+        float: left
+        width: 28%
+        padding: 15px 0
+        visibility: hidden
+        h4
+          font-size: 16px
+        p
+          font-size: 14px
+      .answers
+        float: right
+        text-align: right
+        width: 70%
+        margin-right: 2px
+
+        fieldset.answer
+          margin: 5px 0
+          +clearfix
+
+          input
+            display: inline-block
+            &[type=text]
+              width: 90%
+
   label
     display: block
       

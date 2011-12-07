@@ -19,12 +19,15 @@
         <? $i=0; foreach($lessons as $lesson): ?>
           <li class="lesson removable">
             <button class="remove">(x)</button>
-            <label>Sentence: <input type="text" class="sentence" name="sentence" value="<?= $lesson->sentence;?>" /></label>
+            <label class="stretch"><span>Sentence: </span><div><input type="text" class="sentence" name="sentence" value="<?= $lesson->sentence;?>" /></div></label>
             <fieldset>
-              <label for="picture">Picture:</label>
-              <?= $lesson->image != '' ? '<img src="' . base_url()  . 'uploads/' . $lesson->image . '" />' : '' ?>
-              <!--<input type="radio" name="image-upload" value="current" checked />Current image
-              <input type="radio" name="image-upload" value="new" />New image-->
+              <label>Picture:</label>
+              
+              <label>
+                <?= $lesson->image != '' ? '<img src="' . base_url()  . 'uploads/' . $lesson->image . '" />' : '' ?>
+                <input type="radio" name="image-upload<?=$i?>" value="current" checked />Current image
+              </label>
+              <label><input type="radio" name="image-upload<?=$i?>" value="new" />New image</label>
               <div class='image-name'><?= $lesson->image ?></div>
               <div class="file-holder">
                 <div class="substitute">Upload Image</div>
@@ -36,13 +39,24 @@
                 <? $j=0; foreach($lesson->questions as $question): ?>        
                   <li class="question removable">
                     <button class="remove">(x)</button>
-                    <label>Question: <input type="text" class="question-text" name="question<?= $j ?>" value="<?= $question['question'] ?>" /></label>
-                    <label>Answers:
-                      <? $k=0; foreach($question['answers'] as $answer): ?> 
-                        <input type="radio" class="answer" name="answers<?= $i . '-' . $j ?>" value="<?= $k ?>" <?= ($k==$question['answer']) ? 'checked' : '' ?>>
-                        <input type="text" class="answer <?= $k ?>" name="<?= $j ?>" value="<?= $answer ?>" />
-                      <? $k++; endforeach; ?>
-                    </label>
+                    <label class="stretch"><span>Question: </span><div><input type="text" class="question-text" name="question<?= $j ?>" value="<?= $question['question'] ?>" /></div></label>
+                    <div class="answer">
+                      <div class="help">
+                        <h4>Three Answer Choices:</h4>
+                        <p>Indicate the correct answer 
+                        by selecting the corresponding 
+                        radio button.</p>
+                      </div>
+                      <div class="answers">
+                        <? $k=0; foreach($question['answers'] as $answer): ?>
+                          <fieldset class="answer">
+                            <input type="radio" class="answer" name="answers<?= $i . '-' . $j ?>" value="<?= $k ?>" <?= ($k==$question['answer']) ? 'checked' : '' ?>>
+                            <input type="text" class="answer <?= $k ?>" name="<?= $j ?>" value="<?= $answer ?>" />
+                          </fieldset>
+                        <? $k++; endforeach; ?>
+                      </div>
+                    </div>
+                    
                   </li>
                 <? $j++; endforeach; ?>
               </ul>
@@ -80,18 +94,35 @@
         <ul class="questions">
           <li class="question removable">
             <button class="remove">(x)</button>
-            <label>Question: <input type="text" class="question-text" name="question0" /></label>
-            <label>Answers:
-              <input type="radio" class="answer" name="answers0" value="0" checked><input type="text" class="answer 0" name="0" />
-              <input type="radio" class="answer" name="answers0" value="1"><input type="text" class="answer 1" name="1" />
-              <input type="radio" class="answer" name="answers0" value="2"><input type="text" class="answer 2" name="2" />
-            </label>
+            <label class="stretch"><span>Question: </span><div><input type="text" class="question-text" name="question0" /></div></label>
+            <div class="answer">
+              <div class="help">
+                <h4>Three Answer Choices:</h4>
+                <p>Indicate the correct answer 
+                by selecting the corresponding 
+                radio button.</p>
+              </div>
+              <div class="answers">
+                <fieldset class="answer">
+                  <input type="radio" class="answer" name="answers0" value="0" checked />
+                  <input type="text" class="answer 0" name="0" />
+                </fieldset>
+                <fieldset class="answer">
+                  <input type="radio" class="answer" name="answers0-1" value="1">
+                  <input type="text" class="answer 1" name="1" />
+                </fieldset>
+                <fieldset class="answer">
+                  <input type="radio" class="answer" name="answers0-1" value="2">
+                  <input type="text" class="answer 2" name="2" />
+                </fieldset>
+              </div>
+            </div>
           </li>
         </ul>
 
         <button class="add-question">Add Question</button>
       </fieldset>
-          </li>
+    </li>
   </ul>
 </div>
 <script type="text/javascript">
@@ -100,10 +131,7 @@
       $(this)
         .find('.picture')
           .attr('name', 'picture' + i)
-          .attr('id', 'picture' + i)
-          .closest('.file-holder')
-            .siblings('label')
-              .attr('for', 'picture' + i);
+          .attr('id', 'picture' + i);
 
       var $questions = $(this).find('.questions .question');
       $questions.each(function(j, item) {
