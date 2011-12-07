@@ -7,7 +7,7 @@
   <section id="content">
 
     <h1>Answer Question</h1>
-    <h2>Choose an answer to the question below:</h2>
+    <h2>Choose the correct answer to the question.</h2>
     <div class="reinforcement"></div>
       <div id="lesson">
         <img class="picture" />

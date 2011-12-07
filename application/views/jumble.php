@@ -7,7 +7,7 @@
   <section id="content">
 
     <h1>Jumble</h1>
-    <h2>Unjumble the sentence below:</h2>
+    <h2>Unjumble the sentence and type the unjumbled sentence into the box.</h2>
     <div class="reinforcement"></div>
     <div id="lesson">
       <img class="picture" />
