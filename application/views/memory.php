@@ -15,7 +15,7 @@
     <div class="activity">
       <div id="lesson">
         <img class="picture" />
-        <span class="sentence"></span>
+        <div class="sentence"></div>
         <input name="sentence" class="sentence covered" type="text" autocomplete="off" />
       </div>
       <div id="action-menu">
@@ -43,7 +43,7 @@ function defineActivityForLesson(lesson) {
 
   // Replace image and sentence
   $('#lesson')
-    .find('span.sentence')
+    .find('div.sentence')
       .text(sentence)
     .end()
     .find('input.sentence')
