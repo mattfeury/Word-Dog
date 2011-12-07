@@ -20,18 +20,26 @@
           <li class="lesson removable">
             <button class="remove">(x)</button>
             <label class="stretch"><span>Sentence: </span><div><input type="text" class="sentence" name="sentence" value="<?= $lesson->sentence;?>" /></div></label>
-            <fieldset>
+            <fieldset class="upload-picture">
               <label>Picture:</label>
-              
-              <label>
-                <?= $lesson->image != '' ? '<img src="' . base_url()  . 'uploads/' . $lesson->image . '" />' : '' ?>
-                <input type="radio" name="image-upload<?=$i?>" value="current" checked />Current image
-              </label>
-              <label><input type="radio" name="image-upload<?=$i?>" value="new" />New image</label>
-              <div class='image-name'><?= $lesson->image ?></div>
-              <div class="file-holder">
-                <div class="substitute">Upload Image</div>
-                <input type="file" class="picture" name="picture" />
+              <div class="image-holder">
+                <div class="image active old-image">
+                  <label>
+                    <?= $lesson->image != '' ? '<img src="' . base_url()  . 'uploads/' . $lesson->image . '" />' : '' ?>
+                    <input type="radio" name="image-upload<?=$i?>" value="current" checked />
+                    <div class='image-name'><?= $lesson->image ?></div>
+                  </label>
+                </div>
+                <div class="image new-image">
+                  <label>
+                    <input type="radio" name="image-upload<?=$i?>" value="new" />
+                    <div class='image-name'></div>
+                    <div class="file-holder">
+                      <div class="substitute">New Image</div>
+                      <input type="file" class="picture" name="picture" />
+                    </div>
+                  </label>
+                </div>
               </div>
             </fieldset>
             <fieldset>
@@ -79,15 +87,20 @@
   <ul>
     <li class="template lesson removable">
       <button class="remove">(x)</button>
-      <label>Sentence: <input type="text" class="sentence" name="sentence" value="" /></label>
-      <fieldset>
-        <label for="picture">Picture:</label>
-        <!--<input type="radio" name="image-upload" value="current" checked />Current image
-        <input type="radio" name="image-upload" value="new" />New image-->
-        <div class='image-name'></div>
-        <div class="file-holder">
-          <div class="substitute">Upload Image</div>
-          <input type="file" class="picture" name="picture" />
+            <label class="stretch"><span>Sentence: </span><div><input type="text" class="sentence" name="sentence" value="" /></div></label>
+      <fieldset class="upload-picture">
+        <label>Picture:</label>
+        <div class="image-holder">
+          <div class="image active new-image">
+            <label>
+              <input type="radio" name="image-upload1" value="new" checked />
+              <div class='image-name'></div>
+              <div class="file-holder">
+                <div class="substitute">New Image</div>
+                <input type="file" class="picture" name="picture" />
+              </div>
+            </label>
+          </div>
         </div>
       </fieldset>
       <fieldset>
@@ -151,7 +164,15 @@
     
     $('input[type=file]').live('change', function(e){
       var $uploadtext = $(this).val().split("\\").pop();
-      $(this).parent().siblings('.image-name').text($uploadtext);
+      $(this).closest('.file-holder').siblings('.image-name').text($uploadtext).addClass('changed');
+    });
+    $('.upload-picture input:radio').live('change', function() {
+      var $holder = $(this).closest('.image');
+      $holder
+        .siblings('.image')
+          .removeClass('active')
+        .end()
+        .addClass('active');
     });
 
     $('#add-sentence').click(function() {
@@ -228,11 +249,12 @@
             questionJson = decodeQuestionsToJson($lesson.find('.questions'));
             
         //pass user uploaded image filename   
-        if($lesson.find('.picture').val() != '') { 
+        if($lesson.find('.image :radio:checked').val() == 'new') { 
           imgFile = $lesson.find('.picture').val().split("\\").pop();
         //else, pass image filename that's there
         } else {
-          imgFile = $lesson.find('.image-name').text();
+          imgFile = $lesson.find('.old-image .image-name').text();
+          $lesson.find('.picture').remove();
         }
 
         var lesson = {};
