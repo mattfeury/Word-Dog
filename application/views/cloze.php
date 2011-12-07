@@ -34,7 +34,8 @@ function defineActivityForLesson(lesson) {
 
   missingWord = split[toRemove];
   // Find the two sentence fragments surrounding the word
-  var sandwich = sentence.split(missingWord);
+  var regexSplit = new RegExp('\\b' + missingWord + '\\b', 'g');
+  var sandwich = sentence.split(regexSplit);
 
   // Create a button for the missing word that, when clicked, shows the input
   var $missingWordButton =
