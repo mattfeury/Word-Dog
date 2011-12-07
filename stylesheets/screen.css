@@ -336,42 +336,43 @@ header .score .percentage {
 /* line 234, ../sass/screen.sass */
 #container #content #lesson .sentence, #container #content #lesson .question, #container #content #lesson .answers {
   font-size: 28px;
+  margin: 5px;
 }
-/* line 237, ../sass/screen.sass */
+/* line 238, ../sass/screen.sass */
 #container #content #lesson input.sentence {
   width: 80%;
   min-width: 500px;
   border: 2px solid #b0e68b;
 }
-/* line 242, ../sass/screen.sass */
+/* line 243, ../sass/screen.sass */
 #container #content #action-menu {
   padding-top: 20px;
   text-align: center;
 }
 
-/* line 249, ../sass/screen.sass */
+/* line 250, ../sass/screen.sass */
 form label {
   display: block;
   margin: 3px 0px;
   font-size: 18px;
 }
-/* line 254, ../sass/screen.sass */
+/* line 255, ../sass/screen.sass */
 form input {
   font-size: 18px;
   color: #adb7a5;
   padding-left: 5px;
 }
-/* line 259, ../sass/screen.sass */
+/* line 260, ../sass/screen.sass */
 form input.info {
   border: 2px solid #b0e68b;
 }
 
-/* line 262, ../sass/screen.sass */
+/* line 263, ../sass/screen.sass */
 .removable {
   position: relative;
 }
 
-/* line 264, ../sass/screen.sass */
+/* line 265, ../sass/screen.sass */
 .remove {
   background: url("../images/close.png") no-repeat;
   border: none;
@@ -382,77 +383,77 @@ form input.info {
   overflow: hidden;
   position: absolute;
 }
-/* line 273, ../sass/screen.sass */
+/* line 274, ../sass/screen.sass */
 .remove:hover {
   -moz-box-shadow: 0 0 0 0;
   -webkit-box-shadow: 0 0 0 0;
   -o-box-shadow: 0 0 0 0;
   box-shadow: 0 0 0 0;
 }
-/* line 276, ../sass/screen.sass */
+/* line 277, ../sass/screen.sass */
 .remove + * {
   padding-left: 40px;
 }
 
-/* line 283, ../sass/screen.sass */
+/* line 284, ../sass/screen.sass */
 .landing #container {
   width: 50%;
   text-align: center;
 }
-/* line 287, ../sass/screen.sass */
+/* line 288, ../sass/screen.sass */
 .landing #container .about {
   display: block;
   margin: auto;
   padding: 30px 15px;
 }
 
-/* line 293, ../sass/screen.sass */
+/* line 294, ../sass/screen.sass */
 body.activities .play {
   overflow: hidden;
   *zoom: 1;
 }
-/* line 296, ../sass/screen.sass */
+/* line 297, ../sass/screen.sass */
 body.activities .play .activities {
   float: left;
 }
-/* line 298, ../sass/screen.sass */
+/* line 299, ../sass/screen.sass */
 body.activities .play .levels {
   float: right;
 }
-/* line 301, ../sass/screen.sass */
+/* line 302, ../sass/screen.sass */
 body.activities .missing {
   display: inline-block;
   width: 120px;
   min-width: 140px;
 }
-/* line 306, ../sass/screen.sass */
+/* line 307, ../sass/screen.sass */
 body.activities .missing button {
   width: inherit;
 }
-/* line 308, ../sass/screen.sass */
+/* line 309, ../sass/screen.sass */
 body.activities .missing input {
   width: inherit;
   border: 1px solid #b0e68b;
   padding: 10px;
 }
-/* line 313, ../sass/screen.sass */
+/* line 314, ../sass/screen.sass */
 body.activities .missing .guess {
   display: none;
 }
-/* line 316, ../sass/screen.sass */
+/* line 317, ../sass/screen.sass */
 body.activities .missing.guessing .guess {
   display: inline-block;
 }
-/* line 318, ../sass/screen.sass */
+/* line 319, ../sass/screen.sass */
 body.activities .missing.guessing button {
   display: none;
 }
 
-/* line 322, ../sass/screen.sass */
+/* line 323, ../sass/screen.sass */
 .users .user-link {
   position: relative;
 }
-/* line 325, ../sass/screen.sass */
+/* line 326, ../sass/screen.sass */
 .users .user-link .name {
   display: inline-block;
   max-width: 38%;
@@ -460,18 +461,18 @@ body.activities .missing.guessing button {
   overflow: hidden;
   white-space: nowrap;
 }
-/* line 332, ../sass/screen.sass */
+/* line 333, ../sass/screen.sass */
 .users .user-link .school {
   position: absolute;
   left: 40%;
 }
-/* line 335, ../sass/screen.sass */
+/* line 336, ../sass/screen.sass */
 .users .user-link .grade {
   position: absolute;
   right: 40px;
 }
 
-/* line 340, ../sass/screen.sass */
+/* line 341, ../sass/screen.sass */
 .users #content, .units #content, .activities #content {
   background: white;
   border: 2px solid #b0e68b;
@@ -479,40 +480,40 @@ body.activities .missing.guessing button {
   padding: 20px 40px;
 }
 
-/* line 347, ../sass/screen.sass */
+/* line 348, ../sass/screen.sass */
 .units form h2 {
   display: inline;
 }
-/* line 350, ../sass/screen.sass */
+/* line 351, ../sass/screen.sass */
 .units input.unit, .units input.sentence, .units input.answer {
   border: 2px solid #b0e68b;
 }
-/* line 353, ../sass/screen.sass */
+/* line 354, ../sass/screen.sass */
 .units input.unit {
   width: 300px;
   height: 20px;
 }
-/* line 357, ../sass/screen.sass */
+/* line 358, ../sass/screen.sass */
 .units input.sentence {
   width: 86%;
 }
-/* line 360, ../sass/screen.sass */
+/* line 361, ../sass/screen.sass */
 .units input.question-text {
   width: 85%;
   min-width: 500px;
   border: 2px solid #b0e68b;
 }
-/* line 365, ../sass/screen.sass */
+/* line 366, ../sass/screen.sass */
 .units img {
   height: 200px;
 }
 
-/* line 369, ../sass/screen.sass */
+/* line 370, ../sass/screen.sass */
 li.unit button, li.unit a, li.user button, li.user a {
   display: block;
 }
 
-/* line 372, ../sass/screen.sass */
+/* line 373, ../sass/screen.sass */
 li.lesson {
   border: 2px solid #b0e68b;
   padding-top: 10px;
@@ -521,18 +522,18 @@ li.lesson {
   margin: 20px 0px;
   position: relative;
 }
-/* line 380, ../sass/screen.sass */
+/* line 381, ../sass/screen.sass */
 li.lesson .image-name {
   padding-left: 20px;
   padding-bottom: 10px;
   font-size: 18px;
   color: #adb7a5;
 }
-/* line 386, ../sass/screen.sass */
+/* line 387, ../sass/screen.sass */
 li.lesson li.question {
   display: inline;
 }
-/* line 389, ../sass/screen.sass */
+/* line 390, ../sass/screen.sass */
 li.lesson label {
   display: block;
 }
