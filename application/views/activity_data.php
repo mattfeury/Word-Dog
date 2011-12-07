@@ -61,8 +61,11 @@
     else
       unitOver();
   }
+  // Redirects to activities
   function unitOver() {
-    alert("You win. Lesson complete. Do something here like redirecting");
+    var redirect_url = "<?= site_url('activities/with') ?>" + '/' + unit.id;
+    alert("You win. Lesson complete.");
+    window.location = redirect_url;
   }
   //for multiple choice: gets other lessons
   function getOtherLessons() {
