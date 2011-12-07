@@ -7,7 +7,7 @@
   <section id="content">
 
     <h2>Pick a unit below:</h2>
-    <ul>
+    <ul class="rows">
       <?
       $attributes = array('id' => 'unit', 'class="units"');
       foreach ($units as $unit) {

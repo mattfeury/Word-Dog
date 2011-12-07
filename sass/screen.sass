@@ -10,7 +10,7 @@
 
 $border-color: #b0e68b
 $main-text-color: #97a488
-$main-bg: #e8f8dc
+$main-bg: #E8F8DC
 $input-font-size: 18px
 
 //'Myriad Pro', 
@@ -85,6 +85,8 @@ html, body
     &:active
       top: 6px
       right: 4px
+      left: auto
+      bottom: auto
 
   &.current
     display: block
@@ -137,12 +139,39 @@ button, a, input.submit, input.save, .substitute
   line-height: normal
   font-family: $main-fonts
 
-a.logo-holder
+  &:hover
+    +box-shadow(rgba(0, 0, 0, 0.1) 3px 3px 10px 2px)
+
+  &:active
+    position: relative
+    top: 1px
+    left: 1px
+
+a.logo-holder, ul.rows a
   border: none
   display: block
   background: none
   margin: 0
   padding: 0
+  &:hover
+    +box-shadow(0 0 0 0)
+
+ul.rows
+  border: $border-width solid $border-color
+  max-height: 405px
+  overflow-y: auto
+  overflow-x: hidden
+
+  li
+    border-top: $border-width solid $border-color
+    &:first-child
+      border: none
+
+    &:nth-child(even)
+      background: #F8F8F8
+
+    a
+      padding: 7px 15px  
   
 .file-holder
   position: relative
@@ -160,6 +189,7 @@ a.logo-holder
     width: 141px
     height: 33px
     z-index: 1
+    cursor: pointer
 
     position: absolute
     margin: 0
@@ -240,6 +270,8 @@ form
   text-indent: -999px
   overflow: hidden
   position: absolute
+  &:hover
+    +box-shadow(0 0 0 0)
   
   + *
     padding-left: 40px
@@ -286,6 +318,24 @@ body.activities
       button
         display: none
 
+.users
+  .user-link
+    position: relative
+
+    .name
+      display: inline-block
+      max-width: 38%
+      text-overflow: ellipsis
+      overflow: hidden
+      white-space: nowrap
+
+    .school
+      position: absolute
+      left: 40%
+    .grade
+      position: absolute
+      right: 40px
+
 .users, .units, .activities
   #content
     background: white
@@ -294,7 +344,7 @@ body.activities
     padding: 20px 40px
     
 .units
-  h2
+  form h2
     display: inline
   
   input.unit, input.sentence, input.answer
