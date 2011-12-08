@@ -15,6 +15,7 @@
     </div>
     <div id="action-menu">
       <button class="go">Go</button>
+      <button class="print">Print</button>
     </div>
   </section>
 </section>
@@ -56,6 +57,19 @@ $(document).ready(function(){
       } else {
         incorrect();
       }
+   });
+   $('.print').click(function(event){
+     var printWindow = window.open();
+     printWindow.document.write('<a href="javascript:window.print()">print</a>');
+     printWindow.document.write('<h1>' + $('h1').text() + '<h1>');
+     printWindow.document.write('<h2>' + $('h2').text() + '<h2>');
+     $.each(unit.lessons, function() {
+       printWindow.document.write('<p><img src = "' + BASE_SRC + 'uploads/' + this['image'] + '"/></p>');
+       printWindow.document.write('<p><span style="border-bottom: 1px solid black; display: inline-block; width: 600px;"> </span></p>');
+       printWindow.document.write('<p><span style="border-bottom: 1px solid black; display: inline-block; width: 600px;"> </span></p>');
+       printWindow.document.write('<p><span style="border-bottom: 1px solid black; display: inline-block; width: 600px;"> </span></p>');
+     });
+     printWindow.document.close();
    });
    $('.sentence').keypress(function(e) {
            if(e.which == 13) {
