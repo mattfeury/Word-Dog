@@ -57,12 +57,12 @@
       .find('input[value="0"]')
         .attr('checked', true);
     if(!config.hideChoices) {
-      $('.answer').hide();
+      $('.sentence').hide();
       $('.answers').show();
       answer = answers.indexOf(answerString);
     } else {
       $('.answers').hide();
-      $('.answer').show();
+      $('.sentence').show();
       //strip period and make lower case for comparison
       answer = answerString.toLowerCase().replace(/\./g,'');
     }
@@ -99,7 +99,7 @@ $(document).ready(function(){
        incorrect();
      }     
    });
-   $('.answer').keypress(function(e) {
+   $('.sentence').keypress(function(e) {
            if(e.which == 13) {
                $('.go').click();
            }
