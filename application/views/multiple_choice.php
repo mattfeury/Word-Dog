@@ -11,7 +11,7 @@
     <div class="reinforcement"></div>
       <div id="lesson">
         <img class="picture" />
-        <div class="answers"></div>
+        <ul class="answers"></ul>
       </div>
     <div id="action-menu">
       <button class="go">Go</button>
@@ -49,7 +49,7 @@
     $.each(choices, function(i) { 
      $('#lesson')
       .find('.answers')                                                           
-        .append('<p><input type="radio" name="answers" value="' + i + '"/><label>' + choices[i] + '</label></p>');
+        .append('<li><label><input type="radio" name="answers" value="' + i + '"/>' + choices[i] + '</label></li>');
     });
     //check first radio button
     $('#lesson')
@@ -65,8 +65,8 @@ $(document).ready(function(){
   
    //check answer
    $('.go').click(function(event){
-     //check if starts with upper case and ends with a period
-     $input = $('input[name="answers"]:checked').val();
+
+     var $input = $('input[name="answers"]:checked').val();
 
      var isCorrect = ($input == answer);
      $('.reinforcement').html( (isCorrect ? 'Correct!' : 'Incorrect') );

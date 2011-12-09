@@ -70,7 +70,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 /* line 23, ../sass/screen.sass */
 html, body {
   width: 100%;
-  height: 100%;
+  height: auto;
   min-height: 100%;
   color: #97a488;
 }
