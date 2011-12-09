@@ -53,18 +53,19 @@ $(document).ready(function(){
         incorrect();
       }
    });
+   //specify html for printing for every lesson in the unit
    $('.print').click(function(event){
-     var printWindow = window.open();
-     printWindow.document.write('<a href="javascript:window.print()">print</a>');
-     printWindow.document.write('<h1>' + $('h1').text() + '<h1>');
-     printWindow.document.write('<h2>' + $('h2').text() + '<h2>');
+     var $print = $('<div/>')
+      .append('<h1>' + $('h1').text() + '</h1>')
+      .append('<h2>' + $('h2').text() + '</h2>');
      $.each(unit.lessons, function() {
-       printWindow.document.write('<p><img src = "' + BASE_SRC + 'uploads/' + this['image'] + '"/></p>');
-       printWindow.document.write('<p><span style="border-bottom: 1px solid black; display: inline-block; width: 600px;"> </span></p>');
-       printWindow.document.write('<p><span style="border-bottom: 1px solid black; display: inline-block; width: 600px;"> </span></p>');
-       printWindow.document.write('<p><span style="border-bottom: 1px solid black; display: inline-block; width: 600px;"> </span></p>');
+       $print
+        .append('<p><img src = "' + BASE_SRC + 'uploads/' + this['image'] + '"/></p>')
+        .append('<p><span class="handwrite"> </span></p>')
+        .append('<p><span class="handwrite"> </span></p>')
+        .append('<p><span class="handwrite"> </span></p>');
      });
-     printWindow.document.close();
+     printActivity($print.html());
    });
    $('.sentence').keypress(function(e) {
            if(e.which == 13) {
