@@ -14,6 +14,21 @@ class Unit extends DataMapper {
     )    
   );
 
+  function hasImages() {
+    foreach ($this->lessons->get() as $lesson)
+      if (! $lesson->hasImage())
+        return false;
+
+    return true;
+  }
+  function hasQuestions() {
+    foreach ($this->lessons->get() as $lesson)
+      if (! $lesson->hasQuestion())
+        return false;
+
+    return true;
+  }
+
   function pruned() {
     $pruned = new stdClass;
     $pruned->id = $this->id;
