@@ -76,6 +76,16 @@
     }
     return randomLessons.sort(function() {return 0.5 - Math.random()});
   }
+  
+  // Open up a new document for printing and write html to it
+  function printActivity(html) {
+    var printWindow = window.open();
+    printWindow.document.title = unit.name;
+    printWindow.document.write('<a href="javascript:window.print()">print</a>');
+    $(printWindow.document).find('head').append('<link href="' + BASE_SRC + 'stylesheets/print.css" rel="stylesheet" type="text/css" />');
+    printWindow.document.write(html);
+    printWindow.document.close();
+  }
 
   // Utilites
   var BASE_SRC = "<?= base_url() ?>";
