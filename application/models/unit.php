@@ -15,6 +15,9 @@ class Unit extends DataMapper {
   );
 
   function hasImages() {
+    if ($this->lessons->count() == 0)
+      return false;
+
     foreach ($this->lessons->get() as $lesson)
       if (! $lesson->hasImage())
         return false;
@@ -22,6 +25,9 @@ class Unit extends DataMapper {
     return true;
   }
   function hasQuestions() {
+    if ($this->lessons->count() == 0)
+      return false;
+
     foreach ($this->lessons->get() as $lesson)
       if (! $lesson->hasQuestion())
         return false;
