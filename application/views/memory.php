@@ -105,7 +105,7 @@ function uncover() {
   $('.reinforcement').html('');
   $('#action-menu button').toggleClass('covered');
   COVERED = false;
-  resetCoverTimer($('#lesson').find('span.sentence').text());
+  resetCoverTimer($('#lesson').find('div.sentence').text());
 }
 
 //Cover for memory
