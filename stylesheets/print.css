@@ -1,3 +1,10 @@
 /* Welcome to Compass. Use this file to define print styles.
  * Import this file using the following HTML or equivalent:
  * <link href="/stylesheets/print.css" media="print" rel="stylesheet" type="text/css" /> */
+/* line 6, ../sass/print.sass */
+.handwrite {
+  border-bottom: 1px solid black;
+  display: inline-block;
+  width: 600px;
+  margin-top: 10px;
+}
