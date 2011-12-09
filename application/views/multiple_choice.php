@@ -8,11 +8,10 @@
 
     <h1>Multiple Choice</h1>
     <h2>Choose the sentence that best describes the picture.</h2>
-    <div class="reinforcement"></div>
-      <div id="lesson">
-        <img class="picture" />
-        <ul class="answers"></ul>
-      </div>
+    <div id="lesson">
+      <img class="picture" />
+      <ul class="answers"></ul>
+    </div>
     <div id="action-menu">
       <button class="go">Go</button>
     </div>
@@ -66,13 +65,10 @@ $(document).ready(function(){
    //check answer
    $('.go').click(function(event){
 
-     var $input = $('input[name="answers"]:checked').val();
+     var input = $('input[name="answers"]:checked').val();
 
-     var isCorrect = ($input == answer);
-     $('.reinforcement').html( (isCorrect ? 'Correct!' : 'Incorrect') );
-     $('.reinforcement').addClass( (isCorrect ? 'correct' : 'incorrect') ); 
-     $('.reinforcement').removeClass( (isCorrect ? 'incorrect' : 'correct') );
-
+     var isCorrect = input == answer;
+     
      if (isCorrect) {
        correct();
        setTimeout(function() { renderNextLesson(); }, 1000);

@@ -8,7 +8,6 @@
 
     <h1>Fill in the Blank</h1>
     <h2>Find the missing word from the choices below. Type the correct answer into the box.</h2>
-    <div class="reinforcement"></div>
     <div id="lesson">
       <img class="picture" />
       <span class="sentence"></span>
@@ -23,10 +22,6 @@
 var missingWord,
     numChoices = 3; //number of choices to display.
 function defineActivityForLesson(lesson) {
-  $('.reinforcement')
-    .removeClass('incorrect correct')
-    .text('');
-  
   // Remove a random word from the sentence. Replace with button
   var sentence = lesson.sentence,
       split = sentence.split(/\W+/).removeWhere(''), //splits words only (no punctuation)
@@ -90,9 +85,6 @@ function checkAnswer() {
   //check if starts with upper case and ends with a period
   var input = $('input.guess').val();
   var isCorrect = input == missingWord;
-  $('.reinforcement').html( (isCorrect ? 'Correct!' : 'Incorrect') );
-  $('.reinforcement').addClass( (isCorrect ? 'correct' : 'incorrect') ); 
-  $('.reinforcement').removeClass( (isCorrect ? 'incorrect' : 'correct') );
 
   if (isCorrect) {
     correct();

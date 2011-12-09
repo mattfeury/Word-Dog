@@ -7,7 +7,6 @@
   <section id="content">
     <h1>Memory</h1>
     <h2>Memorize the sentence and type it into the box.</h2>
-    <div class="reinforcement"></div>
 
     <div class="choose-difficulty">
       <ul class="difficulties"></ul>
@@ -31,11 +30,6 @@
 // This should render the html for a new lesson. 
 // It should also handle removing/resetting anything.
 function defineActivityForLesson(lesson) {
-  // Remove correct indicator
-  $('.reinforcement')
-    .removeClass('incorrect correct')
-    .text('');
-
   var sentence = (config.jumbleSentence) ? jumbleSentence(lesson['sentence']) : lesson['sentence'];
   // because we will check the user's input with 'originalSentence',
   // it should be defined for jumble or otherwise.
@@ -102,7 +96,7 @@ function uncover() {
   if (config.coverPicture)
     $('#lesson').find('.picture').removeClass('covered');
 
-  $('.reinforcement').html('');
+  $('.reinforcement').text('');
   $('#action-menu button').toggleClass('covered');
   COVERED = false;
   resetCoverTimer($('#lesson').find('div.sentence').text());
@@ -140,9 +134,6 @@ $(document).ready(function(){
   //check answer
   $('.go').click(function(event){
     var isCorrect = $('input.sentence').val() == originalSentence;
-    $('.reinforcement').text( (isCorrect ? 'Correct!' : 'Incorrect') );
-    $('.reinforcement').addClass( (isCorrect ? 'correct' : 'incorrect') ); 
-    $('.reinforcement').removeClass( (isCorrect ? 'incorrect' : 'correct') );
 
     if (isCorrect) {
       correct();

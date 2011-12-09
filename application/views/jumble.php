@@ -8,7 +8,6 @@
 
     <h1>Jumble</h1>
     <h2>Unjumble the sentence and type the unjumbled sentence into the box.</h2>
-    <div class="reinforcement"></div>
     <div id="lesson">
       <img class="picture" />
       <div class="sentence"></div>
@@ -24,10 +23,6 @@
 // We must define this!
 // Callback for renderNextLesson()
 function defineActivityForLesson(lesson) {
-  $('.reinforcement')
-    .removeClass('incorrect correct')
-    .text('');
-  
   $('#lesson')
     .find('.picture')
       .attr('src', BASE_SRC + 'uploads/' + lesson['image']);
@@ -52,10 +47,6 @@ $(document).ready(function(){
   //check answer
   $('.go').click(function(event){
     var isCorrect = ($('input').val()) === originalSentence;
-    $('.reinforcement').html( (isCorrect ? 'Correct!' : 'Incorrect') );
-    $('.reinforcement').addClass( (isCorrect ? 'correct' : 'incorrect') ); 
-    $('.reinforcement').removeClass( (isCorrect ? 'incorrect' : 'correct') );
-
     if (isCorrect)
       setTimeout(function() { renderNextLesson(); }, 1000);
        

@@ -8,7 +8,6 @@
 
     <h1>Write Sentence</h1>
     <h2>Write a sentence for the picture below. Be sure to use correct capitalization and punctuation!</h2>
-    <div class="reinforcement"></div>
     <div id="lesson">
       <img class="picture" />
       <input name="sentence" class="sentence" type="text" autocomplete="off"/>
@@ -47,10 +46,6 @@ $(document).ready(function(){
      $input = $('input[name="sentence"]').val();
 
      var isCorrect = ($input !== '' && (endsWith($input, '.') || endsWith($input, '!') || endsWith($input, '?')) && isUpperCase($input.slice(0, 1)));
-     $('.reinforcement').html( (isCorrect ? 'Correct!' : 'Incorrect') );
-     $('.reinforcement').addClass( (isCorrect ? 'correct' : 'incorrect') ); 
-     $('.reinforcement').removeClass( (isCorrect ? 'incorrect' : 'correct') );
-
      if (isCorrect) {
        correct();
        setTimeout(function() { renderNextLesson(); $('#lesson input').val(''); }, 1000);

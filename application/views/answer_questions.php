@@ -8,13 +8,12 @@
 
     <h1>Answer Question</h1>
     <h2>Choose the correct answer to the question.</h2>
-    <div class="reinforcement"></div>
-      <div id="lesson">
-        <img class="picture" />
-        <div class="question"></div>
-        <div class="answers"></div>
-        <input name="answer" class="sentence" type="text" autocomplete="off"/>
-      </div>
+    <div id="lesson">
+      <img class="picture" />
+      <div class="question"></div>
+      <div class="answers"></div>
+      <input name="answer" class="sentence" type="text" autocomplete="off"/>
+    </div>
     <div id="action-menu">
       <button class="go">Go</button>
     </div>
@@ -84,9 +83,6 @@ $(document).ready(function(){
       $input = $('input[name="answer"]').val().toLowerCase().replace(/\./g,'');     
      
      var isCorrect = ($input == answer);
-     $('.reinforcement').html( (isCorrect ? 'Correct!' : 'Incorrect') );
-     $('.reinforcement').addClass( (isCorrect ? 'correct' : 'incorrect') ); 
-     $('.reinforcement').removeClass( (isCorrect ? 'incorrect' : 'correct') );
 
      if (isCorrect && questionNum < currLesson['questions'].length - 1) {
        correct();

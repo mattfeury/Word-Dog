@@ -10,10 +10,18 @@
     createCookie(CORRECT_COOKIE, ++CORRECT, 1);
     createCookie(ATTEMPTS_COOKIE, ++ATTEMPTS, 1);
     updateScore();
+
+    $('.reinforcement').text('Correct!');
+    $('.reinforcement').addClass('correct'); 
+    $('.reinforcement').removeClass('incorrect');
   }
   function incorrect() {
     createCookie(ATTEMPTS_COOKIE, ++ATTEMPTS, 1);
     updateScore();
+
+    $('.reinforcement').text('Incorrect');
+    $('.reinforcement').addClass('incorrect'); 
+    $('.reinforcement').removeClass('correct');    
   }
   function getPercentage() {
     return ((CORRECT / ATTEMPTS * 100 || 0) + '').split('.').shift() + '%';
@@ -39,6 +47,15 @@
           .html('<span class="correct">' + CORRECT + '</span>/<span class="attempts">' + ATTEMPTS + '</span><span class="percentage">' + (getPercentage()) + '</span>')
       )
     }
+
+    // Add reinforcement
+    var $instructions = $('#content h1 + h2');
+    if (! $instructions.siblings('.reinforcement').length) {
+      $instructions.after(
+        $('<div/>').addClass('reinforcement')
+      )
+    }
+
   });
 
   // Units and lessons
@@ -55,6 +72,11 @@
       return null;
   }
   function renderNextLesson() {
+    // Remove correct indicator
+    $('.reinforcement')
+      .removeClass('incorrect correct')
+      .text('');
+    
     var lesson = getNextLesson();
     if (lesson)
       defineActivityForLesson(lesson); //defined by the activity in its view
