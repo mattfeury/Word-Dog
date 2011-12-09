@@ -10,7 +10,10 @@
     <div class="play">
       <ul class="activities">
         <? foreach($activities as $key => $activity): ?>
-          <li class="activity" data-id="<?= $key ?>"><?= anchor('/activities/play/' . $key . '/' . $unit->id , $activity['name']) ?></li>
+          <? if ( (($activity['requires_questions'] && $unit->hasQuestions) || ! $activity['requires_questions']) &&
+                  (($activity['requires_images'] && $unit->hasImages) || ! $activity['requires_images'])): ?>
+            <li class="activity" data-id="<?= $key ?>"><?= anchor('/activities/play/' . $key . '/' . $unit->id , $activity['name']) ?></li>
+          <? endif; ?>
         <? endforeach; ?>
       </ul>
       <ol class="levels">

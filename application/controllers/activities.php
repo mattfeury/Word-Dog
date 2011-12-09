@@ -7,16 +7,22 @@ class Activities extends CI_Controller {
     0 => array(
           'view' => 'write_sentence',
           'name' => 'Write Sentence',
+          'requires_images' => true,
+          'requires_questions' => false,
           'data' => array()),
     1 => array(
-          'view' => 'answer_questions', //TODO
+          'view' => 'answer_questions',
           'name' => 'Answer Questions1',
+          'requires_images' => true,
+          'requires_questions' => true,
           'data' => array(
                       'hideChoices' => false
                     )),
     2 => array(
-          'view' => 'answer_questions', //TODO
+          'view' => 'answer_questions',
           'name' => 'Answer Questions2',
+          'requires_images' => true,
+          'requires_questions' => true,
           'data' => array(
                       'hideChoices' => true
                     )),
@@ -25,22 +31,30 @@ class Activities extends CI_Controller {
     3 => array(
           'view' => 'memory',
           'name' => 'Memory Static1',
+          'requires_images' => true,
+          'requires_questions' => false,
           'data' => array()),
     4 => array(
           'view' => 'memory',
           'name' => 'Memory Static2',
+          'requires_images' => true,
+          'requires_questions' => false,
           'data' => array(
                       'coverPicture' => true
                     )),
     5 => array(
           'view' => 'memory',
           'name' => 'Memory Flash1',
+          'requires_images' => true,
+          'requires_questions' => false,
           'data' => array(
                       'chooseDifficulty' => true
                     )),
     6 => array(
           'view' => 'memory',
           'name' => 'Memory Flash2',
+          'requires_images' => true,
+          'requires_questions' => false,
           'data' => array(
                       'coverPicture' => true,
                       'chooseDifficulty' => true                      
@@ -50,24 +64,32 @@ class Activities extends CI_Controller {
     7 => array(
           'view' => 'jumble',
           'name' => 'Word Jumble1',
+          'requires_images' => true,
+          'requires_questions' => false,
           'data' => array(
                       'hidePicture' => false
                     )),
     8 => array(
           'view' => 'jumble',
           'name' => 'Word Jumble2',
+          'requires_images' => true,
+          'requires_questions' => false,
           'data' => array(
                       'hidePicture' => true            
                     )),
     9 => array(
           'view' => 'memory',
           'name' => 'Jumble / Memory Static1',
+          'requires_images' => true,
+          'requires_questions' => false,
           'data' => array(
                       'jumbleSentence' => true
                     )),
     10 => array(
           'view' => 'memory',
           'name' => 'Jumble / Memory Static2',
+          'requires_images' => true,
+          'requires_questions' => false,
           'data' => array(
                       'jumbleSentence' => true,
                       'coverPicture' => true
@@ -75,6 +97,8 @@ class Activities extends CI_Controller {
     11 => array(
           'view' => 'memory',
           'name' => 'Jumble / Memory Flash1',
+          'requires_images' => true,
+          'requires_questions' => false,
           'data' => array(
                       'jumbleSentence' => true,
                       'chooseDifficulty' => true
@@ -82,6 +106,8 @@ class Activities extends CI_Controller {
     12 => array(
           'view' => 'memory',
           'name' => 'Jumble / Memory Flash2',
+          'requires_images' => true,
+          'requires_questions' => false,
           'data' => array(
                       'jumbleSentence' => true,
                       'coverPicture' => true,
@@ -92,6 +118,8 @@ class Activities extends CI_Controller {
     13 => array(
           'view' => 'cloze',
           'name' => 'Fill in the Blank1',
+          'requires_images' => true,
+          'requires_questions' => false,
           'data' => array(
                       'displayPicture' => true,
                       'showChoices' => true
@@ -99,6 +127,8 @@ class Activities extends CI_Controller {
     14 => array(
           'view' => 'cloze',
           'name' => 'Fill in the Blank2',
+          'requires_images' => false,
+          'requires_questions' => false,
           'data' => array(
                       'displayPicture' => false,
                       'showChoices' => true
@@ -106,27 +136,37 @@ class Activities extends CI_Controller {
     15 => array(
           'view' => 'cloze',
           'name' => 'Fill in the Blank3',
+          'requires_images' => false,
+          'requires_questions' => false,
           'data' => array(
                       'displayPicture' => false,
                       'showChoices' => false
                     )),
     16 => array(
           'view' => 'cloze',
-          'name' => 'Fill in the Blank / Memory Static',
+          'name' => 'Fill in the Blank / Memory Static', //TODO
+          'requires_images' => true,
+          'requires_questions' => false,
           'data' => array()),
     17 => array(
           'view' => 'cloze',
-          'name' => 'Fill in the Blank / Memory Flash',
+          'name' => 'Fill in the Blank / Memory Flash', //TODO
+          'requires_images' => true,
+          'requires_questions' => false,
           'data' => array()),
     
     // Multiple Choice
     18 => array(
           'view' => 'multiple_choice',
           'name' => 'Multiple Choice',
+          'requires_images' => true,
+          'requires_questions' => false,
           'data' => array()),
     19 => array(
           'view' => 'multiple_choice',
-          'name' => 'Multiple Choice / Memory',
+          'requires_images' => true,
+          'requires_questions' => false,
+          'name' => 'Multiple Choice / Memory', //TODO
           'data' => array()),
   );
 
@@ -140,6 +180,22 @@ class Activities extends CI_Controller {
     
     $data = array();
     $data['unit'] = $unit;
+
+    // has images?
+    $hasImages = true;
+    foreach ($unit->lessons->get() as $lesson)
+      if (! isset($lesson->image) || $lesson->image == "")
+        $hasImages = false;
+
+    // has questions?
+    $hasQuestions = true;
+    foreach ($unit->lessons->get() as $lesson)
+      if (! isset($lesson->questions) || $lesson->questions == "[]" || count($lesson->questions) == 0)
+        $hasQuestions = false;
+
+    $unit->hasImages = $hasImages;
+    $unit->hasQuestions = $hasQuestions;
+
     $data['activities'] = self::$activitiesById;
     
 		$this->load->view('activity', $data);
