@@ -52,7 +52,6 @@ $(document).ready(function(){
         incorrect();
       }
    });
-   var isPrint = <?= ($print == '') ? 0 : 1 ?>;
    //specify html for printing for every lesson in the unit
    if(isPrint){
      var $print = $('<div/>')
