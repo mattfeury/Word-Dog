@@ -16,7 +16,6 @@
     </div>
     <div id="action-menu">
       <button class="go">Go</button>
-      <button class="print">Print</button>
     </div>
   </section>
 </section>
@@ -53,7 +52,7 @@
     var answerIndex = lesson['questions'][questionNum]['answer'];
     var answerString = lesson['questions'][questionNum]['answers'][answerIndex];
     //randomize answers
-    if(!forPrint) answers.sort(function() {return 0.5 - Math.random()});
+    answers.sort(function() {return 0.5 - Math.random()});
     
     $.each(answers, function(i) { 
       $target
@@ -67,12 +66,22 @@
     if(!config.hideChoices) {
       $('.sentence').hide();
       $('.answers').show();
-      if(!forPrint) answer = answers.indexOf(answerString);
+      answer = answers.indexOf(answerString);
     } else {
-      $('.answers').hide();
-      $('.sentence').show();
-      //strip period and make lower case for comparison
-      answer = answerString.toLowerCase().replace(/\./g,'');
+      if(!forPrint) {
+        $('.answers').hide();
+        $('.sentence').show();
+        //strip period and make lower case for comparison
+        answer = answerString.toLowerCase().replace(/\./g,'');
+      } else {
+        $target.find('.answers').hide();
+        $target.find('.sentence').hide();
+        //handwriting space for print version
+        $target
+          .append('<p><span class="handwrite"> </span></p>')
+          .append('<p><span class="handwrite"> </span></p>')
+          .append('<p><span class="handwrite"> </span></p>');
+      }
     }
     currLesson = lesson;
     
@@ -107,8 +116,9 @@ $(document).ready(function(){
      }     
    });
    //specify html for printing for every lesson in the unit
-   $('.print').click(function(event){
-      var tempLesson = currLesson;
+   var isPrint = <?= ($print == '') ? 0 : 1 ?>;
+    //specify html for printing for every lesson in the unit
+    if(isPrint){
       var $print = $('<div/>')
        .append('<h1>' + $('h1').text() + '</h1>')
        .append('<h2>' + $('h2').text() + '</h2>');
@@ -122,8 +132,8 @@ $(document).ready(function(){
         questionNum = 0;
       });
       printActivity($print.html());
-      defineActivityForLesson(tempLesson);
-    });
+      redirectToActivities();
+    }
    $('.sentence').keypress(function(e) {
            if(e.which == 13) {
                $('.go').click();
