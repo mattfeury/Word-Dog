@@ -132,7 +132,6 @@ $(document).ready(function(){
         questionNum = 0;
       });
       printActivity($print.html());
-      redirectToActivities();
     }
    $('.sentence').keypress(function(e) {
            if(e.which == 13) {

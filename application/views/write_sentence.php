@@ -66,7 +66,6 @@ $(document).ready(function(){
         .append('<p><span class="handwrite"> </span></p>');
      });
      printActivity($print.html());
-     redirectToActivities();
    }
    $('.sentence').keypress(function(e) {
            if(e.which == 13) {

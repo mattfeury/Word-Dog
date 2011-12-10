@@ -100,12 +100,13 @@
   
   // Open up a new document for printing and write html to it
   function printActivity(html) {
-    var printWindow = window.open();
-    printWindow.document.title = unit.name;
-    printWindow.document.write('<a href="javascript:window.print()">print</a>');
-    $(printWindow.document).find('head').append('<link href="' + BASE_SRC + 'stylesheets/print.css" rel="stylesheet" type="text/css" />');
-    printWindow.document.write(html);
-    printWindow.document.close();
+    document.innerHTML='';
+    document.title = unit.name;
+    document.write('<a href="javascript:window.print()">print</a>');
+    $(document).find('head').append('<link href="' + BASE_SRC + 'stylesheets/print.css" rel="stylesheet" type="text/css" />');
+    console.log(html);
+    document.write(html);
+    document.close();
   }
   
   function redirectToActivities() {

@@ -9,11 +9,12 @@
     <h2>Pick an activity and a level:</h2>
     <div class="play">
       <ul class="activities">
+        <? $attr = array('target'=>'_blank'); ?>
         <? foreach($activities as $key => $activity): ?>
           <? if ( (($activity['requires_questions'] && $unit->hasQuestions()) || ! $activity['requires_questions']) &&
                   (($activity['requires_images'] && $unit->hasImages()) || ! $activity['requires_images'])): ?>
             <li class="activity" data-id="<?= $key ?>"><?= anchor('/activities/play/' . $key . '/' . $unit->id , $activity['name']) ?></li>
-            <li class="activity" data-id="<?= $key ?>"><?= anchor('/activities/play/' . $key . '/' . $unit->id . '/' . '1' . '/' . 'print', 'Print') ?></li>
+            <li class="activity" data-id="<?= $key ?>"><?= anchor('/activities/play/' . $key . '/' . $unit->id . '/' . '1' . '/' . 'print', 'Print', $attr) ?></li>
           <? endif; ?>
         <? endforeach; ?>
       </ul>
