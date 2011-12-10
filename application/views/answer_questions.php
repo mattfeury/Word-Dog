@@ -16,6 +16,7 @@
     </div>
     <div id="action-menu">
       <button class="go">Go</button>
+      <button class="print">Print</button>
     </div>
   </section>
 </section>
@@ -25,40 +26,48 @@
   var currLesson;
   // We must define this!
   // Callback for renderNextLesson()
-  function defineActivityForLesson(lesson) {
+  function defineActivityForLesson(lesson, $target) {
+    //move on to next lesson if this has no questions
+    if(lesson['questions'].length < 1) renderNextLesson();
+    if ($target) var forPrint = true;
+    (! $target) ? $target = $('#lesson') : $target = $('#lesson').clone();
     if(questionNum == 0) {
-      $('#lesson')
+      $target
         .find('.picture')
           .attr('src', BASE_SRC + 'uploads/' + lesson['image']);
+    } else if (forPrint) {
+      $target
+        .find('.picture')
+          .removeAttr('src');
     }
     //show question    
-    $('#lesson')
+    $target
       .find('.question')
         .text(lesson['questions'][questionNum]['question']);
     
     //clear previous buttons
-    $('#lesson')
+    $target
       .find('.answers')
         .empty();
     var answers = lesson['questions'][questionNum]['answers'];
     var answerIndex = lesson['questions'][questionNum]['answer'];
     var answerString = lesson['questions'][questionNum]['answers'][answerIndex];
     //randomize answers
-    answers.sort(function() {return 0.5 - Math.random()});
+    if(!forPrint) answers.sort(function() {return 0.5 - Math.random()});
     
     $.each(answers, function(i) { 
-      $('#lesson')
+      $target
         .find('.answers')                                                           
           .append('<p><input type="radio" name="answers0" value="' + i + '"/><label>' + answers[i] + '</label></p>');
     });
     //check first radio button
-    $('#lesson')
+    if (!forPrint) $target
       .find('input[value="0"]')
         .attr('checked', true);
     if(!config.hideChoices) {
       $('.sentence').hide();
       $('.answers').show();
-      answer = answers.indexOf(answerString);
+      if(!forPrint) answer = answers.indexOf(answerString);
     } else {
       $('.answers').hide();
       $('.sentence').show();
@@ -66,6 +75,8 @@
       answer = answerString.toLowerCase().replace(/\./g,'');
     }
     currLesson = lesson;
+    
+    return $target;
   }
 
 $(document).ready(function(){
@@ -95,6 +106,24 @@ $(document).ready(function(){
        incorrect();
      }     
    });
+   //specify html for printing for every lesson in the unit
+   $('.print').click(function(event){
+      var tempLesson = currLesson;
+      var $print = $('<div/>')
+       .append('<h1>' + $('h1').text() + '</h1>')
+       .append('<h2>' + $('h2').text() + '</h2>');
+      $.each(unit.lessons, function(i, lesson) {
+        $.each(lesson['questions'], function(j, question) {
+          var lessonContent = defineActivityForLesson(lesson, $print);
+          $print
+          .append(lessonContent.html());
+          questionNum++;
+        });
+        questionNum = 0;
+      });
+      printActivity($print.html());
+      defineActivityForLesson(tempLesson);
+    });
    $('.sentence').keypress(function(e) {
            if(e.which == 13) {
                $('.go').click();
