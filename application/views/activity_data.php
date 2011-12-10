@@ -85,9 +85,8 @@
   }
   // Redirects to activities
   function unitOver() {
-    var redirect_url = "<?= site_url('activities/with') ?>" + '/' + unit.id;
     alert("You win. Lesson complete.");
-    window.location = redirect_url;
+    redirectToActivities();
   }
   //for multiple choice: gets other lessons
   function getOtherLessons() {
@@ -107,6 +106,11 @@
     $(printWindow.document).find('head').append('<link href="' + BASE_SRC + 'stylesheets/print.css" rel="stylesheet" type="text/css" />');
     printWindow.document.write(html);
     printWindow.document.close();
+  }
+  
+  function redirectToActivities() {
+    var redirect_url = "<?= site_url('activities/with') ?>" + '/' + unit.id;
+    window.location = redirect_url;
   }
 
   // Utilites

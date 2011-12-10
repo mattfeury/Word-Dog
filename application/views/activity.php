@@ -13,6 +13,7 @@
           <? if ( (($activity['requires_questions'] && $unit->hasQuestions()) || ! $activity['requires_questions']) &&
                   (($activity['requires_images'] && $unit->hasImages()) || ! $activity['requires_images'])): ?>
             <li class="activity" data-id="<?= $key ?>"><?= anchor('/activities/play/' . $key . '/' . $unit->id , $activity['name']) ?></li>
+            <li class="activity" data-id="<?= $key ?>"><?= anchor('/activities/play/' . $key . '/' . $unit->id . '/' . '1' . '/' . 'print', 'Print') ?></li>
           <? endif; ?>
         <? endforeach; ?>
       </ul>
@@ -62,7 +63,6 @@
 
       location.href = $activity.find('a').attr('href') + '#' + $(this).attr('data-id');
     });
-
   });
 </script>
 <? $this->load->view('tail'); ?>

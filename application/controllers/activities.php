@@ -201,7 +201,7 @@ class Activities extends CI_Controller {
 		$this->load->view('activity', $data);
   }
 	
-	public function play($activityId, $unitId, $level = 1) {
+	public function play($activityId, $unitId, $level = 1, $print = false) {
     $unit = new Unit();
     $unit->id = $unitId;
     $unit->validate()->get();
@@ -215,7 +215,8 @@ class Activities extends CI_Controller {
 
     $activity = self::$activitiesById[$activityId];
     $data['activity_data'] = json_encode($activity['data']);
- 
+    $isPrint = false;
+    $data['print'] = $print;
 		$this->load->view($activity['view'], $data);
 	}
 }
