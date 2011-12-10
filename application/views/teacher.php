@@ -13,7 +13,7 @@
   <section id="content">
 
     <h2>Edit a Unit</h2>
-    <ul class="units">
+    <ul class="rows units">
       <?
       foreach ($units as $unit) {
         echo '<li class="unit">' . anchor('/units/edit/' . $unit->id, $unit->name) . '</li>';

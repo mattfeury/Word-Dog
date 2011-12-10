@@ -40,6 +40,18 @@ class Lesson extends DataMapper {
     )
   );
 
+  function hasImage() {
+    if (! isset($this->image) || $this->image == "")
+      return false;
+
+    return true;
+  }
+  function hasQuestion() {
+    if (! isset($this->questions) || $this->questions == "[]" || count($this->questions) == 0)
+      return false;
+    return true;
+  }
+
   function pruned() {
     $pruned = new stdClass;
     $pruned->id = $this->id;
