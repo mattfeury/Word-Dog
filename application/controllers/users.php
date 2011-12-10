@@ -2,6 +2,9 @@
 
 class Users extends CI_Controller {
 
+	var $helpers = array('Html', 'Form');
+	var $components = array('Email');
+
   public function index() {
     if (! $this->session->userdata('logged_in')) {
       redirect(base_url());
@@ -93,6 +96,10 @@ class Users extends CI_Controller {
 
   }
   
+  public function forgotPage(){
+	$this->load->view('forgot');
+	}
+  
   public function changeAccount() {
     $email = $this->input->post('email', TRUE);
 	$oldpassword = $this->input->post('oldpassword', TRUE);
@@ -120,7 +127,86 @@ class Users extends CI_Controller {
 	$this->load->view('account', $data);
 	}
 	
-	public function forgot($token){
-		$this->load->view('forgot');
+	function forgotPassword() {
+		$email = $this->input->post('email',TRUE);
+		$user = new User();
+		$user->where('email', $email)->get();		
+		$hash=sha1($user->email.rand(0,100));
+		$user->tokenhash=$hash;			
+		$user->save();
+
+		$ms='Click on the link below to reset your password ';
+		$ms.='localhost/Word-Dog/index.php/users/verify?t='.$hash.'&n='.$email.'';
+		$ms=wordwrap($ms,70);
+
+		$to = $this->input->post('email', TRUE);;
+		$subject = "Hi!";
+		$body = $ms;
+		$from = "worddog.forgot.pass@gmail.com";
+		$headers = "From: $from";
+		if (mail($to, $subject, $body, $headers)) {
+		  echo("<p>Message successfully sent!</p>");		  
+		}
+		else {
+		  echo("<p>Message delivery failed...</p>");
+		}				
 	}
+	
+	function verify()
+	{	
+	$token = $_GET['t'];	
+	$email = $_GET['n'];	
+		if (!empty($token) && !empty($email))
+		{
+			$results = new User();
+			$results->where('email', $email)->get();	
+			if ($results->activate==0)
+			{	
+				if($results->tokenhash==$token)
+				{						
+					$results->activate=1;
+					$results->save();
+					echo("Your registration is complete");
+					$data['user'] = $results;
+					$this->load->view('resetPass', $data);
+				}
+				else
+				{
+					echo("Your registration is complete");
+					$this->redirect('/users/forgotPassword');
+				}
+			}
+			else 
+			{
+				echo("Token has alredy been used");				
+				$this->redirect('/users/forgotPassword');
+			}
+		}
+		else
+		{
+			echo("Token corrupted. Please re-register");
+			$this->redirect('/users/forgotPassword');
+		}
+	}
+	
+
+
+	function resetPassword() 
+	{
+		$email = $this->input->post('email',TRUE);
+		$password = $this->input->post('password',TRUE);
+		$password2 = $this->input->post('password2',TRUE);
+		
+		if($password == $password2){
+			$u = new User();
+			$u->where('email', $email)->get();
+			$u->password = $password;
+			$u->activate=0;
+			$u->save();
+			echo("Password successfully changed!");
+			
+		}
+	}
+
+	
 }
