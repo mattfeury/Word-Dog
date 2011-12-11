@@ -1,5 +1,14 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+
+// How we define what to do in memory when covered
+// Since there are many combinations with memory, we pass through
+// a condition that tells it what to present and determine how to win.
+class CoverConditions {
+  const CLOZE = 'cloze'; // Fill in the blank
+  const RETYPE = 'retype'; // Basic memory. Just retype the original sentence.
+}
+
 class Activities extends CI_Controller {
 
   // TODO INSTRUCTIONS
@@ -33,13 +42,16 @@ class Activities extends CI_Controller {
           'name' => 'Memory Static1',
           'requires_images' => true,
           'requires_questions' => false,
-          'data' => array()),
+          'data' => array(
+                      'cover' => CoverConditions::RETYPE
+                    )),
     4 => array(
           'view' => 'memory',
           'name' => 'Memory Static2',
           'requires_images' => true,
           'requires_questions' => false,
           'data' => array(
+                      'cover' => CoverConditions::RETYPE,
                       'coverPicture' => true
                     )),
     5 => array(
@@ -48,6 +60,7 @@ class Activities extends CI_Controller {
           'requires_images' => true,
           'requires_questions' => false,
           'data' => array(
+                      'cover' => CoverConditions::RETYPE,
                       'chooseDifficulty' => true
                     )),
     6 => array(
@@ -56,6 +69,7 @@ class Activities extends CI_Controller {
           'requires_images' => true,
           'requires_questions' => false,
           'data' => array(
+                      'cover' => CoverConditions::RETYPE,
                       'coverPicture' => true,
                       'chooseDifficulty' => true                      
                     )),
@@ -83,6 +97,7 @@ class Activities extends CI_Controller {
           'requires_images' => true,
           'requires_questions' => false,
           'data' => array(
+                      'cover' => CoverConditions::RETYPE,
                       'jumbleSentence' => true
                     )),
     10 => array(
@@ -91,8 +106,9 @@ class Activities extends CI_Controller {
           'requires_images' => true,
           'requires_questions' => false,
           'data' => array(
+                      'cover' => CoverConditions::RETYPE,
                       'jumbleSentence' => true,
-                      'coverPicture' => true
+                      'coverPicture' => true //TODO break up difficulty
                     )),
     11 => array(
           'view' => 'memory',
@@ -100,6 +116,7 @@ class Activities extends CI_Controller {
           'requires_images' => true,
           'requires_questions' => false,
           'data' => array(
+                      'cover' => CoverConditions::RETYPE,
                       'jumbleSentence' => true,
                       'chooseDifficulty' => true
                     )),
@@ -109,6 +126,7 @@ class Activities extends CI_Controller {
           'requires_images' => true,
           'requires_questions' => false,
           'data' => array(
+                      'cover' => CoverConditions::RETYPE,
                       'jumbleSentence' => true,
                       'coverPicture' => true,
                       'chooseDifficulty' => true
@@ -143,26 +161,50 @@ class Activities extends CI_Controller {
                       'showChoices' => false
                     )),
     16 => array(
-          'view' => 'cloze',
-          'name' => 'Fill in the Blank / Memory Static', //TODO
+          'view' => 'memory',
+          'name' => 'Fill in the Blank / Memory Static 1', //TODO
           'requires_images' => true,
           'requires_questions' => false,
-          'data' => array()),
+          'data' => array(
+                      'cover' => CoverConditions::CLOZE
+                    )),
     17 => array(
-          'view' => 'cloze',
-          'name' => 'Fill in the Blank / Memory Flash', //TODO
+          'view' => 'memory',
+          'name' => 'Fill in the Blank / Memory Static 2', //TODO
           'requires_images' => true,
           'requires_questions' => false,
-          'data' => array()),
+          'data' => array(
+                      'cover' => CoverConditions::CLOZE,
+                      'coverPicture' => true
+                    )),
+    18 => array(
+          'view' => 'memory',
+          'name' => 'Fill in the Blank / Memory Flash 1', //TODO
+          'requires_images' => true,
+          'requires_questions' => false,
+          'data' => array(
+                      'cover' => CoverConditions::CLOZE,
+                      'chooseDifficulty' => true
+                    )),
+    19 => array(
+          'view' => 'memory',
+          'name' => 'Fill in the Blank / Memory Flash 2', //TODO
+          'requires_images' => true,
+          'requires_questions' => false,
+          'data' => array(
+                      'cover' => CoverConditions::CLOZE,
+                      'coverPicture' => true,
+                      'chooseDifficulty' => true
+                    )),
     
     // Multiple Choice
-    18 => array(
+    20 => array(
           'view' => 'multiple_choice',
           'name' => 'Multiple Choice',
           'requires_images' => true,
           'requires_questions' => false,
           'data' => array()),
-    19 => array(
+    21 => array(
           'view' => 'multiple_choice',
           'requires_images' => true,
           'requires_questions' => false,
