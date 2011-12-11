@@ -234,11 +234,11 @@ header
       text-align: center
       padding: 60px
       
-      .sentence, .question, .answers
+      .sentence, .question, .answers, .answer
         font-size: 28px
         margin: 5px
         
-      input.sentence
+      input.answer
         width: 80%
         min-width: 500px
         border: $border-width solid $border-color
@@ -316,9 +316,14 @@ body.activities
     button
       width: inherit
     input
-      width: inherit
-      border: 1px solid #B0E68B
-      padding: 10px
+      // These need to be important to not get overriden by single answer field styles
+      width: inherit !important
+      min-width: 0 !important
+      border: 1px solid #B0E68B !important
+      padding: 10px !important
+      font-size: inherit !important
+      margin: 0 !important
+
       display: none
 
     &.guessing
