@@ -50,7 +50,7 @@ function defineActivityForLesson(lesson) {
     case 'cloze':
       $('#lesson')
         .find('.input')
-          .html(createCloze(sentence))
+          .html(createCloze(sentence, 1))
       break;
     default:
   }

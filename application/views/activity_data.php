@@ -184,9 +184,16 @@
   }
 
   // Returns HTML
+  var totalBlanksCreated = 0;
   function createCloze(sentence, numBlanks) {
+    totalBlanksCreated = 0;
+    return createClozeFromSentence(sentence, numBlanks);
+  }
 
-    //TODO numBlanks
+  function createClozeFromSentence(sentence, numBlanks) {
+    // Base case. If we don't need to create any more blanks, just return the text.
+    if (totalBlanksCreated >= numBlanks) return document.createTextNode(sentence);
+    totalBlanksCreated++;
 
     var split = sentence.split(/\W+/).removeWhere(''), //splits words only (no punctuation)
         toRemove = Math.floor(Math.random()* split.length),
@@ -194,7 +201,9 @@
 
     // Find the two sentence fragments surrounding the word
     var regexSplit = new RegExp('\\b' + missingWord + '\\b', 'g');
-    var sandwich = sentence.split(regexSplit);
+    var sandwich = sentence.split(regexSplit),
+        left = sandwich.shift(),
+        right = sandwich.join(missingWord);
 
     // Create a button for the missing word that, when clicked, shows the input
     var $missingWordButton =
@@ -211,9 +220,9 @@
         );
     var $sentenceWithBlank = 
       $('<div/>')
-        .append(document.createTextNode(sandwich.shift()))
+        .append(createClozeFromSentence(left, numBlanks))
         .append($missingWordButton)
-        .append(document.createTextNode(sandwich.join(missingWord)));
+        .append(createClozeFromSentence(right, numBlanks));
 
     // Set a rule to handle the button covers
     $('.missing button').live('click', function() {
