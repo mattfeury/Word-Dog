@@ -61,7 +61,7 @@ class Activities extends CI_Controller {
           'requires_questions' => false,
           'data' => array(
                       'cover' => CoverConditions::RETYPE,
-                      'chooseDifficulty' => true
+                      'difficulties' => 'time'
                     )),
     6 => array(
           'view' => 'memory',
@@ -71,7 +71,7 @@ class Activities extends CI_Controller {
           'data' => array(
                       'cover' => CoverConditions::RETYPE,
                       'coverPicture' => true,
-                      'chooseDifficulty' => true                      
+                      'difficulties' => 'time'
                     )),
 
     // Jumble
@@ -118,7 +118,7 @@ class Activities extends CI_Controller {
           'data' => array(
                       'cover' => CoverConditions::RETYPE,
                       'jumbleSentence' => true,
-                      'chooseDifficulty' => true
+                      'difficulties' => 'time'
                     )),
     12 => array(
           'view' => 'memory',
@@ -129,7 +129,7 @@ class Activities extends CI_Controller {
                       'cover' => CoverConditions::RETYPE,
                       'jumbleSentence' => true,
                       'coverPicture' => true,
-                      'chooseDifficulty' => true
+                      'difficulties' => 'time'
                     )),
 
     // Cloze
@@ -166,7 +166,8 @@ class Activities extends CI_Controller {
           'requires_images' => true,
           'requires_questions' => false,
           'data' => array(
-                      'cover' => CoverConditions::CLOZE
+                      'cover' => CoverConditions::CLOZE,
+                      'difficulties' => 'numBlanks'
                     )),
     17 => array(
           'view' => 'memory',
@@ -175,6 +176,7 @@ class Activities extends CI_Controller {
           'requires_questions' => false,
           'data' => array(
                       'cover' => CoverConditions::CLOZE,
+                      'difficulties' => 'numBlanks',
                       'coverPicture' => true
                     )),
     18 => array(
@@ -184,6 +186,7 @@ class Activities extends CI_Controller {
           'requires_questions' => false,
           'data' => array(
                       'cover' => CoverConditions::CLOZE,
+                      'difficulties' => 'numBlanksAndTime',
                       'chooseDifficulty' => true
                     )),
     19 => array(
@@ -193,6 +196,7 @@ class Activities extends CI_Controller {
           'requires_questions' => false,
           'data' => array(
                       'cover' => CoverConditions::CLOZE,
+                      'difficulties' => 'numBlanksAndTime',
                       'coverPicture' => true,
                       'chooseDifficulty' => true
                     )),

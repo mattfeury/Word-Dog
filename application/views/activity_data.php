@@ -64,6 +64,32 @@
   window.config = $.extend(window.config || {}, activity_config);
   var currentLesson = -1;
 
+  var difficulties = [];
+  switch (config.difficulties) {
+    case 'time':
+      difficulties = [ //seconds per word before hiding
+        { name: 'Easy', secsPerWord: .5 },
+        { name: 'Medium', secsPerWord: .4 },
+        { name: 'Hard', secsPerWord: .3}
+      ];
+      break;
+    case 'numBlanks':
+      difficulties = [
+        { name: 'Easy', numBlanks: 1 },
+        { name: 'Medium', numBlanks: 2 },
+        { name: 'Hard', numBlanks: 3 }
+      ];
+      break;
+    case 'numBlanksAndTime':
+      difficulties = [
+        { name: 'Easy', secsPerWord: .5, numBlanks: 1 },
+        { name: 'Medium', secsPerWord: .4, numBlanks: 2 },
+        { name: 'Hard', secsPerWord: .3, numBlanks: 3 }
+      ];
+      break;
+  }
+  config.difficulties = difficulties;
+
   function getNextLesson() {
     currentLesson++;
     if (currentLesson < unit.lessons.length)

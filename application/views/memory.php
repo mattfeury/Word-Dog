@@ -48,9 +48,10 @@ function defineActivityForLesson(lesson) {
 
   switch (config.cover) {
     case 'cloze':
+      var numBlanks = difficulty.numBlanks || 1;
       $('#lesson')
         .find('.input')
-          .html(createCloze(sentence, 1))
+          .html(createCloze(sentence, numBlanks))
       break;
     default:
   }
@@ -59,18 +60,13 @@ function defineActivityForLesson(lesson) {
     uncover();
   resetCoverTimer(sentence);
 }
-var difficulties = [ //seconds per word before hiding
-  { name: 'Easy', secsPerWord: .5 },
-  { name: 'Medium', secsPerWord: .4 },
-  { name: 'Hard', secsPerWord: .3}
-],
-  difficulty = {},
+var difficulty = {},
   COVERED = false,
   difficultyTimeout = -1;
 
 function resetCoverTimer(sentence) {
   //if difficulty was set, set the timer to hide
-  if (config.chooseDifficulty && difficulty.secsPerWord) {
+  if (config.difficulties.length && difficulty.secsPerWord) {
     var words = sentence.split(' ').length,
         seconds = difficulty.secsPerWord * words;
     
@@ -122,9 +118,9 @@ $(document).ready(function(){
 
   // Either choose difficulty or load first lesson
   // This depends on which activity this is: 'static' or 'flash'
-  if (config.chooseDifficulty) {
+  if (config.difficulties.length) {
     $('#content .activity').hide();
-    $.each(difficulties, function(i, item) {
+    $.each(config.difficulties, function(i, item) {
       $('.difficulties').append(
         $('<li/>')
           .append(
