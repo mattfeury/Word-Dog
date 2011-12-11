@@ -274,8 +274,8 @@
       $(this)
         .addClass('guessing')
     }).live('blur', function() {
-      $(this)
-        .removeClass('guessing')
+      if ($(this).val().trim() === '')
+        $(this).removeClass('guessing')
     })
 
     return $sentenceWithBlank.html()
