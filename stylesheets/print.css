@@ -8,3 +8,13 @@
   width: 600px;
   margin-top: 10px;
 }
+
+/* line 12, ../sass/print.sass */
+.bottom-line {
+  margin-bottom: 20px;
+}
+
+/* line 16, ../sass/print.sass */
+p.pagebreak {
+  page-break-before: always;
+}
