@@ -23,3 +23,8 @@
   page-break-before: always;
   padding: 5px;
 }
+
+/* line 21, ../sass/print.sass */
+li {
+  list-style-type: none;
+}
