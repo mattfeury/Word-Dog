@@ -143,6 +143,29 @@ $(document).ready(function(){
     }
        
   });
+  //specify html for printing for every lesson in the unit
+   if(isPrint){
+     var $print = $('<div/>')
+      .append('<h1>' + $('h1').text() + '</h1>')
+      .append('<h2>Memorize the sentence and flip the page over to write them.</h2>');
+     $.each(unit.lessons, function() {
+       //print pictures only if static1 activity
+       if(!config.coverPicture && !config.chooseDifficulty) 
+        $print.append('<img src = "' + BASE_SRC + 'uploads/' + this['image'] + '"/>');
+       $print
+        .append('<p>' + this['sentence'] + '</p>');
+     });
+     //break page so users write on back
+     $print
+      .append('<p class="pagebreak"></p>');
+     $.each(unit.lessons, function() {
+       $print
+        .append('<div class="handwrite top-line"> </div>')
+        .append('<div class="handwrite"> </div>')
+        .append('<div class="handwrite bottom-line"> </div>');
+     });
+     printActivity($print.html());
+   }
   $('.sentence').keypress(function(e) {
     if(e.which == 13) {
       $('.go').click();
