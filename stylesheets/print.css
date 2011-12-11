@@ -4,7 +4,27 @@
 /* line 6, ../sass/print.sass */
 .handwrite {
   border-bottom: 1px solid black;
-  display: inline-block;
   width: 600px;
-  margin-top: 10px;
+  margin-top: 30px;
+}
+
+/* line 11, ../sass/print.sass */
+.top-line {
+  margin-top: 60px;
+}
+
+/* line 14, ../sass/print.sass */
+.bottom-line {
+  margin-bottom: 60px;
+}
+
+/* line 17, ../sass/print.sass */
+.pagebreak {
+  page-break-before: always;
+  padding: 5px;
+}
+
+/* line 21, ../sass/print.sass */
+li {
+  list-style-type: none;
 }

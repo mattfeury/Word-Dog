@@ -28,8 +28,9 @@
   function defineActivityForLesson(lesson, $target) {
     //move on to next lesson if this has no questions
     if(lesson['questions'].length < 1) renderNextLesson();
-    if ($target) var forPrint = true;
-    (! $target) ? $target = $('#lesson') : $target = $('#lesson').clone();
+    var forPrint = ! $target ? false : true;
+    $target = ! $target ? $('#lesson') : $target;
+      
     if(questionNum == 0) {
       $target
         .find('.picture')
@@ -68,9 +69,10 @@
           .append('<p><input type="radio" name="answers0" value="' + i + '"/><label>' + answers[i] + '</label></p>');
     });
     //check first radio button
-    if (!forPrint) $target
-      .find('input[value="0"]')
-        .attr('checked', true);
+    if (!forPrint) 
+      $target
+        .find('input[value="0"]')
+          .attr('checked', true);
     if(!config.hideChoices) {
       $('.sentence').hide();
       $('.answers').show();
@@ -86,9 +88,9 @@
         $target.find('.sentence').hide();
         //handwriting space for print version
         $target
-          .append('<p><span class="handwrite"> </span></p>')
-          .append('<p><span class="handwrite"> </span></p>')
-          .append('<p><span class="handwrite"> </span></p>');
+          .append('<div class="handwrite top-line"> </div>')
+          .append('<div class="handwrite"> </div>')
+          .append('<div class="handwrite bottom-line"> </div>');
       }
     }
     currLesson = lesson;
@@ -123,8 +125,6 @@ $(document).ready(function(){
        incorrect();
      }     
    });
-   //specify html for printing for every lesson in the unit
-   var isPrint = <?= ($print == '') ? 0 : 1 ?>;
     //specify html for printing for every lesson in the unit
     if(isPrint){
       var $print = $('<div/>')
@@ -132,9 +132,9 @@ $(document).ready(function(){
        .append('<h2>' + $('h2').text() + '</h2>');
       $.each(unit.lessons, function(i, lesson) {
         $.each(lesson['questions'], function(j, question) {
-          var lessonContent = defineActivityForLesson(lesson, $print);
-          $print
-          .append(lessonContent.html());
+          var $template = $('<div><img class="picture" /><div class="question"></div><div class="answers"></div></div>');
+          defineActivityForLesson(lesson, $template);
+          $print.append($template.html());        
           questionNum++;
         });
         questionNum = 0;

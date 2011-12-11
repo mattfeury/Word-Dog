@@ -22,9 +22,12 @@
 
   // We must define this!
   // Callback for renderNextLesson()
-  function defineActivityForLesson(lesson) {
+  function defineActivityForLesson(lesson, $target) {
+    //define elements in the DOM or target for printing
+    var forPrint = ! $target ? false : true;
+    $target = ! $target ? $('#lesson') : $target;
     //show image
-    $('#lesson')
+    $target
       .find('.picture')
         .attr('src', BASE_SRC + 'uploads/' + lesson['image']);
     
@@ -41,21 +44,23 @@
     //randomize choices
     choices.sort(function() {return 0.5 - Math.random()});
     //clear previous buttons
-    $('#lesson')
+    $target
       .find('.answers')
         .empty();
     //render as buttons
     $.each(choices, function(i) { 
-     $('#lesson')
+     $target
       .find('.answers')                                                           
         .append('<li><label><input type="radio" name="answers" value="' + i + '"/>' + choices[i] + '</label></li>');
     });
     //check first radio button
-    $('#lesson')
+    if(!forPrint) $target
       .find('input[value="0"]')
         .attr('checked', true);
      
     answer = choices.indexOf(lesson.sentence);
+    
+    return $target;
   }
 
 $(document).ready(function(){
@@ -77,6 +82,18 @@ $(document).ready(function(){
      }
            
    });
+   //specify html for printing for every lesson in the unit
+   if(isPrint){
+     var $print = $('<div/>')
+      .append('<h1>' + $('h1').text() + '</h1>')
+      .append('<h2>' + $('h2').text() + '</h2>');
+     $.each(unit.lessons, function(i, lesson) {
+       var $template = $('<div><img class="picture" /><ul class="answers"></ul></div>');
+       defineActivityForLesson(lesson, $template);
+       $print.append($template.html());        
+     });
+     printActivity($print.html());
+   }
    $('.sentence').keypress(function(e) {
            if(e.which == 13) {
                $('.go').click();

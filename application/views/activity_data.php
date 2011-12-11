@@ -57,12 +57,15 @@
     }
 
   });
-
+   
   // Units and lessons
   var unit = <?= $unit_json ?>;
   var activity_config = <?= $activity_data ?>;
   window.config = $.extend(window.config || {}, activity_config);
   var currentLesson = -1;
+
+  // Printing
+  var isPrint = <?= ($print == '') ? 0 : 1 ?>;
 
   var difficulties = [];
   switch (config.difficulties) {
@@ -130,7 +133,6 @@
     document.title = unit.name;
     document.write('<a href="javascript:window.print()">print</a>');
     $(document).find('head').append('<link href="' + BASE_SRC + 'stylesheets/print.css" rel="stylesheet" type="text/css" />');
-    console.log(html);
     document.write(html);
     document.close();
   }
