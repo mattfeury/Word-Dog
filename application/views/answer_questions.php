@@ -31,7 +31,6 @@
     var forPrint = ! $target ? false : true;
     $target = ! $target ? $('#lesson') : $target;
       
-    console.log($target);
     if(questionNum == 0) {
       $target
         .find('.picture')
