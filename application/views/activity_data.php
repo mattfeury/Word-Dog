@@ -240,11 +240,11 @@
       $('<span/>')
         .addClass('missing')
         .append(
-          $('<button/>')
+          $('<label for="answer'+totalBlanksCreated+'" />')
             .text('?')
         )
         .append(
-          $('<input type="text" />')
+          $('<input id="answer'+totalBlanksCreated+'" name="answer'+totalBlanksCreated+'" type="text" />')
             .addClass('answer')
             .attr('data-answer', missingWord)
         );
@@ -270,12 +270,12 @@
         .append(rightHtml);
 
     // Set a rule to handle the button covers
-    $('.missing button').live('click', function() {
+    $('.missing').live('focus', function() {
       $(this)
-        .closest('.missing')
-          .addClass('guessing')
-          .find('input')
-            .focus();
+        .addClass('guessing')
+    }).live('blur', function() {
+      $(this)
+        .removeClass('guessing')
     })
 
     return $sentenceWithBlank.html()

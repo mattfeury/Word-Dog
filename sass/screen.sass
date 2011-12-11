@@ -310,11 +310,15 @@ body.activities
 
   .missing
     display: inline-block
-    width: 120px
-    min-width: 140px
+    position: relative
 
-    button
-      width: inherit
+    label
+      position: absolute
+      top: 25%
+      left: 0
+      right: 0
+      cursor: pointer
+
     input
       // These need to be important to not get overriden by single answer field styles
       width: inherit !important
@@ -322,14 +326,12 @@ body.activities
       border: 1px solid #B0E68B !important
       padding: 10px !important
       font-size: inherit !important
-      margin: 0 !important
+      margin: 0 5px !important
 
-      display: none
+      display: inline-block
 
     &.guessing
-      input
-        display: inline-block
-      button
+      label
         display: none
 
 .users
