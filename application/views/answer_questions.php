@@ -78,9 +78,9 @@
         $target.find('.sentence').hide();
         //handwriting space for print version
         $target
-          .append('<p><span class="handwrite"> </span></p>')
-          .append('<p><span class="handwrite"> </span></p>')
-          .append('<p><span class="handwrite"> </span></p>');
+          .append('<div class="handwrite top-line"> </div>')
+          .append('<div class="handwrite"> </div>')
+          .append('<div class="handwrite bottom-line"> </div>');
       }
     }
     currLesson = lesson;

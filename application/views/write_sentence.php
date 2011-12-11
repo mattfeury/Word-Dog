@@ -59,10 +59,10 @@ $(document).ready(function(){
       .append('<h2>' + $('h2').text() + '</h2>');
      $.each(unit.lessons, function() {
        $print
-        .append('<p><img src = "' + BASE_SRC + 'uploads/' + this['image'] + '"/></p>')
-        .append('<p><span class="handwrite"> </span></p>')
-        .append('<p><span class="handwrite"> </span></p>')
-        .append('<p><span class="handwrite"> </span></p>');
+        .append('<img src = "' + BASE_SRC + 'uploads/' + this['image'] + '"/>')
+        .append('<div class="handwrite top-line"> </div>')
+        .append('<div class="handwrite"> </div>')
+        .append('<div class="handwrite bottom-line"> </div>');
      });
      printActivity($print.html());
    }

@@ -151,7 +151,7 @@ $(document).ready(function(){
      $.each(unit.lessons, function() {
        //print pictures only if static1 activity
        if(!config.coverPicture && !config.chooseDifficulty) 
-        $print.append('<p><img src = "' + BASE_SRC + 'uploads/' + this['image'] + '"/></p>');
+        $print.append('<img src = "' + BASE_SRC + 'uploads/' + this['image'] + '"/>');
        $print
         .append('<p>' + this['sentence'] + '</p>');
      });
@@ -160,9 +160,9 @@ $(document).ready(function(){
       .append('<p class="pagebreak"></p>');
      $.each(unit.lessons, function() {
        $print
-        .append('<p><span class="handwrite"> </span></p>')
-        .append('<p><span class="handwrite"> </span></p>')
-        .append('<p><span class="handwrite bottom-line"> </span></p>');
+        .append('<div class="handwrite top-line"> </div>')
+        .append('<div class="handwrite"> </div>')
+        .append('<div class="handwrite bottom-line"> </div>');
      });
      printActivity($print.html());
    }
