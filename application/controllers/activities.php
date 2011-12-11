@@ -108,7 +108,7 @@ class Activities extends CI_Controller {
           'data' => array(
                       'cover' => CoverConditions::RETYPE,
                       'jumbleSentence' => true,
-                      'coverPicture' => true //TODO break up difficulty
+                      'coverPicture' => true
                     )),
     11 => array(
           'view' => 'memory',
@@ -162,7 +162,7 @@ class Activities extends CI_Controller {
                     )),
     16 => array(
           'view' => 'memory',
-          'name' => 'Fill in the Blank / Memory Static 1', //TODO
+          'name' => 'Fill in the Blank / Memory Static 1',
           'requires_images' => true,
           'requires_questions' => false,
           'data' => array(
@@ -171,7 +171,7 @@ class Activities extends CI_Controller {
                     )),
     17 => array(
           'view' => 'memory',
-          'name' => 'Fill in the Blank / Memory Static 2', //TODO
+          'name' => 'Fill in the Blank / Memory Static 2',
           'requires_images' => true,
           'requires_questions' => false,
           'data' => array(
@@ -181,7 +181,7 @@ class Activities extends CI_Controller {
                     )),
     18 => array(
           'view' => 'memory',
-          'name' => 'Fill in the Blank / Memory Flash 1', //TODO
+          'name' => 'Fill in the Blank / Memory Flash 1',
           'requires_images' => true,
           'requires_questions' => false,
           'data' => array(
@@ -191,7 +191,7 @@ class Activities extends CI_Controller {
                     )),
     19 => array(
           'view' => 'memory',
-          'name' => 'Fill in the Blank / Memory Flash 2', //TODO
+          'name' => 'Fill in the Blank / Memory Flash 2',
           'requires_images' => true,
           'requires_questions' => false,
           'data' => array(

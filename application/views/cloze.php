@@ -83,13 +83,6 @@ $(document).ready(function(){
   //load first lesson
   renderNextLesson();
 
-  $('.cover').live('click', function() {
-    $(this)
-      .closest('.missing')
-        .addClass('guessing')
-        .find('input')
-          .focus();
-  })
   //specify html for printing for every lesson in the unit
   if(isPrint){
     var $print = $('<div/>')
