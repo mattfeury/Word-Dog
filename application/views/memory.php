@@ -5,8 +5,8 @@
 </header>
 <section id="container">
   <section id="content">
-    <h1>Memory</h1>
-    <h2>Memorize the sentence and type it into the box.</h2>
+    <h1 id="name"><?= $activity["name"] ?></h1>
+    <h2 id="instruction"><?= $activity["instruction"] ?></h2>
 
     <div class="choose-difficulty">
       <ul class="difficulties"></ul>

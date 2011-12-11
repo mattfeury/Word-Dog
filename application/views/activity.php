@@ -6,7 +6,7 @@
 <section id="container">
   <section id="content">
 
-    <h2>Pick an activity and a level:</h2>
+    <h2>Pick an activity:</h2>
     <div class="play">
       <ul class="activities">
         <? $attr = array('target'=>'_blank'); ?>

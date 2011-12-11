@@ -6,8 +6,8 @@
 <section id="container">
   <section id="content">
 
-    <h1>Multiple Choice</h1>
-    <h2>Choose the sentence that best describes the picture.</h2>
+    <h1 id="name"><?= $activity["name"] ?></h1>
+    <h2 id="instruction"><? $activity["instruction"] ?></h2>
     <div id="lesson">
       <img class="picture" />
       <ul class="answers"></ul>
