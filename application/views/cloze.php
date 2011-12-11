@@ -58,7 +58,6 @@ function defineActivityForLesson(lesson, $target) {
   } 
   // Remove button and inputs when printing
   if(forPrint) { 
-    // Can't give width to a span, must float div instead
     $target.find('.missing').replaceWith('<span class="blank"></span>');
   }
 }
@@ -89,7 +88,7 @@ $(document).ready(function(){
       .append('<h1>' + $('h1').text() + '</h1>')
       .append('<h2>Find the missing word from the choices below.</h2>');
     $.each(unit.lessons, function(i, lesson) {
-      var $template = $('<div><img class="picture" /><div class="sentence"></div><ul class="choices"></ul></div>');
+      var $template = $('<div><img class="picture" /><div class="sentence"><span class="missing"></span></div><ul class="choices"></ul></div>');
       defineActivityForLesson(lesson, $template);
       $print.append($template.html());        
     });
