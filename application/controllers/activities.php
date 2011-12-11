@@ -119,7 +119,7 @@ class Activities extends CI_Controller {
           'data' => array(
                       'cover' => CoverConditions::RETYPE,
                       'jumbleSentence' => true,
-                      'coverPicture' => true //TODO break up difficulty
+                      'coverPicture' => true
                     )),
     11 => array(
           'view' => 'memory',
@@ -178,7 +178,7 @@ class Activities extends CI_Controller {
                     )),
     16 => array(
           'view' => 'memory',
-          'name' => 'Fill in the Blank / Memory Static 1', //TODO
+          'name' => 'Fill in the Blank / Memory Static 1',
           'instruction' => 'Read the sentence.  When you are ready click "Cover" and type the missing word into the box. You may view the complete sentence again by clicking "Uncover".',
           'requires_images' => true,
           'requires_questions' => false,
@@ -188,7 +188,7 @@ class Activities extends CI_Controller {
                     )),
     17 => array(
           'view' => 'memory',
-          'name' => 'Fill in the Blank / Memory Static 2', //TODO
+          'name' => 'Fill in the Blank / Memory Static 2',
           'instruction' => 'Read the sentence.  When you are ready click "Cover" and type the missing word into the box. You may view the complete sentence again by clicking "Uncover".',
           'requires_images' => true,
           'requires_questions' => false,
@@ -199,7 +199,7 @@ class Activities extends CI_Controller {
                     )),
     18 => array(
           'view' => 'memory',
-          'name' => 'Fill in the Blank / Memory Flash 1', //TODO
+          'name' => 'Fill in the Blank / Memory Flash 1',
           'instruction' => 'Read the sentence.  Type the missing word into the box that appears. You may view the complete sentence again by clicking "Uncover".',
           'requires_images' => true,
           'requires_questions' => false,
@@ -210,7 +210,7 @@ class Activities extends CI_Controller {
                     )),
     19 => array(
           'view' => 'memory',
-          'name' => 'Fill in the Blank / Memory Flash 2', //TODO
+          'name' => 'Fill in the Blank / Memory Flash 2',
           'instruction' => 'Read the sentence.  Type the missing word into the box that appears. You may view the complete sentence again by clicking "Uncover".',
           'requires_images' => true,
           'requires_questions' => false,

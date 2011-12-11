@@ -109,6 +109,8 @@ body
     display: inline-block
     
   .covered
+    visibility: hidden !important
+  #action-menu .covered
     display: none !important
     
   .correct
@@ -238,7 +240,7 @@ header
         font-size: 28px
         margin: 5px
         
-      input.answer
+      input.answer[type="text"]
         width: 80%
         min-width: 500px
         border: $border-width solid $border-color
