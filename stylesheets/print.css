@@ -25,6 +25,18 @@
 }
 
 /* line 21, ../sass/print.sass */
+.blank {
+  border-bottom: 1px solid black;
+  width: 100px;
+  display: inline-block;
+}
+
+/* line 26, ../sass/print.sass */
 li {
   list-style-type: none;
+}
+
+/* line 29, ../sass/print.sass */
+.sentence {
+  margin: 50px 10px;
 }
