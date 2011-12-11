@@ -127,6 +127,9 @@
       return this;
   }
 
+  // Helper functions used for certain activites (e.g. jumbling, creating 'blanks')
+  // We put them here because they are sometimes used in multiple activity views
+  // (ones that mix with memory)
   function jumble(word) {
     // Rand function will return 2-part array
     // [0] -> Index of rand, [1] -> random found value (from args)
@@ -178,6 +181,51 @@
       jumbledSentence = jumble(original);
     }
     return jumbledSentence;
+  }
+
+  // Returns HTML
+  function createCloze(sentence, numBlanks) {
+
+    //TODO numBlanks
+
+    var split = sentence.split(/\W+/).removeWhere(''), //splits words only (no punctuation)
+        toRemove = Math.floor(Math.random()* split.length),
+        missingWord = split[toRemove];
+
+    // Find the two sentence fragments surrounding the word
+    var regexSplit = new RegExp('\\b' + missingWord + '\\b', 'g');
+    var sandwich = sentence.split(regexSplit);
+
+    // Create a button for the missing word that, when clicked, shows the input
+    var $missingWordButton =
+      $('<span/>')
+        .addClass('missing')
+        .append(
+          $('<button/>')
+            .addClass('cover')
+            .text('?')
+        )
+        .append(
+          $('<input type="text" />')
+            .addClass('guess')
+            .attr('data-answer', missingWord)
+        );
+    var $sentenceWithBlank = 
+      $('<div/>')
+        .append(document.createTextNode(sandwich.shift()))
+        .append($missingWordButton)
+        .append(document.createTextNode(sandwich.join(missingWord)));
+
+    // Set a rule to handle the covers
+    $('.cover').live('click', function() {
+      $(this)
+        .closest('.missing')
+          .addClass('guessing')
+          .find('input')
+            .focus();
+    })
+
+    return $sentenceWithBlank.html()
   }
   
 
