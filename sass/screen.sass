@@ -235,12 +235,13 @@ header
     #lesson
       text-align: center
       padding: 60px
+      font-size: 24px
       
       .sentence, .question, .answers, .answer
         font-size: 28px
         margin: 5px
         
-      input.answer[type="text"]
+      input[type="text"]
         width: 80%
         min-width: 500px
         border: $border-width solid $border-color
@@ -311,12 +312,22 @@ body.activities
     margin: auto
 
   .missing
-    display: inline-block
+    display: inline
     position: relative
+    top: -0.25em
+
+    // fills the container to be the right width
+    .filler
+      margin: 0 10px
+      visibility: hidden !important
+      display: inline
+      color: transparent
+      z-index: -1
+      +opacity(0)
 
     label
       position: absolute
-      top: 25%
+      top: 0.3em
       left: 0
       right: 0
       cursor: pointer
@@ -326,9 +337,16 @@ body.activities
       width: inherit !important
       min-width: 0 !important
       border: 1px solid #B0E68B !important
-      padding: 10px !important
+      padding: 5px 5px !important
+      text-align: center
       font-size: inherit !important
-      margin: 0 5px !important
+      margin: 0 !important
+
+      position: absolute
+      left: 0
+      right: 0
+      top: 0
+      height: 1em
 
       display: inline-block
 

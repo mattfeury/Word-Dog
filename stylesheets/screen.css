@@ -344,47 +344,48 @@ header .score .percentage {
 #container #content #lesson {
   text-align: center;
   padding: 60px;
+  font-size: 24px;
 }
-/* line 239, ../sass/screen.sass */
+/* line 240, ../sass/screen.sass */
 #container #content #lesson .sentence, #container #content #lesson .question, #container #content #lesson .answers, #container #content #lesson .answer {
   font-size: 28px;
   margin: 5px;
 }
-/* line 243, ../sass/screen.sass */
-#container #content #lesson input.answer[type="text"] {
+/* line 244, ../sass/screen.sass */
+#container #content #lesson input[type="text"] {
   width: 80%;
   min-width: 500px;
   border: 2px solid #b0e68b;
 }
-/* line 248, ../sass/screen.sass */
+/* line 249, ../sass/screen.sass */
 #container #content #action-menu {
   padding-top: 20px;
   text-align: center;
 }
 
-/* line 255, ../sass/screen.sass */
+/* line 256, ../sass/screen.sass */
 form label {
   display: block;
   margin: 3px 0px;
   font-size: 18px;
 }
-/* line 260, ../sass/screen.sass */
+/* line 261, ../sass/screen.sass */
 form input {
   font-size: 18px;
   color: #adb7a5;
   padding-left: 5px;
 }
-/* line 265, ../sass/screen.sass */
+/* line 266, ../sass/screen.sass */
 form input.info {
   border: 2px solid #b0e68b;
 }
 
-/* line 268, ../sass/screen.sass */
+/* line 269, ../sass/screen.sass */
 .removable {
   position: relative;
 }
 
-/* line 270, ../sass/screen.sass */
+/* line 271, ../sass/screen.sass */
 .remove {
   background: url("../images/close.png") no-repeat;
   border: none;
@@ -396,81 +397,98 @@ form input.info {
   position: absolute;
   z-index: 2;
 }
-/* line 280, ../sass/screen.sass */
+/* line 281, ../sass/screen.sass */
 .remove:hover {
   -moz-box-shadow: 0 0 0 0;
   -webkit-box-shadow: 0 0 0 0;
   -o-box-shadow: 0 0 0 0;
   box-shadow: 0 0 0 0;
 }
-/* line 283, ../sass/screen.sass */
+/* line 284, ../sass/screen.sass */
 .remove + * {
   padding-left: 40px;
 }
 
-/* line 290, ../sass/screen.sass */
+/* line 291, ../sass/screen.sass */
 .landing #container {
   width: 50%;
   text-align: center;
 }
-/* line 294, ../sass/screen.sass */
+/* line 295, ../sass/screen.sass */
 .landing #container .about {
   display: block;
   margin: auto;
   padding: 30px 15px;
 }
 
-/* line 301, ../sass/screen.sass */
+/* line 302, ../sass/screen.sass */
 body.activities .play {
   overflow: hidden;
   *zoom: 1;
 }
-/* line 304, ../sass/screen.sass */
+/* line 305, ../sass/screen.sass */
 body.activities .play .activities {
   float: left;
 }
-/* line 306, ../sass/screen.sass */
+/* line 307, ../sass/screen.sass */
 body.activities .play .levels {
   float: right;
 }
-/* line 309, ../sass/screen.sass */
+/* line 310, ../sass/screen.sass */
 body.activities img {
   display: block;
   margin: auto;
 }
-/* line 313, ../sass/screen.sass */
+/* line 314, ../sass/screen.sass */
 body.activities .missing {
-  display: inline-block;
+  display: inline;
   position: relative;
+  top: -0.25em;
 }
-/* line 317, ../sass/screen.sass */
+/* line 320, ../sass/screen.sass */
+body.activities .missing .filler {
+  margin: 0 10px;
+  visibility: hidden !important;
+  display: inline;
+  color: transparent;
+  z-index: -1;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  opacity: 0;
+}
+/* line 328, ../sass/screen.sass */
 body.activities .missing label {
   position: absolute;
-  top: 25%;
+  top: 0.3em;
   left: 0;
   right: 0;
   cursor: pointer;
 }
-/* line 324, ../sass/screen.sass */
+/* line 335, ../sass/screen.sass */
 body.activities .missing input {
   width: inherit !important;
   min-width: 0 !important;
   border: 1px solid #b0e68b !important;
-  padding: 10px !important;
+  padding: 5px 5px !important;
+  text-align: center;
   font-size: inherit !important;
-  margin: 0 5px !important;
+  margin: 0 !important;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 1em;
   display: inline-block;
 }
-/* line 336, ../sass/screen.sass */
+/* line 354, ../sass/screen.sass */
 body.activities .missing.guessing label {
   display: none;
 }
 
-/* line 340, ../sass/screen.sass */
+/* line 358, ../sass/screen.sass */
 .users .user-link {
   position: relative;
 }
-/* line 343, ../sass/screen.sass */
+/* line 361, ../sass/screen.sass */
 .users .user-link .name {
   display: inline-block;
   max-width: 38%;
@@ -478,18 +496,18 @@ body.activities .missing.guessing label {
   overflow: hidden;
   white-space: nowrap;
 }
-/* line 350, ../sass/screen.sass */
+/* line 368, ../sass/screen.sass */
 .users .user-link .school {
   position: absolute;
   left: 40%;
 }
-/* line 353, ../sass/screen.sass */
+/* line 371, ../sass/screen.sass */
 .users .user-link .grade {
   position: absolute;
   right: 40px;
 }
 
-/* line 358, ../sass/screen.sass */
+/* line 376, ../sass/screen.sass */
 .users #content, .units #content, .activities #content {
   background: white;
   border: 2px solid #b0e68b;
@@ -497,18 +515,18 @@ body.activities .missing.guessing label {
   padding: 20px 40px;
 }
 
-/* line 366, ../sass/screen.sass */
+/* line 384, ../sass/screen.sass */
 .units form h2 {
   display: inline;
 }
-/* line 369, ../sass/screen.sass */
+/* line 387, ../sass/screen.sass */
 .units form .stretch {
   overflow: hidden;
   *zoom: 1;
   line-height: 1.75em;
   position: relative;
 }
-/* line 374, ../sass/screen.sass */
+/* line 392, ../sass/screen.sass */
 .units form .stretch div {
   display: block;
   width: auto;
@@ -519,49 +537,49 @@ body.activities .missing.guessing label {
   margin-left: 135px;
   text-align: right;
 }
-/* line 384, ../sass/screen.sass */
+/* line 402, ../sass/screen.sass */
 .units form .stretch div input {
   width: 95%;
 }
-/* line 387, ../sass/screen.sass */
+/* line 405, ../sass/screen.sass */
 .units form input.unit, .units form input.sentence, .units form input.answer, .units form input.question-text {
   border: 2px solid #b0e68b;
 }
-/* line 390, ../sass/screen.sass */
+/* line 408, ../sass/screen.sass */
 .units form input.unit {
   width: 300px;
   height: 20px;
 }
 
-/* line 395, ../sass/screen.sass */
+/* line 413, ../sass/screen.sass */
 li.unit button, li.unit a, li.user button, li.user a {
   display: block;
 }
 
-/* line 398, ../sass/screen.sass */
+/* line 416, ../sass/screen.sass */
 li.lesson {
   border: 2px solid #b0e68b;
   padding: 10px;
   margin: 20px 0px;
   position: relative;
 }
-/* line 404, ../sass/screen.sass */
+/* line 422, ../sass/screen.sass */
 li.lesson .image-name {
   padding-left: 20px;
   padding-bottom: 10px;
   font-size: 18px;
   color: #adb7a5;
 }
-/* line 410, ../sass/screen.sass */
+/* line 428, ../sass/screen.sass */
 li.lesson .upload-picture {
   overflow: hidden;
   *zoom: 1;
 }
-/* line 412, ../sass/screen.sass */
+/* line 430, ../sass/screen.sass */
 li.lesson .upload-picture > label {
   float: left;
 }
-/* line 415, ../sass/screen.sass */
+/* line 433, ../sass/screen.sass */
 li.lesson .upload-picture .image-holder {
   position: relative;
   margin-left: 18%;
@@ -569,7 +587,7 @@ li.lesson .upload-picture .image-holder {
   overflow: hidden;
   *zoom: 1;
 }
-/* line 421, ../sass/screen.sass */
+/* line 439, ../sass/screen.sass */
 li.lesson .upload-picture .image-holder .image {
   float: left;
   width: 50%;
@@ -577,92 +595,92 @@ li.lesson .upload-picture .image-holder .image {
   position: relative;
   height: 200px;
 }
-/* line 428, ../sass/screen.sass */
+/* line 446, ../sass/screen.sass */
 li.lesson .upload-picture .image-holder .image .image-name.old-image {
   display: none;
 }
-/* line 431, ../sass/screen.sass */
+/* line 449, ../sass/screen.sass */
 li.lesson .upload-picture .image-holder .image.active {
   background-color: #e8f8dc;
 }
-/* line 436, ../sass/screen.sass */
+/* line 454, ../sass/screen.sass */
 li.lesson .upload-picture .image-holder .image label {
   height: 200px;
 }
-/* line 439, ../sass/screen.sass */
+/* line 457, ../sass/screen.sass */
 li.lesson .upload-picture .image-holder .image.new-image label {
   padding-top: 10%;
 }
-/* line 442, ../sass/screen.sass */
+/* line 460, ../sass/screen.sass */
 li.lesson .upload-picture .image-holder .image img {
   height: 100%;
   max-width: 100%;
 }
-/* line 446, ../sass/screen.sass */
+/* line 464, ../sass/screen.sass */
 li.lesson .upload-picture .image-holder .image .file-holder {
   margin: auto;
 }
-/* line 449, ../sass/screen.sass */
+/* line 467, ../sass/screen.sass */
 li.lesson .upload-picture .image-holder .image input[type=radio] {
   position: absolute;
   top: 5px;
   left: 5px;
   z-index: 2;
 }
-/* line 455, ../sass/screen.sass */
+/* line 473, ../sass/screen.sass */
 li.lesson li.question {
   display: block;
 }
-/* line 457, ../sass/screen.sass */
+/* line 475, ../sass/screen.sass */
 li.lesson li.question .remove {
   z-index: 1;
 }
-/* line 459, ../sass/screen.sass */
+/* line 477, ../sass/screen.sass */
 li.lesson li.question:hover .answer .help {
   visibility: visible;
 }
-/* line 462, ../sass/screen.sass */
+/* line 480, ../sass/screen.sass */
 li.lesson li.question .answer {
   overflow: hidden;
   *zoom: 1;
 }
-/* line 465, ../sass/screen.sass */
+/* line 483, ../sass/screen.sass */
 li.lesson li.question .answer .help {
   float: left;
   width: 28%;
   padding: 15px 0;
   visibility: hidden;
 }
-/* line 470, ../sass/screen.sass */
+/* line 488, ../sass/screen.sass */
 li.lesson li.question .answer .help h4 {
   font-size: 16px;
 }
-/* line 472, ../sass/screen.sass */
+/* line 490, ../sass/screen.sass */
 li.lesson li.question .answer .help p {
   font-size: 14px;
 }
-/* line 474, ../sass/screen.sass */
+/* line 492, ../sass/screen.sass */
 li.lesson li.question .answer .answers {
   float: right;
   text-align: right;
   width: 70%;
   margin-right: 2px;
 }
-/* line 480, ../sass/screen.sass */
+/* line 498, ../sass/screen.sass */
 li.lesson li.question .answer .answers fieldset.answer {
   margin: 5px 0;
   overflow: hidden;
   *zoom: 1;
 }
-/* line 484, ../sass/screen.sass */
+/* line 502, ../sass/screen.sass */
 li.lesson li.question .answer .answers fieldset.answer input {
   display: inline-block;
 }
-/* line 486, ../sass/screen.sass */
+/* line 504, ../sass/screen.sass */
 li.lesson li.question .answer .answers fieldset.answer input[type=text] {
   width: 90%;
 }
-/* line 489, ../sass/screen.sass */
+/* line 507, ../sass/screen.sass */
 li.lesson label {
   display: block;
 }
