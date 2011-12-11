@@ -35,9 +35,9 @@
 
       <label>Email: <input name="email" class="email" type="text" /></label>
       <label>Password: <input name="password" class="password" type="password" /></label>
-      <input class="submit" type="submit" />
-	  
-    </form>
+      <button name="submit" type="submit" value='0'> Login </button>
+	  <button name="submit" type="submit" value ='1'> Forgot Password </button>
+	 </form>
     <button class="close">Close</button>
   </div>
   <div class="signup dialog">

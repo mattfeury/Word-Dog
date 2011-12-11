@@ -31,20 +31,30 @@ class Users extends CI_Controller {
   public function login() {
     $email = $this->input->post('email', TRUE);
     $password = $this->input->post('password', TRUE);
+	$u = new User();
+	$u->email = $email;
+	$u->password = $password;
+	//echo $_POST;
+	if($_POST['submit'] == 0)
+	{
+		$success = $u->login();
 
-    $u = new User();
-    $u->email = $email;
-    $u->password = $password;
+		if ($success) {
+		  $this->_setSessionForUser($email);
+		  redirect('/units');
+		} else {
+		  //TODO return errors
+		  redirect(base_url());
+		}
+	}
+	else if($_POST['submit'] == 1)
+	{
+	  $data['user'] = $u;
+	  $this->load->view('forgot', $data);
+	}
 
-    $success = $u->login();
-
-    if ($success) {
-      $this->_setSessionForUser($email);
-      redirect('/units');
-    } else {
-      //TODO return errors
-      redirect(base_url());
-    }
+	
+    
 
   }
 
@@ -129,27 +139,36 @@ class Users extends CI_Controller {
 	
 	function forgotPassword() {
 		$email = $this->input->post('email',TRUE);
-		$user = new User();
-		$user->where('email', $email)->get();		
-		$hash=sha1($user->email.rand(0,100));
-		$user->tokenhash=$hash;			
-		$user->save();
-
-		$ms='Click on the link below to reset your password ';
-		$ms.='localhost/Word-Dog/index.php/users/verify?t='.$hash.'&n='.$email.'';
-		$ms=wordwrap($ms,70);
-
-		$to = $this->input->post('email', TRUE);;
-		$subject = "Hi!";
-		$body = $ms;
-		$from = "worddog.forgot.pass@gmail.com";
-		$headers = "From: $from";
-		if (mail($to, $subject, $body, $headers)) {
-		  echo("<p>Message successfully sent!</p>");		  
+		$email2 = $this->input->post('email2',TRUE);
+		if($email != $email2){
+			echo("<p> Your emails did not match. Please re-enter </p>");
 		}
-		else {
-		  echo("<p>Message delivery failed...</p>");
-		}				
+		else{
+			$user = new User();
+			$user->where('email', $email)->get();		
+			$hash=sha1($user->email.rand(0,100));
+			$user->tokenhash=$hash;			
+			$user->save();
+			
+			$ms='Click on the link below to reset your password ';
+			$ms.=base_url().'index.php/users/verify?t='.$hash.'&n='.$email.'';
+			$ms=wordwrap($ms,70);
+
+			$to = $this->input->post('email', TRUE);;
+			$subject = "Hi!";
+			$body = $ms;
+			$from = "worddog.forgot.pass@gmail.com";
+			$headers = "From: $from";
+			if (mail($to, $subject, $body, $headers)) {
+			  echo "<script>alert('The reset link has been sent to the email address in our records.'); window.location = '" . SITE_URL() . "'</script>";
+			  			  
+			}
+			else {
+			  echo "<script>alert('Message delivery failed. Please try again.'); history.back();</script>";
+			  
+			}
+			
+		}
 	}
 	
 	function verify()
@@ -166,20 +185,19 @@ class Users extends CI_Controller {
 				{						
 					$results->activate=1;
 					$results->save();
-					echo("Your registration is complete");
 					$data['user'] = $results;
 					$this->load->view('resetPass', $data);
 				}
 				else
 				{
-					echo("Your registration is complete");
-					$this->redirect('/users/forgotPassword');
+					echo("Wrong token. Please request a new token.");
+					$this->load->view('forgot');
 				}
 			}
 			else 
 			{
 				echo("Token has alredy been used");				
-				$this->redirect('/users/forgotPassword');
+				$this->load->view('forgot');
 			}
 		}
 		else
@@ -201,11 +219,13 @@ class Users extends CI_Controller {
 			$u = new User();
 			$u->where('email', $email)->get();
 			$u->password = $password;
-			$u->activate=0;
+			$u->activate='0';
 			$u->save();
-			echo("Password successfully changed!");
-			
+			echo "<script>alert('Your password has successfully been changed.'); window.location = '" . SITE_URL() . "'</script>";			
 		}
+		else{
+			echo "<script>alert('Your passwords did not match. Please try again')</script>";			
+			}
 	}
 
 	
