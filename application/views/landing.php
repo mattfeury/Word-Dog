@@ -35,8 +35,8 @@
 
       <label>Email: <input name="email" class="email" type="text" /></label>
       <label>Password: <input name="password" class="password" type="password" /></label>
-      <button name="submit" type="submit" value='0'> Login </button>
-	  <button name="submit" type="submit" value ='1'> Forgot Password </button>
+      <input class="submit" type="submit" />
+	  <?= anchor('/users/forgotPage', 'Forgot Password'); ?>
 	 </form>
     <button class="close">Close</button>
   </div>

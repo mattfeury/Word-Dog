@@ -22,11 +22,10 @@
 	  <label>Email: <input type="email" class="info" name="email" value= "<?= $user->email ?>"/></label>
 	  <label>Password: <input name="password" class="info" type="password" /></label>
       <label>Re-type Password: <input name="password2" class="info" type="password" /></label>
-
+	  <input type="hidden" name="token" value="<?= $user->tokenhash?>">
       <input class="submit" type="submit" />
     </form>
-    <button class="close">Close</button>
-    
+        
   </section>
 </section>
 <? $this->load->view('tail'); ?>

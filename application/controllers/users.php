@@ -29,33 +29,21 @@ class Users extends CI_Controller {
   }
 
   public function login() {
+  
     $email = $this->input->post('email', TRUE);
     $password = $this->input->post('password', TRUE);
 	$u = new User();
 	$u->email = $email;
 	$u->password = $password;
-	//echo $_POST;
-	if($_POST['submit'] == 0)
-	{
-		$success = $u->login();
+	$success = $u->login();
 
-		if ($success) {
-		  $this->_setSessionForUser($email);
-		  redirect('/units');
-		} else {
-		  //TODO return errors
-		  redirect(base_url());
-		}
+	if ($success) {
+	  $this->_setSessionForUser($email);
+	  redirect('/units');
+	} else {
+	  //TODO return errors
+	  redirect(base_url());
 	}
-	else if($_POST['submit'] == 1)
-	{
-	  $data['user'] = $u;
-	  $this->load->view('forgot', $data);
-	}
-
-	
-    
-
   }
 
   public function register() {
@@ -107,7 +95,8 @@ class Users extends CI_Controller {
   }
   
   public function forgotPage(){
-	$this->load->view('forgot');
+	$data = new User();
+	$this->load->view('forgot',$data);
 	}
   
   public function changeAccount() {
@@ -138,6 +127,7 @@ class Users extends CI_Controller {
 	}
 	
 	function forgotPassword() {
+	
 		$email = $this->input->post('email',TRUE);
 		$email2 = $this->input->post('email2',TRUE);
 		if($email != $email2){
@@ -151,7 +141,7 @@ class Users extends CI_Controller {
 			$user->save();
 			
 			$ms='Click on the link below to reset your password ';
-			$ms.=base_url().'index.php/users/verify?t='.$hash.'&n='.$email.'';
+			$ms.=site_url().'/users/verify?t='.$hash.'&n='.$email.'';
 			$ms=wordwrap($ms,70);
 
 			$to = $this->input->post('email', TRUE);;
@@ -179,11 +169,10 @@ class Users extends CI_Controller {
 		{
 			$results = new User();
 			$results->where('email', $email)->get();	
-			if ($results->activate==0)
+			if (!empty($results->tokenhash))
 			{	
 				if($results->tokenhash==$token)
 				{						
-					$results->activate=1;
 					$results->save();
 					$data['user'] = $results;
 					$this->load->view('resetPass', $data);
@@ -211,21 +200,29 @@ class Users extends CI_Controller {
 
 	function resetPassword() 
 	{
+		$token = $this->input->post('token',TRUE);
 		$email = $this->input->post('email',TRUE);
 		$password = $this->input->post('password',TRUE);
 		$password2 = $this->input->post('password2',TRUE);
+		$user = new User();
+		$user->where('email', $email)->get();
 		
-		if($password == $password2){
-			$u = new User();
-			$u->where('email', $email)->get();
-			$u->password = $password;
-			$u->activate='0';
-			$u->save();
-			echo "<script>alert('Your password has successfully been changed.'); window.location = '" . SITE_URL() . "'</script>";			
+		if($token != $user->tokenhash){
+			echo "<script>alert('Incorrect token. Please retry.'); window.location = '" . SITE_URL() . "'</script>";			
 		}
 		else{
-			echo "<script>alert('Your passwords did not match. Please try again')</script>";			
+			if($password == $password2){
+				$u = new User();
+				$u->where('email', $email)->get();
+				$u->password = $password;
+				$u->tokenhash = null;
+				$u->save();
+				echo "<script>alert('Your password has successfully been changed.'); window.location = '" . SITE_URL() . "'</script>";			
 			}
+			else{
+				echo "<script>alert('Your passwords did not match. Please try again')</script>";			
+			}
+		}
 	}
 
 	

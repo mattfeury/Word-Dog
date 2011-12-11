@@ -6,8 +6,7 @@
     <button id="login" class="dialog-opener logged-out">Login</button>
     <button id="signup" class="dialog-opener logged-out">Sign Up</button>
     <span class="logged-in">Logged In, <?= $this->session->userdata('email') ?></span>
-    <?= anchor('/units', 'Teacher Zone', 'class="logged-in"'); ?>
-    <?= anchor('/logout', 'Log Out', 'class="logged-in logout"'); ?>
+    
   </div>
 </header>
 <section id="container">
@@ -24,8 +23,6 @@
 
       <input class="submit" type="submit" />
     </form>
-    <button class="close">Close</button>
-    
   </section>
 </section>
 <? $this->load->view('tail'); ?>
