@@ -6,8 +6,8 @@
 <section id="container">
   <section id="content">
 
-    <h1>Write Sentence</h1>
-    <h2>Write a sentence for the picture below. Be sure to use correct capitalization and punctuation!</h2>
+    <h1 id="name"><?= $activity["name"] ?></h1>
+    <h2 id="instruction"><?= $activity["instruction"] ?></h2>
     <div id="lesson">
       <img class="picture" />
       <input name="sentence" class="sentence" type="text" autocomplete="off"/>

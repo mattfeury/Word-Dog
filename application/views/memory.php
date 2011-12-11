@@ -5,8 +5,8 @@
 </header>
 <section id="container">
   <section id="content">
-    <h1>Memory</h1>
-    <h2>Memorize the sentence and type it into the box.</h2>
+    <h1 id="name"><?= $activity["name"] ?></h1>
+    <h2 id="instruction"><?= $activity["instruction"] ?></h2>
 
     <div class="choose-difficulty">
       <ul class="difficulties"></ul>
@@ -31,11 +31,14 @@
 
 // This should render the html for a new lesson. 
 // It should also handle removing/resetting anything.
-function defineActivityForLesson(lesson) {
+function defineActivityForLesson(lesson, $target) {
+  var forPrint = ! $target ? false : true;
+  $target = ! $target ? $('#lesson') : $target;
+  console.log($target);
   var sentence = (config.jumbleSentence) ? jumbleSentence(lesson['sentence']) : lesson['sentence'];
 
   // Replace image and sentence
-  $('#lesson')
+  $target
     .find('.sentence')
       .text(sentence)
     .end()
@@ -49,7 +52,7 @@ function defineActivityForLesson(lesson) {
   switch (config.cover) {
     case 'cloze':
       var numBlanks = difficulty.numBlanks || 1;
-      $('#lesson')
+      $target
         .find('.input')
           .html(createCloze(sentence, numBlanks))
       break;
@@ -59,6 +62,14 @@ function defineActivityForLesson(lesson) {
   if (COVERED)
     uncover();
   resetCoverTimer(sentence);
+  
+  // Printing
+  if(forPrint) {
+    $target.find('.answer').hide();
+    // hides for both flash memories and anything with cover picture
+    if(config.coverPicture || config.difficulties.length) $target.find('.picture').hide();
+  }
+  
 }
 var difficulty = {},
   COVERED = false,
@@ -165,12 +176,15 @@ $(document).ready(function(){
     var $print = $('<div/>')
       .append('<h1>' + $('h1').text() + '</h1>')
       .append('<h2>Memorize the sentence and flip the page over to write them.</h2>');
-     $.each(unit.lessons, function() {
+     $.each(unit.lessons, function(index, lesson) {
        //print pictures only if static1 activity
-       if(!config.coverPicture && !config.difficulties.length) 
-        $print.append('<img src = "' + BASE_SRC + 'uploads/' + this['image'] + '"/>');
-       $print
-        .append('<p>' + this['sentence'] + '</p>');
+       // if(!config.coverPicture && !config.difficulties.length) 
+       //  $print.append('<img src = "' + BASE_SRC + 'uploads/' + this['image'] + '"/>');
+       // $print
+       //  .append('<p>' + this['sentence'] + '</p>');
+       var $template = $('<div><img class="picture" /><div class="sentence"></div><div class="input covered"><input name="sentence" class="answer" type="text" autocomplete="off" /></div></div>');
+       defineActivityForLesson(lesson, $template);
+       $print.append($template.html());
      });
      //break page so users write on back
      $print

@@ -6,8 +6,8 @@
 <section id="container">
   <section id="content">
 
-    <h1>Fill in the Blank</h1>
-    <h2>Find the missing word from the choices below. Type the correct answer into the box.</h2>
+    <h1 id="name"><?= $activity["name"] ?></h1>
+    <h2 id="instruction"><?= $activity["instruction"] ?></h2>
     <div id="lesson">
       <img class="picture" />
       <span class="sentence"></span>
