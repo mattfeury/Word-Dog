@@ -47,10 +47,28 @@ $(document).ready(function(){
   //check answer
   $('.go').click(function(event){
     var isCorrect = ($('input').val()) === originalSentence;
-    if (isCorrect)
+    if (isCorrect) {
+      correct();
       setTimeout(function() { renderNextLesson(); }, 1000);
-       
+    } else {
+      incorrect();
+    }      
   });
+  //specify html for printing for every lesson in the unit
+   if(isPrint){
+     var $print = $('<div/>')
+      .append('<h1>' + $('h1').text() + '</h1>')
+      .append('<h2>Unjumble the sentences below.</h2>');
+     $.each(unit.lessons, function() {
+       if(!config.hidePicture) $print.append('<img src = "' + BASE_SRC + 'uploads/' + this['image'] + '"/>');      
+        $print
+        .append('<p>' + jumbleSentence(this['sentence']) + '</p>')
+        .append('<div class="handwrite top-line"> </div>')
+        .append('<div class="handwrite"> </div>')
+        .append('<div class="handwrite bottom-line"> </div>');
+     });
+     printActivity($print.html());
+   }
   $('.sentence').keypress(function(e) {
     if(e.which == 13) {
         $('.go').click();

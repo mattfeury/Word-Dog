@@ -15,7 +15,9 @@
       <div id="lesson">
         <img class="picture" />
         <div class="sentence"></div>
-        <input name="sentence" class="sentence covered" type="text" autocomplete="off" />
+        <div class="input covered">
+          <input name="sentence" class="answer" type="text" autocomplete="off" />
+        </div>
       </div>
       <div id="action-menu">
         <button class="cover">Cover</button>
@@ -31,37 +33,40 @@
 // It should also handle removing/resetting anything.
 function defineActivityForLesson(lesson) {
   var sentence = (config.jumbleSentence) ? jumbleSentence(lesson['sentence']) : lesson['sentence'];
-  // because we will check the user's input with 'originalSentence',
-  // it should be defined for jumble or otherwise.
-  originalSentence = lesson['sentence'];
 
   // Replace image and sentence
   $('#lesson')
-    .find('div.sentence')
+    .find('.sentence')
       .text(sentence)
     .end()
-    .find('input.sentence')
+    .find('input.answer')
       .val('')
+      .attr('data-answer', lesson['sentence']) //by default, the answer is the sentence. may get overriden below (for things like cloze)
     .end()
     .find('.picture')
       .attr('src', config.base + 'uploads/' + lesson['image']);
 
+  switch (config.cover) {
+    case 'cloze':
+      var numBlanks = difficulty.numBlanks || 1;
+      $('#lesson')
+        .find('.input')
+          .html(createCloze(sentence, numBlanks))
+      break;
+    default:
+  }
+  
   if (COVERED)
     uncover();
   resetCoverTimer(sentence);
 }
-var difficulties = [ //seconds per word before hiding
-  { name: 'Easy', secsPerWord: .5 },
-  { name: 'Medium', secsPerWord: .4 },
-  { name: 'Hard', secsPerWord: .3}
-],
-  difficulty = {},
+var difficulty = {},
   COVERED = false,
   difficultyTimeout = -1;
 
 function resetCoverTimer(sentence) {
   //if difficulty was set, set the timer to hide
-  if (config.chooseDifficulty && difficulty.secsPerWord) {
+  if (config.difficulties.length && difficulty.secsPerWord) {
     var words = sentence.split(' ').length,
         seconds = difficulty.secsPerWord * words;
     
@@ -75,22 +80,28 @@ function resetCoverTimer(sentence) {
 function cover() {
   // Cover sentence and clear input
   $('#lesson')
-    .find('.sentence')
+    .find('.sentence, .input')
       .toggleClass('covered')
-      .filter('input')
-        .val('')
-        .focus();
+    .end()
+    .find('input:visible')
+      .val('')
+      .focus()
+    .end()
+    .find('.missing.guessing') //for cloze
+      .removeClass('guessing');
 
   // Cover image
   if (config.coverPicture)
     $('#lesson').find('.picture').addClass('covered');
-     
+
   $('#action-menu button').toggleClass('covered');
   COVERED = true;
 }
 function uncover() {
-  // Uncover sentence and clear input
-  $('#lesson').find('.sentence').toggleClass('covered').val('');
+  // Uncover sentence and hide input
+  $('#lesson')
+    .find('.sentence, .input')
+    .toggleClass('covered');
 
   // Uncover image
   if (config.coverPicture)
@@ -99,7 +110,7 @@ function uncover() {
   $('.reinforcement').text('');
   $('#action-menu button').toggleClass('covered');
   COVERED = false;
-  resetCoverTimer($('#lesson').find('div.sentence').text());
+  resetCoverTimer($('#lesson').find('.sentence').text());
 }
 
 //Cover for memory
@@ -107,9 +118,9 @@ $(document).ready(function(){
 
   // Either choose difficulty or load first lesson
   // This depends on which activity this is: 'static' or 'flash'
-  if (config.chooseDifficulty) {
+  if (config.difficulties.length) {
     $('#content .activity').hide();
-    $.each(difficulties, function(i, item) {
+    $.each(config.difficulties, function(i, item) {
       $('.difficulties').append(
         $('<li/>')
           .append(
@@ -133,7 +144,13 @@ $(document).ready(function(){
   
   //check answer
   $('.go').click(function(event){
-    var isCorrect = $('input.sentence').val() == originalSentence;
+    var isCorrect = true;
+    $('input.answer').each(function() {
+      if ($(this).val() != $(this).attr('data-answer')) {
+        isCorrect = false;
+        return false;
+      }
+    });
 
     if (isCorrect) {
       correct();
@@ -144,13 +161,13 @@ $(document).ready(function(){
        
   });
   //specify html for printing for every lesson in the unit
-   if(isPrint){
-     var $print = $('<div/>')
+  if(isPrint){
+    var $print = $('<div/>')
       .append('<h1>' + $('h1').text() + '</h1>')
       .append('<h2>Memorize the sentence and flip the page over to write them.</h2>');
      $.each(unit.lessons, function() {
        //print pictures only if static1 activity
-       if(!config.coverPicture && !config.chooseDifficulty) 
+       if(!config.coverPicture && !config.difficulties.length) 
         $print.append('<img src = "' + BASE_SRC + 'uploads/' + this['image'] + '"/>');
        $print
         .append('<p>' + this['sentence'] + '</p>');
@@ -166,7 +183,7 @@ $(document).ready(function(){
      });
      printActivity($print.html());
    }
-  $('.sentence').keypress(function(e) {
+  $('.answer').live('keypress', function(e) {
     if(e.which == 13) {
       $('.go').click();
       return false;

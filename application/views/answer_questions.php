@@ -28,8 +28,9 @@
   function defineActivityForLesson(lesson, $target) {
     //move on to next lesson if this has no questions
     if(lesson['questions'].length < 1) renderNextLesson();
-    if ($target) var forPrint = true;
-    (! $target) ? $target = $('#lesson') : $target = $('#lesson').clone();
+    var forPrint = ! $target ? false : true;
+    $target = ! $target ? $('#lesson') : $target;
+      
     if(questionNum == 0) {
       $target
         .find('.picture')
@@ -42,9 +43,17 @@
     //show question    
     $target
       .find('.question')
-        .text(lesson['questions'][questionNum]['question']);
+        .text(lesson['questions'][questionNum]['question'])
+      .end()
+      .find('input:text').val('')
+        .focus();
     
-    //clear previous buttons
+    // Remove correct indicator
+    $('.reinforcement')
+      .removeClass('incorrect correct')
+      .text('');
+
+    //clear previous buttons    
     $target
       .find('.answers')
         .empty();
@@ -60,9 +69,10 @@
           .append('<p><input type="radio" name="answers0" value="' + i + '"/><label>' + answers[i] + '</label></p>');
     });
     //check first radio button
-    if (!forPrint) $target
-      .find('input[value="0"]')
-        .attr('checked', true);
+    if (!forPrint) 
+      $target
+        .find('input[value="0"]')
+          .attr('checked', true);
     if(!config.hideChoices) {
       $('.sentence').hide();
       $('.answers').show();
@@ -122,9 +132,9 @@ $(document).ready(function(){
        .append('<h2>' + $('h2').text() + '</h2>');
       $.each(unit.lessons, function(i, lesson) {
         $.each(lesson['questions'], function(j, question) {
-          var lessonContent = defineActivityForLesson(lesson, $print);
-          $print
-          .append(lessonContent.html());
+          var $template = $('<div><img class="picture" /><div class="question"></div><div class="answers"></div></div>');
+          defineActivityForLesson(lesson, $template);
+          $print.append($template.html());        
           questionNum++;
         });
         questionNum = 0;

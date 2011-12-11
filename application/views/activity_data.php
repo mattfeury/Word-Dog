@@ -67,6 +67,32 @@
   // Printing
   var isPrint = <?= ($print == '') ? 0 : 1 ?>;
 
+  var difficulties = [];
+  switch (config.difficulties) {
+    case 'time':
+      difficulties = [ //seconds per word before hiding
+        { name: 'Easy', secsPerWord: .5 },
+        { name: 'Medium', secsPerWord: .4 },
+        { name: 'Hard', secsPerWord: .3}
+      ];
+      break;
+    case 'numBlanks':
+      difficulties = [
+        { name: 'Easy', numBlanks: 1 },
+        { name: 'Medium', numBlanks: 2 },
+        { name: 'Hard', numBlanks: 3 }
+      ];
+      break;
+    case 'numBlanksAndTime':
+      difficulties = [
+        { name: 'Easy', secsPerWord: .5, numBlanks: 1 },
+        { name: 'Medium', secsPerWord: .4, numBlanks: 2 },
+        { name: 'Hard', secsPerWord: .3, numBlanks: 3 }
+      ];
+      break;
+  }
+  config.difficulties = difficulties;
+
   function getNextLesson() {
     currentLesson++;
     if (currentLesson < unit.lessons.length)
@@ -129,6 +155,9 @@
       return this;
   }
 
+  // Helper functions used for certain activites (e.g. jumbling, creating 'blanks')
+  // We put them here because they are sometimes used in multiple activity views
+  // (ones that mix with memory)
   function jumble(word) {
     // Rand function will return 2-part array
     // [0] -> Index of rand, [1] -> random found value (from args)
@@ -180,6 +209,76 @@
       jumbledSentence = jumble(original);
     }
     return jumbledSentence;
+  }
+
+  // Returns HTML
+  var totalBlanksCreated = 0;
+  function createCloze(sentence, numBlanks) {
+    totalBlanksCreated = 0;
+    return createClozeFromSentence(sentence, numBlanks);
+  }
+
+  function createClozeFromSentence(sentence, numBlanks) {
+    // Base case. If we don't need to create any more blanks, just return the text.
+    if (totalBlanksCreated >= numBlanks)
+      return document.createTextNode(sentence);
+
+    totalBlanksCreated++;
+
+    var split = sentence.split(/\W+/).removeWhere(''), //splits words only (no punctuation)
+        toRemove = Math.floor(Math.random()* split.length),
+        missingWord = split[toRemove];
+
+    // Find the two sentence fragments surrounding the word
+    var regexSplit = new RegExp('\\b' + missingWord + '\\b', 'g');
+    var sandwich = sentence.split(regexSplit),
+        left = sandwich.shift(),
+        right = sandwich.join(missingWord);
+
+    // Create a button for the missing word that, when clicked, shows the input
+    var $missingWordButton =
+      $('<span/>')
+        .addClass('missing')
+        .append(
+          $('<label for="answer'+totalBlanksCreated+'" />')
+            .text('?')
+        )
+        .append(
+          $('<input id="answer'+totalBlanksCreated+'" name="answer'+totalBlanksCreated+'" type="text" />')
+            .addClass('answer')
+            .attr('data-answer', missingWord)
+        );
+    var leftHtml, rightHtml,
+        leftLength = left.trim().split(' ').length,
+        rightLength = right.trim().split(' ').length;
+
+    // Recurse on the side with more words first
+    if (leftLength > rightLength) {
+      leftHtml = createClozeFromSentence(left, numBlanks);
+      if (rightLength)
+        rightHtml = createClozeFromSentence(right, numBlanks);
+    } else {
+      rightHtml = createClozeFromSentence(right, numBlanks);
+      if (leftLength)
+        leftHtml = createClozeFromSentence(left, numBlanks);
+    }
+
+    var $sentenceWithBlank = 
+      $('<div/>')
+        .append(leftHtml)
+        .append($missingWordButton)
+        .append(rightHtml);
+
+    // Set a rule to handle the button covers
+    $('.missing').live('focus', function() {
+      $(this)
+        .addClass('guessing')
+    }).live('blur', function() {
+      if ($(this).val().trim() === '')
+        $(this).removeClass('guessing')
+    })
+
+    return $sentenceWithBlank.html()
   }
   
 
