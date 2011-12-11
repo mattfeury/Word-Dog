@@ -42,9 +42,17 @@
     //show question    
     $target
       .find('.question')
-        .text(lesson['questions'][questionNum]['question']);
+        .text(lesson['questions'][questionNum]['question'])
+      .end()
+      .find('input:text').val('')
+        .focus();
     
-    //clear previous buttons
+    // Remove correct indicator
+    $('.reinforcement')
+      .removeClass('incorrect correct')
+      .text('');
+
+    //clear previous buttons    
     $target
       .find('.answers')
         .empty();
