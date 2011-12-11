@@ -220,7 +220,9 @@
 
   function createClozeFromSentence(sentence, numBlanks) {
     // Base case. If we don't need to create any more blanks, just return the text.
-    if (totalBlanksCreated >= numBlanks) return document.createTextNode(sentence);
+    if (totalBlanksCreated >= numBlanks)
+      return document.createTextNode(sentence);
+
     totalBlanksCreated++;
 
     var split = sentence.split(/\W+/).removeWhere(''), //splits words only (no punctuation)
@@ -246,11 +248,26 @@
             .addClass('answer')
             .attr('data-answer', missingWord)
         );
+    var leftHtml, rightHtml,
+        leftLength = left.trim().split(' ').length,
+        rightLength = right.trim().split(' ').length;
+
+    // Recurse on the side with more words first
+    if (leftLength > rightLength) {
+      leftHtml = createClozeFromSentence(left, numBlanks);
+      if (rightLength)
+        rightHtml = createClozeFromSentence(right, numBlanks);
+    } else {
+      rightHtml = createClozeFromSentence(right, numBlanks);
+      if (leftLength)
+        leftHtml = createClozeFromSentence(left, numBlanks);
+    }
+
     var $sentenceWithBlank = 
       $('<div/>')
-        .append(createClozeFromSentence(left, numBlanks))
+        .append(leftHtml)
         .append($missingWordButton)
-        .append(createClozeFromSentence(right, numBlanks));
+        .append(rightHtml);
 
     // Set a rule to handle the button covers
     $('.missing button').live('click', function() {
