@@ -11,8 +11,7 @@
     <div id="lesson">
       <img class="picture" />
       <span class="sentence"></span>
-      <ul class="choices">
-      </ul>
+      <ul class="choices"></ul>
     </div>
   </section>
 </section>
@@ -26,7 +25,7 @@ function defineActivityForLesson(lesson) {
   var sentence = lesson.sentence,
       clozeHtml = createCloze(sentence, 1);
 
-  var missingWord = $(clozeHtml).find('.guess').attr('data-answer');
+  var missingWord = $(clozeHtml).find('.answer').attr('data-answer');
 
   // Replace image, sentence with missing word, and word choices (if we need to)
   $('#lesson')
@@ -77,7 +76,7 @@ $(document).ready(function(){
   //load first lesson
   renderNextLesson();
 
-  $('.guess').live('keypress', function(e) {
+  $('.answer').live('keypress', function(e) {
     if(e.which == 13) {
       checkAnswer($(this));
       return false;

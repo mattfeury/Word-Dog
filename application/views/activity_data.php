@@ -202,12 +202,11 @@
         .addClass('missing')
         .append(
           $('<button/>')
-            .addClass('cover')
             .text('?')
         )
         .append(
           $('<input type="text" />')
-            .addClass('guess')
+            .addClass('answer')
             .attr('data-answer', missingWord)
         );
     var $sentenceWithBlank = 
@@ -216,8 +215,8 @@
         .append($missingWordButton)
         .append(document.createTextNode(sandwich.join(missingWord)));
 
-    // Set a rule to handle the covers
-    $('.cover').live('click', function() {
+    // Set a rule to handle the button covers
+    $('.missing button').live('click', function() {
       $(this)
         .closest('.missing')
           .addClass('guessing')
