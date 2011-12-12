@@ -86,7 +86,7 @@ $(document).ready(function(){
   if(isPrint){
     var $print = $('<div/>')
       .append('<h1>' + $('h1').text() + '</h1>')
-      .append('<h2>Find the missing word from the choices below.</h2>');
+      .append('<h2>Find the missing word.</h2>');
     $.each(unit.lessons, function(i, lesson) {
       var $template = $('<div><img class="picture" /><div class="sentence"><span class="missing"></span></div><ul class="choices"></ul></div>');
       defineActivityForLesson(lesson, $template);
