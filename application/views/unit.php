@@ -238,7 +238,6 @@
         if (question)
           questions.push(question);
       });
-      console.log(questions);
       return JSON.stringify(questions);
     };
 
