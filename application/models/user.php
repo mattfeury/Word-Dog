@@ -33,6 +33,14 @@ class User extends DataMapper {
     }
   }
 
+  function canEdit($unit) {
+    if ($unit->user->get()->id == $this->id || $this->admin == 1) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   // md5 encryption
   function _encrypt($field) {
     if (!empty($this->{$field})) {

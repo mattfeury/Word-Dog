@@ -6,8 +6,8 @@
 <section id="container">
   <section id="content">
 
-    <h1>Fill in the Blank</h1>
-    <h2>Find the missing word from the choices below. Type the correct answer into the box.</h2>
+    <h1 id="name"><?= $activity["name"] ?></h1>
+    <h2 id="instruction"><?= $activity["instruction"] ?></h2>
     <div id="lesson">
       <img class="picture" />
       <span class="sentence"></span>
@@ -58,7 +58,6 @@ function defineActivityForLesson(lesson, $target) {
   } 
   // Remove button and inputs when printing
   if(forPrint) { 
-    // Can't give width to a span, must float div instead
     $target.find('.missing').replaceWith('<span class="blank"></span>');
   }
 }
@@ -83,20 +82,15 @@ $(document).ready(function(){
   //load first lesson
   renderNextLesson();
 
-  $('.cover').live('click', function() {
-    $(this)
-      .closest('.missing')
-        .addClass('guessing')
-        .find('input')
-          .focus();
-  })
   //specify html for printing for every lesson in the unit
   if(isPrint){
+    // Set print instructions only if defined
+    var printInstruction = config.printInstruction ? config.printInstruction : '';
     var $print = $('<div/>')
-      .append('<h1>' + $('h1').text() + '</h1>')
-      .append('<h2>Find the missing word from the choices below.</h2>');
+     .append('<h1>' + $('h1').text() + '</h1>')
+     .append('<h2>' +  printInstruction  + '</h2>');
     $.each(unit.lessons, function(i, lesson) {
-      var $template = $('<div><img class="picture" /><div class="sentence"></div><ul class="choices"></ul></div>');
+      var $template = $('<div><img class="picture" /><div class="sentence"><span class="missing"></span></div><ul class="choices"></ul></div>');
       defineActivityForLesson(lesson, $template);
       $print.append($template.html());        
     });

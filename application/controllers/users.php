@@ -10,8 +10,6 @@ class Users extends CI_Controller {
       redirect(base_url());
       return;
     }
-
-    //$this->load->view('teacher');
   }
   
   public function show() {
@@ -32,18 +30,20 @@ class Users extends CI_Controller {
   
     $email = $this->input->post('email', TRUE);
     $password = $this->input->post('password', TRUE);
-	$u = new User();
-	$u->email = $email;
-	$u->password = $password;
-	$success = $u->login();
+    $u = new User();
+    $u->email = $email;
+    $u->password = $password;
 
-	if ($success) {
-	  $this->_setSessionForUser($email);
-	  redirect('/units');
-	} else {
-	  //TODO return errors
-	  redirect(base_url());
-	}
+    $success = $u->login();
+
+    if ($success) {
+      $this->_setSessionForUser($u);
+      redirect('/units');
+    } else {
+      $this->session->set_userdata(array('errors' => $u->error->string));
+      redirect(base_url() . '?error=login');
+    }
+
   }
 
   public function register() {
@@ -66,18 +66,19 @@ class Users extends CI_Controller {
     $u->save();
 
     if (! empty($u->id)) {
-      $this->_setSessionForUser($email);
+      $this->_setSessionForUser($u);
       redirect('/units');
     } else {
-      //TODO return errors
-      redirect(base_url());
+      $this->session->set_userdata(array('errors' => $u->error->string));
+      redirect(base_url() . '?error=signup');
     }
   }
 
-  private function _setSessionForUser($email) {
+  private function _setSessionForUser($user) {
     $session_data = array(
-                     'email'     => $email,
-                     'logged_in' => TRUE
+                      'email'     => $user->email,
+                      'name'      => $user->name,
+                      'logged_in' => TRUE
                     );
     $this->session->set_userdata($session_data);
 

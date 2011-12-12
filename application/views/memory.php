@@ -5,11 +5,12 @@
 </header>
 <section id="container">
   <section id="content">
-    <h1>Memory</h1>
-    <h2>Memorize the sentence and type it into the box.</h2>
+    <h1 id="name"><?= $activity["name"] ?></h1>
+    <h2 id="instruction"><?= $activity["instruction"] ?></h2>
 
     <div class="choose-difficulty">
-      <ul class="difficulties"></ul>
+      <h3>Choose a Difficulty to begin.</h3>
+      <ul class="rows difficulties"></ul>
     </div>
     <div class="activity">
       <div id="lesson">
@@ -31,11 +32,13 @@
 
 // This should render the html for a new lesson. 
 // It should also handle removing/resetting anything.
-function defineActivityForLesson(lesson) {
+function defineActivityForLesson(lesson, $target) {
+  var forPrint = ! $target ? false : true;
+  $target = ! $target ? $('#lesson') : $target;
   var sentence = (config.jumbleSentence) ? jumbleSentence(lesson['sentence']) : lesson['sentence'];
 
   // Replace image and sentence
-  $('#lesson')
+  $target
     .find('.sentence')
       .text(sentence)
     .end()
@@ -49,7 +52,7 @@ function defineActivityForLesson(lesson) {
   switch (config.cover) {
     case 'cloze':
       var numBlanks = difficulty.numBlanks || 1;
-      $('#lesson')
+      $target
         .find('.input')
           .html(createCloze(sentence, numBlanks))
       break;
@@ -59,6 +62,17 @@ function defineActivityForLesson(lesson) {
   if (COVERED)
     uncover();
   resetCoverTimer(sentence);
+  
+  // Printing
+  if(forPrint) {
+    // Hide input boxes
+    $target.find('input').hide();
+    // Put in handwritten blanks
+    $target.find('.missing').replaceWith('<span class="blank"></span>');
+    // Hides picture for all coverPictures and special case where print is different than game
+    if(config.coverPicture || config.coverPrintPicture) $target.find('.picture').hide();
+  }
+  
 }
 var difficulty = {},
   COVERED = false,
@@ -83,7 +97,7 @@ function cover() {
     .find('.sentence, .input')
       .toggleClass('covered')
     .end()
-    .find('input:visible')
+    .find('input:visible:not(.cloze)')
       .val('')
       .focus()
     .end()
@@ -113,6 +127,39 @@ function uncover() {
   resetCoverTimer($('#lesson').find('.sentence').text());
 }
 
+function renderPrint() {
+  // Set print instructions only if defined
+  var printInstruction = config.printInstruction ? config.printInstruction : '';
+  var $print = $('<div/>')
+   .append('<h1>' + $('h1').text() + '</h1>')
+   .append('<h2>' +  printInstruction  + '</h2>');
+   $.each(unit.lessons, function(index, lesson) {
+     var $template = $('<div><img class="picture" /><div class="sentence"></div><div class="input covered"><input name="sentence" class="answer" type="text" autocomplete="off" /></div></div>');
+     defineActivityForLesson(lesson, $template);
+     $print.append($template.html());
+   });
+   //break page so users write on back - only for memory activities
+   if(config.needsHandwriting) {
+     $print
+      .append('<p class="pagebreak"></p>');
+     $.each(unit.lessons, function() {
+       $print
+        .append('<div class="handwrite top-line"> </div>')
+        .append('<div class="handwrite"> </div>')
+        .append('<div class="handwrite bottom-line"> </div>');
+     });
+   }
+   // Move blank sentences to bottom and randomize for memory-cloze
+   if(config.randomizePrintSentences) {
+     var blankSentences = $print.find('.input');
+     // Randomize
+     blankSentences.sort(function() {return 0.5 - Math.random()});
+     $print.append('<div class="random-sentences"></div');
+     $print.find('.random-sentences').append(blankSentences);
+   }
+   printActivity($print.html());
+}
+
 //Cover for memory
 $(document).ready(function(){
 
@@ -130,12 +177,15 @@ $(document).ready(function(){
                 difficulty = item;
                 renderNextLesson();
                 $('#content .activity').show();    
-                $('.difficulties').hide();
+                $('.choose-difficulty').remove();
+                // Print after difficulty has been chosen
+                if(isPrint) renderPrint();
               })
         )
       )
     });
   } else {
+    $('.choose-difficulty').remove();
     renderNextLesson();
   }
   
@@ -160,28 +210,9 @@ $(document).ready(function(){
     }
        
   });
-  //specify html for printing for every lesson in the unit
-  if(isPrint){
-    var $print = $('<div/>')
-      .append('<h1>' + $('h1').text() + '</h1>')
-      .append('<h2>Memorize the sentence and flip the page over to write them.</h2>');
-     $.each(unit.lessons, function() {
-       //print pictures only if static1 activity
-       if(!config.coverPicture && !config.difficulties.length) 
-        $print.append('<img src = "' + BASE_SRC + 'uploads/' + this['image'] + '"/>');
-       $print
-        .append('<p>' + this['sentence'] + '</p>');
-     });
-     //break page so users write on back
-     $print
-      .append('<p class="pagebreak"></p>');
-     $.each(unit.lessons, function() {
-       $print
-        .append('<div class="handwrite top-line"> </div>')
-        .append('<div class="handwrite"> </div>')
-        .append('<div class="handwrite bottom-line"> </div>');
-     });
-     printActivity($print.html());
+  // Print if in print mode and activity has no difficulties
+  if(isPrint && !config.printWithDifficulties){
+    renderPrint();
    }
   $('.answer').live('keypress', function(e) {
     if(e.which == 13) {

@@ -6,12 +6,12 @@
 <section id="container">
   <section id="content">
 
-    <h1>Answer Question</h1>
-    <h2>Choose the correct answer to the question.</h2>
+    <h1 id="name"><?= $activity["name"] ?></h1>
+    <h2 id="instruction"><?= $activity["instruction"] ?></h2>
     <div id="lesson">
       <img class="picture" />
       <div class="question"></div>
-      <div class="answers"></div>
+      <ul class="answers"></ul>
       <input name="answer" class="sentence" type="text" autocomplete="off"/>
     </div>
     <div id="action-menu">
@@ -66,7 +66,7 @@
     $.each(answers, function(i) { 
       $target
         .find('.answers')                                                           
-          .append('<p><input type="radio" name="answers0" value="' + i + '"/><label>' + answers[i] + '</label></p>');
+          .append('<li><label><input type="radio" name="answers0" value="' + i + '"/>' + answers[i] + '</label></li>');
     });
     //check first radio button
     if (!forPrint) 
@@ -127,12 +127,14 @@ $(document).ready(function(){
    });
     //specify html for printing for every lesson in the unit
     if(isPrint){
+      // Set print instructions only if defined
+      var printInstruction = config.printInstruction ? config.printInstruction : '';
       var $print = $('<div/>')
        .append('<h1>' + $('h1').text() + '</h1>')
-       .append('<h2>' + $('h2').text() + '</h2>');
+       .append('<h2>' +  printInstruction  + '</h2>');
       $.each(unit.lessons, function(i, lesson) {
         $.each(lesson['questions'], function(j, question) {
-          var $template = $('<div><img class="picture" /><div class="question"></div><div class="answers"></div></div>');
+          var $template = $('<div><img class="picture" /><div class="question"></div><ul class="answers"></ul></div>');
           defineActivityForLesson(lesson, $template);
           $print.append($template.html());        
           questionNum++;

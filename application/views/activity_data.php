@@ -5,13 +5,17 @@
   var ATTEMPTS_COOKIE = 'WORDDOG_ATTEMPS';
   var CORRECT = createCookieIfNeeded(CORRECT_COOKIE, 0, 1);
   var ATTEMPTS = createCookieIfNeeded(ATTEMPTS_COOKIE, 0, 1);
+  
+  // Reinforcement wait time before fadeout in milliseconds
+  var DELAY_SPEED = 1600;
 
   function correct() {
     createCookie(CORRECT_COOKIE, ++CORRECT, 1);
     createCookie(ATTEMPTS_COOKIE, ++ATTEMPTS, 1);
     updateScore();
 
-    $('.reinforcement').text('Correct!');
+    $('.reinforcement').show();
+    $('.reinforcement').text('Correct!').delay(DELAY_SPEED).fadeOut();
     $('.reinforcement').addClass('correct'); 
     $('.reinforcement').removeClass('incorrect');
   }
@@ -19,7 +23,8 @@
     createCookie(ATTEMPTS_COOKIE, ++ATTEMPTS, 1);
     updateScore();
 
-    $('.reinforcement').text('Incorrect');
+    $('.reinforcement').show();
+    $('.reinforcement').text('Incorrect').delay(DELAY_SPEED).fadeOut();
     $('.reinforcement').addClass('incorrect'); 
     $('.reinforcement').removeClass('correct');    
   }
@@ -46,6 +51,21 @@
           .addClass('score')
           .html('<span class="correct">' + CORRECT + '</span>/<span class="attempts">' + ATTEMPTS + '</span><span class="percentage">' + (getPercentage()) + '</span>')
       )
+      $header
+        .find('.score')
+          .append(
+            $('<button/>')
+              .addClass('reset-score')
+              .text('Reset')
+              .click(function() {
+                //reset
+                CORRECT = 0;
+                ATTEMPTS = 0;
+                updateScore();
+                eraseCookie(CORRECT_COOKIE);
+                eraseCookie(ATTEMPTS_COOKIE);
+              })
+          )
     }
 
     // Add reinforcement
@@ -56,6 +76,40 @@
       )
     }
 
+  });
+
+  // "Distractor" character
+  var distractionTimer = -1,
+      distractorHeight = 451,
+      distractorWidth = 252,
+      distractorLength = 3500, //length of distraction animation in millis
+      waitTimeBetweenDistractions = 12; //10 seconds average between distractions
+  $(function() {
+    function makeDistractor() {
+      if (! $('body').find('#distractor').length) {
+
+        $('body')
+          .append(
+            $('<div/>')
+              .attr('id', 'distractor')
+              .addClass('shades')
+          );
+      }
+      var height = $(document).height(),
+          randomTop = Math.random() * (height - distractorHeight);
+
+      $('#distractor')
+        .stop(true, false)
+        .animate({ 'top': randomTop + 'px', 'right': 0 }, 'slow');
+    }
+    function removeDistractor() {
+      $('#distractor').stop(true, false).animate({ right: -1 * distractorWidth + 'px' }, 'slow');
+    }
+    distractionTimer = setInterval(function() {
+      removeDistractor();
+      makeDistractor();
+      setTimeout(removeDistractor, distractorLength);
+    }, distractorLength + waitTimeBetweenDistractions * 1000);
   });
    
   // Units and lessons
@@ -114,7 +168,7 @@
   }
   // Redirects to activities
   function unitOver() {
-    alert("You win. Lesson complete.");
+    alert("Lesson complete. Great job!");
     redirectToActivities();
   }
   //for multiple choice: gets other lessons
@@ -240,14 +294,18 @@
       $('<span/>')
         .addClass('missing')
         .append(
-          $('<label for="answer'+totalBlanksCreated+'" />')
-            .text('?')
+          $('<span class="filler">' + missingWord + '</span>')
         )
         .append(
           $('<input id="answer'+totalBlanksCreated+'" name="answer'+totalBlanksCreated+'" type="text" />')
-            .addClass('answer')
+            .addClass('answer cloze')
             .attr('data-answer', missingWord)
+        )
+        .append(
+          $('<label for="answer'+totalBlanksCreated+'" />')
+            .text('?')
         );
+
     var leftHtml, rightHtml,
         leftLength = left.trim().split(' ').length,
         rightLength = right.trim().split(' ').length;
@@ -270,12 +328,15 @@
         .append(rightHtml);
 
     // Set a rule to handle the button covers
-    $('.missing').live('focus', function() {
+    $('.missing input').live('focus', function() {
       $(this)
-        .addClass('guessing')
+        .closest('.missing')
+          .addClass('guessing')
     }).live('blur', function() {
       if ($(this).val().trim() === '')
-        $(this).removeClass('guessing')
+        $(this)
+          .closest('.missing')
+          .removeClass('guessing')
     })
 
     return $sentenceWithBlank.html()
@@ -309,8 +370,6 @@
       createCookie(name, value, days);
 
     return readCookie(name);
-  }
-  function incrementCookie(name) {
   }
 
   function eraseCookie(name) {

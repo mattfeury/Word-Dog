@@ -19,21 +19,36 @@ class Units extends CI_Controller {
 
     $this->load->view('teacher', $data);
   }
-  
-  public function show($id) {
+
+  /**
+   * Show a list of units by userId
+   */
+  public function show($userId) {
     $user = new User();
-    $user->id = $id;
+    $user->id = $userId;
     $user->validate()->get();
     
     $units = $user->unit->get();
     
     $data = array();
     $data['units'] = $units;
+
+    $email = $this->session->userdata('email');	
+    $sessionUser = new User();
+    $sessionUser->where('email', $email)->get();
+    if ($email && isset($sessionUser->id)) {
+      $data['sessionUser'] = $sessionUser;
+    }
     
 		$this->load->view('units', $data);
 	}
 
   public function create() {
+    if (! $this->session->userdata('logged_in')) {
+      redirect(base_url());
+      return;
+    }
+    
     $data = array();
     $data['unit'] = new Unit();
     $data['lessons'] = array();
@@ -43,12 +58,56 @@ class Units extends CI_Controller {
 
     $this->load->view('unit', $data);
   }
+
+  public function delete($unitId = false) {
+    if (! $this->session->userdata('logged_in') || ! $unitId) {
+      redirect(base_url());
+      return;
+    }
+    $unit = new Unit();
+    $unit->id = $unitId;
+    $unit->validate()->get();
+    
+    // Only allow certain people to delete (creator + admins)
+    $email = $this->session->userdata('email');
+    $user = new User();
+    $user->email = $email;
+    $user->validate()->get();    
+    if (! $user->canEdit($unit)) {
+      show_error('You are not authorized to delete this unit.', 403);
+      return false;
+    }
+
+    // Delete old lessons for this unit, if any.
+    $old = $unit->lessons->get();
+    $old->delete_all();
+
+    // Delete unit
+    $unit->delete();
+
+    redirect('/units');
+  }
  
   public function edit($id) {
+    if (! $this->session->userdata('logged_in')) {
+      redirect(base_url());
+      return;
+    }
+    
     $unit = new Unit();
 
     $unit->id = $id;
     $unit->validate()->get();
+
+    // Only allow certain people to edit (creator + admins)
+    $email = $this->session->userdata('email');
+    $user = new User();
+    $user->email = $email;
+    $user->validate()->get();    
+    if (! $user->canEdit($unit)) {
+      show_error('You are not authorized to edit this unit.', 403);
+      return false;
+    }
 
     $lessons = $unit->lesson->get();
 
@@ -63,9 +122,14 @@ class Units extends CI_Controller {
   }
 
   /**
-   * Handles form input to upsert a unit/lesson
+   * Handles form input to upsert a unit and its lessons
    */
   public function update() {
+    if (! $this->session->userdata('logged_in')) {
+      redirect(base_url());
+      return;
+    }
+    
     $unitId = $this->session->userdata('current_unit');
     $isNew = $unitId == false;
 
@@ -78,9 +142,9 @@ class Units extends CI_Controller {
     $config['file_name'] = uniqid($unitId . "-0-");
     $config['upload_path'] = './uploads';
     $config['allowed_types'] = 'gif|jpg|jpeg|png';
-    $config['max_size'] = '2024';
-    $config['max_width']  = '1024';
-    $config['max_height']  = '768';
+    $config['max_size'] = '4048';
+    $config['max_width']  = '2048';
+    $config['max_height']  = '1600';
     $config['overwrite']     = FALSE;
 
     $this->load->library('upload', $config);
@@ -93,12 +157,22 @@ class Units extends CI_Controller {
     $user->email = $email;
     $user->validate()->get();
 
+    if (! $email || empty($user->id)) {
+      show_error('You are not logged in.', 404);
+      return false;
+    }
+
     // Top level unit. Add or modify existing
     $unit = new Unit();
 
     if (! $isNew) {
       $unit->id = $unitId;
       $unit->where('id', $unitId)->get();
+
+      if (! $user->canEdit($unit)) {
+        show_error('You are not authorized to edit this unit.', 403);
+        return false;
+      }
     }
 
     $unit->name = $unitName;
@@ -149,9 +223,6 @@ class Units extends CI_Controller {
       $i++;
     }
 
-    //TODO handle errors and return
-
-    redirect('/units');
+    redirect('/units/show/'.$unit->user->get()->id);
   }
-
 }

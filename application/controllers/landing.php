@@ -12,8 +12,9 @@ class Landing extends CI_Controller {
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
   public function index() {
-		$this->load->view('landing');
-	}
+    $data['errors'] = $this->session->userdata('errors');    
+    $this->load->view('landing', $data);
+  }
 }
 
 /* End of file welcome.php */

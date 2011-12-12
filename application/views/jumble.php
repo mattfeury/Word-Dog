@@ -6,8 +6,8 @@
 <section id="container">
   <section id="content">
 
-    <h1>Jumble</h1>
-    <h2>Unjumble the sentence and type the unjumbled sentence into the box.</h2>
+    <h1 id="name"><?= $activity["name"] ?></h1>
+    <h2 id="instruction"><?= $activity["instruction"] ?></h2>
     <div id="lesson">
       <img class="picture" />
       <div class="sentence"></div>
@@ -56,9 +56,11 @@ $(document).ready(function(){
   });
   //specify html for printing for every lesson in the unit
    if(isPrint){
+     // Set print instructions only if defined
+     var printInstruction = config.printInstruction ? config.printInstruction : '';
      var $print = $('<div/>')
       .append('<h1>' + $('h1').text() + '</h1>')
-      .append('<h2>Unjumble the sentences below.</h2>');
+      .append('<h2>' +  printInstruction  + '</h2>');
      $.each(unit.lessons, function() {
        if(!config.hidePicture) $print.append('<img src = "' + BASE_SRC + 'uploads/' + this['image'] + '"/>');      
         $print
