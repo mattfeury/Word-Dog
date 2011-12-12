@@ -58,6 +58,35 @@ class Units extends CI_Controller {
 
     $this->load->view('unit', $data);
   }
+
+  public function delete($unitId) {
+    if (! $this->session->userdata('logged_in')) {
+      redirect(base_url());
+      return;
+    }
+    $unit = new Unit();
+    $unit->id = $unitId;
+    $unit->validate()->get();
+    
+    // Only allow certain people to delete (creator + admins)
+    $email = $this->session->userdata('email');
+    $user = new User();
+    $user->email = $email;
+    $user->validate()->get();    
+    if (! $user->canEdit($unit)) {
+      show_error('You are not authorized to delete this unit.', 403);
+      return false;
+    }
+
+    // Delete old lessons for this unit, if any.
+    $old = $unit->lessons->get();
+    $old->delete_all();
+
+    // Delete unit
+    $unit->delete();
+
+    redirect('/units');
+  }
  
   public function edit($id) {
     if (! $this->session->userdata('logged_in')) {

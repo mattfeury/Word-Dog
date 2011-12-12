@@ -11,15 +11,20 @@
     };
 
     $(document).ready(function(){
-       $('.dialog-opener').click(function(event){
-         var id=$(this).attr('id');
-         $('.dialog.' + id).addClass('current');
-       });
-       $('.dialog .close').click(function(event){
-         $(this).closest('.dialog').removeClass('current');
-       });
-     });
-   </script>
+      $('.dialog-opener').click(function(event){
+        var id=$(this).attr('id');
+        $('.dialog.' + id).addClass('current');
+      });
+      $('.dialog .close').click(function(event){
+        $(this).closest('.dialog').removeClass('current');
+      });
+
+      $('.delete').live('click', function() {
+        var doIt = confirm("Are you sure you want to delete this unit? (Cannot be undone)");
+        if (! doIt) return false;
+      });
+    });
+  </script>
   <?= link_tag(array(
                     'href' => 'stylesheets/screen.css',
                     'rel' => 'stylesheet',
