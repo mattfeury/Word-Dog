@@ -207,7 +207,7 @@ $(document).ready(function(){
        
   });
   // Print if in print mode and activity has no difficulties
-  if(isPrint && !config.difficulties.length){
+  if(isPrint && !config.printWithDifficulties){
     renderPrint();
    }
   $('.answer').live('keypress', function(e) {
