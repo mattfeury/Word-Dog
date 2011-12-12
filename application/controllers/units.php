@@ -45,10 +45,25 @@ class Units extends CI_Controller {
   }
  
   public function edit($id) {
+    if (! $this->session->userdata('logged_in')) {
+      redirect(base_url());
+      return;
+    }
+    
     $unit = new Unit();
 
     $unit->id = $id;
     $unit->validate()->get();
+
+    // Only allow certain people to edit (creator + admins)
+    $email = $this->session->userdata('email');
+    $user = new User();
+    $user->email = $email;
+    $user->validate()->get();    
+    if (! $user->canEdit($unit)) {
+      echo 'You are not authorized to edit this unit.';
+      return false;
+    }
 
     $lessons = $unit->lesson->get();
 
@@ -66,6 +81,11 @@ class Units extends CI_Controller {
    * Handles form input to upsert a unit/lesson
    */
   public function update() {
+    if (! $this->session->userdata('logged_in')) {
+      redirect(base_url());
+      return;
+    }
+    
     $unitId = $this->session->userdata('current_unit');
     $isNew = $unitId == false;
 
@@ -93,12 +113,22 @@ class Units extends CI_Controller {
     $user->email = $email;
     $user->validate()->get();
 
+    if (! $email || empty($user->id)) {
+      echo 'You are not logged in.';
+      return false;
+    }
+
     // Top level unit. Add or modify existing
     $unit = new Unit();
 
     if (! $isNew) {
       $unit->id = $unitId;
       $unit->where('id', $unitId)->get();
+
+      if (! $user->canEdit($unit)) {
+        echo 'You are not authorized to edit this unit.';
+        return false;
+      }
     }
 
     $unit->name = $unitName;

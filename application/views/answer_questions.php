@@ -6,8 +6,8 @@
 <section id="container">
   <section id="content">
 
-    <h1>Answer Question</h1>
-    <h2>Choose the correct answer to the question.</h2>
+    <h1 id="name"><?= $activity["name"] ?></h1>
+    <h2 id="instruction"><?= $activity["instruction"] ?></h2>
     <div id="lesson">
       <img class="picture" />
       <div class="question"></div>

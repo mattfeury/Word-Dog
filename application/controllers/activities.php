@@ -16,12 +16,14 @@ class Activities extends CI_Controller {
     0 => array(
           'view' => 'write_sentence',
           'name' => 'Write Sentence',
+          'instruction' => 'Write a sentence for the picture below. Be sure to use correct capitalization and punctuation!',
           'requires_images' => true,
           'requires_questions' => false,
           'data' => array()),
     1 => array(
           'view' => 'answer_questions',
-          'name' => 'Answer Questions1',
+          'name' => 'Answer Questions 1',
+          'instruction' => 'Choose the correct answer to the question from the choices below.',
           'requires_images' => true,
           'requires_questions' => true,
           'data' => array(
@@ -29,7 +31,8 @@ class Activities extends CI_Controller {
                     )),
     2 => array(
           'view' => 'answer_questions',
-          'name' => 'Answer Questions2',
+          'name' => 'Answer Questions 2',
+          'instruction' => 'Type the correct answer to the question into the box below.',
           'requires_images' => true,
           'requires_questions' => true,
           'data' => array(
@@ -39,7 +42,8 @@ class Activities extends CI_Controller {
     // Memory
     3 => array(
           'view' => 'memory',
-          'name' => 'Memory Static1',
+          'name' => 'Memory Static 1',
+          'instruction' => 'Memorize the sentence. When you are ready, select "Cover" and type the sentence into the box. You may view the sentence again by clicking "Uncover".',
           'requires_images' => true,
           'requires_questions' => false,
           'data' => array(
@@ -48,7 +52,8 @@ class Activities extends CI_Controller {
                     )),
     4 => array(
           'view' => 'memory',
-          'name' => 'Memory Static2',
+          'name' => 'Memory Static 2',
+          'instruction' => 'Memorize the sentence. When you are ready, select "Cover" and type the sentence into the box. You may view the sentence again by clicking "Uncover".',
           'requires_images' => true,
           'requires_questions' => false,
           'data' => array(
@@ -58,7 +63,8 @@ class Activities extends CI_Controller {
                     )),
     5 => array(
           'view' => 'memory',
-          'name' => 'Memory Flash1',
+          'name' => 'Memory Flash 1',
+          'instruction' => 'Memorize the sentence and type it into the box that appears. You may view the sentence again by clicking "Uncover".',
           'requires_images' => true,
           'requires_questions' => false,
           'data' => array(
@@ -69,7 +75,8 @@ class Activities extends CI_Controller {
                     )),
     6 => array(
           'view' => 'memory',
-          'name' => 'Memory Flash2',
+          'name' => 'Memory Flash 2',
+          'instruction' => 'Memorize the sentence and type it into the box that appears. You may view the sentence again by clicking "Uncover".',
           'requires_images' => true,
           'requires_questions' => false,
           'data' => array(
@@ -82,7 +89,8 @@ class Activities extends CI_Controller {
     // Jumble
     7 => array(
           'view' => 'jumble',
-          'name' => 'Word Jumble1',
+          'name' => 'Word Jumble 1',
+          'instruction' => 'Unjumble the sentence and type the unjumbled sentence into the box.',
           'requires_images' => true,
           'requires_questions' => false,
           'data' => array(
@@ -90,7 +98,8 @@ class Activities extends CI_Controller {
                     )),
     8 => array(
           'view' => 'jumble',
-          'name' => 'Word Jumble2',
+          'name' => 'Word Jumble 2',
+          'instruction' => 'Unjumble the sentence and type the unjumbled sentence into the box.',
           'requires_images' => true,
           'requires_questions' => false,
           'data' => array(
@@ -98,7 +107,8 @@ class Activities extends CI_Controller {
                     )),
     9 => array(
           'view' => 'memory',
-          'name' => 'Jumble / Memory Static1',
+          'name' => 'Jumble / Memory Static 1',
+          'instruction' => 'Unjumble the sentence. When you are ready, click "Cover" and type the unjumbled sentence into the box that appears. You may view the jumbled sentence again by clicking "Uncover".',
           'requires_images' => true,
           'requires_questions' => false,
           'data' => array(
@@ -107,7 +117,8 @@ class Activities extends CI_Controller {
                     )),
     10 => array(
           'view' => 'memory',
-          'name' => 'Jumble / Memory Static2',
+          'name' => 'Jumble / Memory Static 2',
+          'instruction' => 'Unjumble the sentence. When you are ready, click "Cover" and type the unjumbled sentence into the box that appears. You may view the jumbled sentence again by clicking "Uncover".',
           'requires_images' => true,
           'requires_questions' => false,
           'data' => array(
@@ -117,7 +128,8 @@ class Activities extends CI_Controller {
                     )),
     11 => array(
           'view' => 'memory',
-          'name' => 'Jumble / Memory Flash1',
+          'name' => 'Jumble / Memory Flash 1',
+          'instruction' => 'Unjumble the sentence and type the unjumbled sentence into the box that appears. You may view the jumbled sentence again by clicking "Uncover".',
           'requires_images' => true,
           'requires_questions' => false,
           'data' => array(
@@ -127,7 +139,8 @@ class Activities extends CI_Controller {
                     )),
     12 => array(
           'view' => 'memory',
-          'name' => 'Jumble / Memory Flash2',
+          'name' => 'Jumble / Memory Flash 2',
+          'instruction' => 'Unjumble the sentence and type the unjumbled sentence into the box that appears. You may view the jumbled sentence again by clicking "Uncover".',
           'requires_images' => true,
           'requires_questions' => false,
           'data' => array(
@@ -140,7 +153,8 @@ class Activities extends CI_Controller {
     // Cloze
     13 => array(
           'view' => 'cloze',
-          'name' => 'Fill in the Blank1',
+          'name' => 'Fill in the Blank 1',
+          'instruction' => 'Find the missing word from the choices below. Type the correct answer into the box.',
           'requires_images' => true,
           'requires_questions' => false,
           'data' => array(
@@ -149,7 +163,8 @@ class Activities extends CI_Controller {
                     )),
     14 => array(
           'view' => 'cloze',
-          'name' => 'Fill in the Blank2',
+          'name' => 'Fill in the Blank 2',
+          'instruction' => 'Find the missing word from the choices below. Type the correct answer into the box.',
           'requires_images' => false,
           'requires_questions' => false,
           'data' => array(
@@ -158,7 +173,8 @@ class Activities extends CI_Controller {
                     )),
     15 => array(
           'view' => 'cloze',
-          'name' => 'Fill in the Blank3',
+          'name' => 'Fill in the Blank 3',
+          'instruction' => 'Find the missing word from the choices below. Type the correct answer into the box.',
           'requires_images' => false,
           'requires_questions' => false,
           'data' => array(
@@ -168,6 +184,7 @@ class Activities extends CI_Controller {
     16 => array(
           'view' => 'memory',
           'name' => 'Fill in the Blank / Memory Static 1',
+          'instruction' => 'Read the sentence.  When you are ready click "Cover" and type the missing word into the box. You may view the complete sentence again by clicking "Uncover".',
           'requires_images' => true,
           'requires_questions' => false,
           'data' => array(
@@ -178,6 +195,7 @@ class Activities extends CI_Controller {
     17 => array(
           'view' => 'memory',
           'name' => 'Fill in the Blank / Memory Static 2',
+          'instruction' => 'Read the sentence.  When you are ready click "Cover" and type the missing word into the box. You may view the complete sentence again by clicking "Uncover".',
           'requires_images' => true,
           'requires_questions' => false,
           'data' => array(
@@ -189,6 +207,7 @@ class Activities extends CI_Controller {
     18 => array(
           'view' => 'memory',
           'name' => 'Fill in the Blank / Memory Flash 1',
+          'instruction' => 'Read the sentence.  Type the missing word into the box that appears. You may view the complete sentence again by clicking "Uncover".',
           'requires_images' => true,
           'requires_questions' => false,
           'data' => array(
@@ -200,6 +219,7 @@ class Activities extends CI_Controller {
     19 => array(
           'view' => 'memory',
           'name' => 'Fill in the Blank / Memory Flash 2',
+          'instruction' => 'Read the sentence.  Type the missing word into the box that appears. You may view the complete sentence again by clicking "Uncover".',
           'requires_images' => true,
           'requires_questions' => false,
           'data' => array(
@@ -214,11 +234,14 @@ class Activities extends CI_Controller {
     20 => array(
           'view' => 'multiple_choice',
           'name' => 'Multiple Choice',
+          'instruction' => 'Choose the sentence that best describes the picture.',
           'requires_images' => true,
           'requires_questions' => false,
           'data' => array()),
     21 => array(
-          'view' => 'multiple_choice_memory',
+          'view' => 'multiple_choice',
+          'name' => 'Multiple Choice / Memory',
+          'instruction' => 'Read the sentences and click "Continue".  Look at the picture and select the button of the sentence that best describes the picture.',
           'requires_images' => true,
           'requires_questions' => false,
           'name' => 'Multiple Choice / Memory', //TODO
@@ -270,6 +293,7 @@ class Activities extends CI_Controller {
 
     $activity = self::$activitiesById[$activityId];
     $data['activity_data'] = json_encode($activity['data']);
+    $data['activity'] = $activity;
     $isPrint = false;
     $data['print'] = $print;
 		$this->load->view($activity['view'], $data);
