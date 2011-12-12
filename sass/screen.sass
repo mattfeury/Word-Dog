@@ -121,12 +121,13 @@ body
     
 h1
   font-size: 28px
-  //font-weight: bold
   margin-bottom: 20px
 h2
   font-size: 22px
-  //font-weight: bold
   margin-bottom: 20px
+h3
+  font-size: 18px
+  margin-bottom: 1em
 
 button, a, input.submit, input.save, .substitute
   border: $border-width solid $border-color
@@ -154,7 +155,7 @@ button, a, input.submit, input.save, .substitute
 .errors
   color: #A00
 
-a.logo-holder, ul.rows a
+a.logo-holder, ul.rows a, ul.rows button
   border: none
   display: block
   background: none
@@ -179,8 +180,11 @@ ul.rows
     &:nth-child(even)
       background: #F8F8F8
 
-    a
+    a, button
       padding: 7px 15px
+
+    button
+      width: 100%
 
     .edit, .print
       position: absolute
@@ -322,6 +326,9 @@ body.activities
     display: block
     margin: auto
     padding-bottom: 3%
+
+  .choose-difficulty
+    text-align: center
 
   .missing
     display: inline
