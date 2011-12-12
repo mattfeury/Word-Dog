@@ -26,7 +26,11 @@
 
 // This should render the html for a new lesson. 
 // It should also handle removing/resetting anything.
-function defineActivityForLesson(lesson) {
+function defineActivityForLesson(lesson, $target) {
+  //define elements in the DOM or target for printing
+  var forPrint = ! $target ? false : true;
+  $target = ! $target ? $('#lesson') : $target;
+  
   var answer = lesson['sentence'],
       otherLessons = getOtherLessons(),
       choices = [];
@@ -40,9 +44,9 @@ function defineActivityForLesson(lesson) {
 
   choices.sort(function() {return 0.5 - Math.random()});
 
-  $('#lesson .choices').empty();
+  $target.find('.choices').empty();
   $.each(choices, function(i, choice) {
-    $('#lesson .choices').append(
+    $target.find('.choices').append(
       $('<li class="choice"></li>')
         .append(
           $('<input type="radio" id="answer' + i + '" class="answer" name="choices" value="' + choice + '" data-answer="' + answer + '" />')
@@ -54,12 +58,14 @@ function defineActivityForLesson(lesson) {
   });
 
   // Replace image
-  $('#lesson')
+  $target
     .find('.picture')
       .attr('src', config.base + 'uploads/' + lesson['image']);
  
   if (COVERED)
     uncover();
+  
+  return $target;
 }
 var COVERED = false;
 
@@ -98,6 +104,37 @@ $(document).ready(function(){
   $('.cover').click(cover);
   $('.uncover').click(uncover);
   
+  //specify html for printing for every lesson in the unit
+   if(isPrint){
+     var $print = $('<div/>')
+      .append('<h1>' + $('h1').text() + '</h1>')
+      .append('<h2>' + $('h2').text() + '</h2>');
+     $.each(unit.lessons, function(i, lesson) {
+       var $template = $('<div><img class="picture" /><ol class="input choices"></ol></div>');
+       defineActivityForLesson(lesson, $template);
+       $print.append($template.html());        
+     });
+     // Create bank
+     $print.append('<ul class="connector-bank"></ul>');
+     $allChoices = $print.find('.choices').find('li');
+     $print.find('.connector-bank').append($allChoices);
+     
+     // Restyle images
+     //$print.find('img').wrap('<div class="connector-image" />');
+     $print.find('img').wrapAll('<div class="connector-images" />');
+     
+     // Remove duplicates
+     var seen = {};
+     $print.find('li').each(function() {
+         var txt = $(this).text();
+         if (seen[txt])
+             $print.find(this).remove();
+         else
+             seen[txt] = true;
+     });
+     printActivity($print.html());
+   }
+  
   //check answer
   $('.go').click(function(event){
     var isCorrect = false;
@@ -113,8 +150,7 @@ $(document).ready(function(){
       setTimeout(function() { renderNextLesson(); }, 1000);
     } else {
       incorrect();
-    }
-       
+    }   
   });
 });
 </script>
