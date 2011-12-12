@@ -5,9 +5,8 @@
 </header>
 <section id="container">
   <section id="content">
-
     <h1 id="name"><?= $activity["name"] ?></h1>
-    <h2 id="instruction"><? $activity["instruction"] ?></h2>
+    <h2 id="instruction"><?= $activity["instruction"] ?></h2>
     <div id="lesson">
       <img class="picture" />
       <ul class="answers"></ul>

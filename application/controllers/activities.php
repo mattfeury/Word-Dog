@@ -249,7 +249,7 @@ class Activities extends CI_Controller {
     21 => array(
           'view' => 'multiple_choice_memory',
           'name' => 'Multiple Choice / Memory',
-          'instruction' => 'Read the sentences and click "Continue".  Look at the picture and select the button of the sentence that best describes the picture.',
+          'instruction' => 'Read the sentences and click "Cover".  Look at the picture and select the button of the sentence that best describes the picture.',
           'requires_images' => true,
           'requires_questions' => false,
           'name' => 'Multiple Choice / Memory', //TODO
