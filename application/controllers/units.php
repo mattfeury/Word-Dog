@@ -142,9 +142,9 @@ class Units extends CI_Controller {
     $config['file_name'] = uniqid($unitId . "-0-");
     $config['upload_path'] = './uploads';
     $config['allowed_types'] = 'gif|jpg|jpeg|png';
-    $config['max_size'] = '2024';
-    $config['max_width']  = '1024';
-    $config['max_height']  = '768';
+    $config['max_size'] = '4048';
+    $config['max_width']  = '2048';
+    $config['max_height']  = '1600';
     $config['overwrite']     = FALSE;
 
     $this->load->library('upload', $config);
