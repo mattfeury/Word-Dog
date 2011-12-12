@@ -51,6 +51,21 @@
           .addClass('score')
           .html('<span class="correct">' + CORRECT + '</span>/<span class="attempts">' + ATTEMPTS + '</span><span class="percentage">' + (getPercentage()) + '</span>')
       )
+      $header
+        .find('.score')
+          .append(
+            $('<button/>')
+              .addClass('reset-score')
+              .text('Reset')
+              .click(function() {
+                //reset
+                CORRECT = 0;
+                ATTEMPTS = 0;
+                updateScore();
+                eraseCookie(CORRECT_COOKIE);
+                eraseCookie(ATTEMPTS_COOKIE);
+              })
+          )
     }
 
     // Add reinforcement
@@ -321,8 +336,6 @@
       createCookie(name, value, days);
 
     return readCookie(name);
-  }
-  function incrementCookie(name) {
   }
 
   function eraseCookie(name) {

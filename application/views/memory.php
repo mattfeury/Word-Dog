@@ -9,7 +9,8 @@
     <h2 id="instruction"><?= $activity["instruction"] ?></h2>
 
     <div class="choose-difficulty">
-      <ul class="difficulties"></ul>
+      <h3>Choose a Difficulty to begin.</h3>
+      <ul class="rows difficulties"></ul>
     </div>
     <div class="activity">
       <div id="lesson">
@@ -176,7 +177,7 @@ $(document).ready(function(){
                 difficulty = item;
                 renderNextLesson();
                 $('#content .activity').show();    
-                $('.difficulties').hide();
+                $('.choose-difficulty').remove();
                 // Print after difficulty has been chosen
                 if(isPrint) renderPrint();
               })
@@ -184,6 +185,7 @@ $(document).ready(function(){
       )
     });
   } else {
+    $('.choose-difficulty').remove();
     renderNextLesson();
   }
   

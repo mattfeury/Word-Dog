@@ -11,7 +11,7 @@
     <div id="lesson">
       <img class="picture" />
       <div class="question"></div>
-      <div class="answers"></div>
+      <ul class="answers"></ul>
       <input name="answer" class="sentence" type="text" autocomplete="off"/>
     </div>
     <div id="action-menu">
@@ -66,7 +66,7 @@
     $.each(answers, function(i) { 
       $target
         .find('.answers')                                                           
-          .append('<p><input type="radio" name="answers0" value="' + i + '"/><label>' + answers[i] + '</label></p>');
+          .append('<li><label><input type="radio" name="answers0" value="' + i + '"/>' + answers[i] + '</label></li>');
     });
     //check first radio button
     if (!forPrint) 
@@ -134,7 +134,7 @@ $(document).ready(function(){
        .append('<h2>' +  printInstruction  + '</h2>');
       $.each(unit.lessons, function(i, lesson) {
         $.each(lesson['questions'], function(j, question) {
-          var $template = $('<div><img class="picture" /><div class="question"></div><div class="answers"></div></div>');
+          var $template = $('<div><img class="picture" /><div class="question"></div><ul class="answers"></ul></div>');
           defineActivityForLesson(lesson, $template);
           $print.append($template.html());        
           questionNum++;

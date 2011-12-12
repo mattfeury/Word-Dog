@@ -121,12 +121,13 @@ body
     
 h1
   font-size: 28px
-  //font-weight: bold
   margin-bottom: 20px
 h2
   font-size: 22px
-  //font-weight: bold
   margin-bottom: 20px
+h3
+  font-size: 18px
+  margin-bottom: 1em
 
 button, a, input.submit, input.save, .substitute
   border: $border-width solid $border-color
@@ -154,7 +155,7 @@ button, a, input.submit, input.save, .substitute
 .errors
   color: #A00
 
-a.logo-holder, ul.rows a
+a.logo-holder, ul.rows a, ul.rows button, .reset-score
   border: none
   display: block
   background: none
@@ -179,8 +180,11 @@ ul.rows
     &:nth-child(even)
       background: #F8F8F8
 
-    a
+    a, button
       padding: 7px 15px
+
+    button
+      width: 100%
 
     .edit, .print
       position: absolute
@@ -232,6 +236,12 @@ header
     font-size: 32px
     line-height: 34px
 
+    .reset-score
+      display: inline-block
+      vertical-align: middle
+      margin-left: 15px
+      font-size: 12px
+
     .percentage
       display: inline-block
       margin-left: 10px
@@ -252,7 +262,7 @@ header
       
     #lesson
       text-align: center
-      padding: 60px
+      padding: 20px 60px
       font-size: 24px
       line-height: 1.5em
       
@@ -322,6 +332,11 @@ body.activities
     display: block
     margin: auto
     padding-bottom: 3%
+    max-height: 400px
+    max-width: 100%
+
+  .choose-difficulty
+    text-align: center
 
   .missing
     display: inline
