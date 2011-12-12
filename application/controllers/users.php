@@ -34,7 +34,7 @@ class Users extends CI_Controller {
     $success = $u->login();
 
     if ($success) {
-      $this->_setSessionForUser($email);
+      $this->_setSessionForUser($u);
       redirect('/units');
     } else {
       $this->session->set_userdata(array('errors' => $u->error->string));
@@ -63,7 +63,7 @@ class Users extends CI_Controller {
     $u->save();
 
     if (! empty($u->id)) {
-      $this->_setSessionForUser($email);
+      $this->_setSessionForUser($u);
       redirect('/units');
     } else {
       $this->session->set_userdata(array('errors' => $u->error->string));
@@ -71,10 +71,11 @@ class Users extends CI_Controller {
     }
   }
 
-  private function _setSessionForUser($email) {
+  private function _setSessionForUser($user) {
     $session_data = array(
-                     'email'     => $email,
-                     'logged_in' => TRUE
+                      'email'     => $user->email,
+                      'name'      => $user->name,
+                      'logged_in' => TRUE
                     );
     $this->session->set_userdata($session_data);
 

@@ -5,7 +5,7 @@
   <div class="session">
     <button id="login" class="dialog-opener logged-out">Login</button>
     <button id="signup" class="dialog-opener logged-out">Sign Up</button>
-    <span class="logged-in">Logged In, <?= $this->session->userdata('email') ?></span>
+    <span class="logged-in">Logged in as <?= $this->session->userdata('name') ?></span>
     <?= anchor('/units', 'Teacher Zone', 'class="logged-in"'); ?>
     <?= anchor('/logout', 'Log Out', 'class="logged-in logout"'); ?>
   </div>

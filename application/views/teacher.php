@@ -3,7 +3,7 @@
   <?= anchor('/', 'Home', 'class="home"'); ?>
 
   <div class="session">
-    <span class="logged-in">Logged In, <?= $this->session->userdata('email') ?></span>
+    <span class="logged-in">Logged in as <?= $this->session->userdata('name') ?></span>
     <?= anchor('/users/modify', 'Edit Account'); ?>
     <?= anchor('/logout', 'Log Out', 'class="logged-in logout"'); ?>
   </div>
