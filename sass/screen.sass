@@ -328,6 +328,22 @@ form
 
 // Any activity page inherits this
 body.activities
+  #distractor
+    position: absolute
+    z-index: 4
+    top: 0
+    right: 0
+    background: url('../images/distractor.gif') no-repeat
+    border: none
+    width: 252px
+    height: 451px
+    margin: 0
+    padding: 0
+    text-indent: -999px
+    overflow: hidden
+    &.shades
+      background: url('../images/distractor-shades.gif') no-repeat
+
   img
     display: block
     margin: auto

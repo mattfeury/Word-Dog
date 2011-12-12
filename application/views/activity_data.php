@@ -77,6 +77,40 @@
     }
 
   });
+
+  // "Distractor" character
+  var distractionTimer = -1,
+      distractorHeight = 451,
+      distractorWidth = 252,
+      distractorLength = 3500, //length of distraction animation in millis
+      waitTimeBetweenDistractions = 12; //10 seconds average between distractions
+  $(function() {
+    function makeDistractor() {
+      if (! $('body').find('#distractor').length) {
+
+        $('body')
+          .append(
+            $('<div/>')
+              .attr('id', 'distractor')
+              .addClass('shades')
+          );
+      }
+      var height = $(document).height(),
+          randomTop = Math.random() * (height - distractorHeight);
+
+      $('#distractor')
+        .stop(true, false)
+        .animate({ 'top': randomTop + 'px', 'right': 0 }, 'slow');
+    }
+    function removeDistractor() {
+      $('#distractor').stop(true, false).animate({ right: -1 * distractorWidth + 'px' }, 'slow');
+    }
+    distractionTimer = setInterval(function() {
+      removeDistractor();
+      makeDistractor();
+      setTimeout(removeDistractor, distractorLength);
+    }, distractorLength + waitTimeBetweenDistractions * 1000);
+  });
    
   // Units and lessons
   var unit = <?= $unit_json ?>;
@@ -134,7 +168,7 @@
   }
   // Redirects to activities
   function unitOver() {
-    alert("You win. Lesson complete.");
+    alert("Lesson complete. Great job!");
     redirectToActivities();
   }
   //for multiple choice: gets other lessons
