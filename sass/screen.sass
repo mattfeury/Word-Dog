@@ -168,6 +168,8 @@ ul.rows
 
   li
     border-top: $border-width solid $border-color
+    position: relative
+
     &:first-child
       border: none
 
@@ -380,6 +382,16 @@ body.activities
     padding: 20px 40px
     
 .units
+  li.unit .edit
+    position: absolute
+    right: 0
+    top: 0
+    
+    &:active
+      left: auto
+      top: 1px
+      right: -1px
+
   form
     h2
       display: inline

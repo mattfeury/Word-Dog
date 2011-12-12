@@ -29,6 +29,12 @@ class Units extends CI_Controller {
     
     $data = array();
     $data['units'] = $units;
+
+    $email = $this->session->userdata('email');	
+    $user = new User();
+    $user->where('email', $email)->get();
+    
+    $data['sessionUser'] = $user;
     
 		$this->load->view('units', $data);
 	}
