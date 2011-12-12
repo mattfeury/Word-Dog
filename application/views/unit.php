@@ -196,6 +196,7 @@
         .append($newQuestion.hide());
       $newQuestion.slideDown();
       renameInputs();
+      $newQuestion.find('input:radio:first').attr('checked','checked');
       
       return false;
     });
