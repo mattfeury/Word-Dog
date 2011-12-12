@@ -54,9 +54,11 @@ $(document).ready(function(){
    });
    //specify html for printing for every lesson in the unit
    if(isPrint){
+     // Set print instructions only if defined
+     var printInstruction = config.printInstruction ? config.printInstruction : '';
      var $print = $('<div/>')
       .append('<h1>' + $('h1').text() + '</h1>')
-      .append('<h2>' + $('h2').text() + '</h2>');
+      .append('<h2>' +  printInstruction  + '</h2>');
      $.each(unit.lessons, function() {
        $print
         .append('<img src = "' + BASE_SRC + 'uploads/' + this['image'] + '"/>')
