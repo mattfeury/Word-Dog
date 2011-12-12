@@ -5,7 +5,7 @@
   <div class="session">
     <span class="logged-in">Logged in as <?= $this->session->userdata('name') ?></span>
     <?= anchor('/users/modify', 'Edit Account'); ?>
-    <?= anchor('/logout', 'Log Out', 'class="logged-in logout"'); ?>
+	<?= anchor('/logout', 'Log Out', 'class="logged-in logout"'); ?>
   </div>
 </header>
 <section id="container">
