@@ -37,6 +37,6 @@ li {
 }
 
 /* line 29, ../sass/print.sass */
-.sentence {
+.sentence, .input {
   margin: 50px 0px;
 }

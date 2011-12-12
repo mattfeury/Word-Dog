@@ -47,7 +47,8 @@ class Activities extends CI_Controller {
           'requires_images' => true,
           'requires_questions' => false,
           'data' => array(
-                      'cover' => CoverConditions::RETYPE
+                      'cover' => CoverConditions::RETYPE,
+                      'needsHandwriting' => true
                     )),
     4 => array(
           'view' => 'memory',
@@ -57,7 +58,8 @@ class Activities extends CI_Controller {
           'requires_questions' => false,
           'data' => array(
                       'cover' => CoverConditions::RETYPE,
-                      'coverPicture' => true
+                      'coverPicture' => true,
+                      'needsHandwriting' => true
                     )),
     5 => array(
           'view' => 'memory',
@@ -67,7 +69,9 @@ class Activities extends CI_Controller {
           'requires_questions' => false,
           'data' => array(
                       'cover' => CoverConditions::RETYPE,
-                      'difficulties' => 'time'
+                      'difficulties' => 'time',
+                      'needsHandwriting' => true,
+                      'coverPrintPicture' => true
                     )),
     6 => array(
           'view' => 'memory',
@@ -78,7 +82,8 @@ class Activities extends CI_Controller {
           'data' => array(
                       'cover' => CoverConditions::RETYPE,
                       'coverPicture' => true,
-                      'difficulties' => 'time'
+                      'difficulties' => 'time',
+                      'needsHandwriting' => true
                     )),
 
     // Jumble
@@ -184,7 +189,8 @@ class Activities extends CI_Controller {
           'requires_questions' => false,
           'data' => array(
                       'cover' => CoverConditions::CLOZE,
-                      'difficulties' => 'numBlanks'
+                      'difficulties' => 'numBlanks',
+                      'randomizePrintSentences' => true
                     )),
     17 => array(
           'view' => 'memory',
@@ -195,7 +201,8 @@ class Activities extends CI_Controller {
           'data' => array(
                       'cover' => CoverConditions::CLOZE,
                       'difficulties' => 'numBlanks',
-                      'coverPicture' => true
+                      'coverPicture' => true,
+                      'randomizePrintSentences' => true
                     )),
     18 => array(
           'view' => 'memory',
@@ -206,7 +213,8 @@ class Activities extends CI_Controller {
           'data' => array(
                       'cover' => CoverConditions::CLOZE,
                       'difficulties' => 'numBlanksAndTime',
-                      'chooseDifficulty' => true
+                      'chooseDifficulty' => true,
+                      'randomizePrintSentences' => true
                     )),
     19 => array(
           'view' => 'memory',
@@ -218,7 +226,8 @@ class Activities extends CI_Controller {
                       'cover' => CoverConditions::CLOZE,
                       'difficulties' => 'numBlanksAndTime',
                       'coverPicture' => true,
-                      'chooseDifficulty' => true
+                      'chooseDifficulty' => true,
+                      'randomizePrintSentences' => true
                     )),
     
     // Multiple Choice
