@@ -12,7 +12,7 @@
       foreach ($units as $unit) {
         echo '<li class="unit">';
         echo anchor('/activities/with/' . $unit->id , $unit->name);
-        if ($sessionUser->admin == 1)
+        if (isset($sessionUser) && $sessionUser->admin == 1)
           echo anchor('/units/edit/' . $unit->id , 'Edit', array('class' => 'edit'));
         echo '</li>';
       }

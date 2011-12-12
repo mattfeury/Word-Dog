@@ -5,8 +5,8 @@
 </header>
 <section id="container">
   <section id="content">
-    <h1>Multiple Choice / Memory</h1>
-    <h2>do something.</h2>
+    <h1 id="name"><?= $activity["name"] ?></h1>
+    <h2 id="instruction"><?= $activity["instruction"] ?></h2>
 
     <div class="activity">
       <div id="lesson">

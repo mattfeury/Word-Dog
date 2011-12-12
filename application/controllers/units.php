@@ -19,10 +19,13 @@ class Units extends CI_Controller {
 
     $this->load->view('teacher', $data);
   }
-  
-  public function show($id) {
+
+  /**
+   * Show a list of units by userId
+   */
+  public function show($userId) {
     $user = new User();
-    $user->id = $id;
+    $user->id = $userId;
     $user->validate()->get();
     
     $units = $user->unit->get();
@@ -31,15 +34,21 @@ class Units extends CI_Controller {
     $data['units'] = $units;
 
     $email = $this->session->userdata('email');	
-    $user = new User();
-    $user->where('email', $email)->get();
-    
-    $data['sessionUser'] = $user;
+    $sessionUser = new User();
+    $sessionUser->where('email', $email)->get();
+    if ($email && isset($sessionUser->id)) {
+      $data['sessionUser'] = $sessionUser;
+    }
     
 		$this->load->view('units', $data);
 	}
 
   public function create() {
+    if (! $this->session->userdata('logged_in')) {
+      redirect(base_url());
+      return;
+    }
+    
     $data = array();
     $data['unit'] = new Unit();
     $data['lessons'] = array();
@@ -48,6 +57,35 @@ class Units extends CI_Controller {
     $this->session->set_userdata($session_data);    
 
     $this->load->view('unit', $data);
+  }
+
+  public function delete($unitId) {
+    if (! $this->session->userdata('logged_in')) {
+      redirect(base_url());
+      return;
+    }
+    $unit = new Unit();
+    $unit->id = $unitId;
+    $unit->validate()->get();
+    
+    // Only allow certain people to delete (creator + admins)
+    $email = $this->session->userdata('email');
+    $user = new User();
+    $user->email = $email;
+    $user->validate()->get();    
+    if (! $user->canEdit($unit)) {
+      show_error('You are not authorized to delete this unit.', 403);
+      return false;
+    }
+
+    // Delete old lessons for this unit, if any.
+    $old = $unit->lessons->get();
+    $old->delete_all();
+
+    // Delete unit
+    $unit->delete();
+
+    redirect('/units');
   }
  
   public function edit($id) {
@@ -67,7 +105,7 @@ class Units extends CI_Controller {
     $user->email = $email;
     $user->validate()->get();    
     if (! $user->canEdit($unit)) {
-      echo 'You are not authorized to edit this unit.';
+      show_error('You are not authorized to edit this unit.', 403);
       return false;
     }
 
@@ -84,7 +122,7 @@ class Units extends CI_Controller {
   }
 
   /**
-   * Handles form input to upsert a unit/lesson
+   * Handles form input to upsert a unit and its lessons
    */
   public function update() {
     if (! $this->session->userdata('logged_in')) {
@@ -120,7 +158,7 @@ class Units extends CI_Controller {
     $user->validate()->get();
 
     if (! $email || empty($user->id)) {
-      echo 'You are not logged in.';
+      show_error('You are not logged in.', 404);
       return false;
     }
 
@@ -132,7 +170,7 @@ class Units extends CI_Controller {
       $unit->where('id', $unitId)->get();
 
       if (! $user->canEdit($unit)) {
-        echo 'You are not authorized to edit this unit.';
+        show_error('You are not authorized to edit this unit.', 403);
         return false;
       }
     }
@@ -185,9 +223,6 @@ class Units extends CI_Controller {
       $i++;
     }
 
-    //TODO handle errors and return
-
     redirect('/units');
   }
-
 }

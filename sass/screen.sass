@@ -151,6 +151,9 @@ button, a, input.submit, input.save, .substitute
     top: 1px
     left: 1px
 
+.errors
+  color: #A00
+
 a.logo-holder, ul.rows a
   border: none
   display: block
@@ -312,6 +315,7 @@ body.activities
   img
     display: block
     margin: auto
+    padding-bottom: 3%
 
   .missing
     display: inline
@@ -355,6 +359,12 @@ body.activities
     &.guessing
       label
         display: none
+        
+  ul.choices
+    margin: 20px
+
+    li
+      margin: 10px
 
 .users
   .user-link
@@ -392,7 +402,15 @@ body.activities
       top: 1px
       right: -1px
 
+  // Add / edit unit form
   form
+    position: relative
+
+    .delete
+      position: absolute
+      right: 0
+      top: 0
+
     h2
       display: inline
 

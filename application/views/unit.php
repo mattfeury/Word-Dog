@@ -15,6 +15,8 @@
     ?>
       <h2>Name of Unit:</h2>
       <input type="text" class="unit" name="unit" value="<?= $unit->name ?>" />
+      <?= anchor('/units/delete/'.$unit->id, 'Delete', array('class' => 'delete')); ?>
+
       <ul class="lessons">
         <? $i=0; foreach($lessons as $lesson): ?>
           <li class="lesson removable">
