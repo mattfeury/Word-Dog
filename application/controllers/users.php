@@ -136,7 +136,12 @@ class Users extends CI_Controller {
 		}
 		else{
 			$user = new User();
-			$user->where('email', $email)->get();		
+      $user->where('email', $email)->get();
+      if (! $email || empty($user->id)) {
+        show_error('User not found',404);
+        return false;
+      }
+
 			$hash=sha1($user->email.rand(0,100));
 			$user->tokenhash=$hash;			
 			$user->save();
@@ -221,7 +226,7 @@ class Users extends CI_Controller {
 				echo "<script>alert('Your password has successfully been changed.'); window.location = '" . SITE_URL() . "'</script>";			
 			}
 			else{
-				echo "<script>alert('Your passwords did not match. Please try again')</script>";			
+				echo "<script>alert('Your passwords did not match. Please try again'); history.back();</script>";			
 			}
 		}
 	}
