@@ -459,18 +459,20 @@ body.activities img {
   display: block;
   margin: auto;
   padding-bottom: 3%;
+  max-height: 400px;
+  max-width: 100%;
 }
-/* line 330, ../sass/screen.sass */
+/* line 332, ../sass/screen.sass */
 body.activities .choose-difficulty {
   text-align: center;
 }
-/* line 333, ../sass/screen.sass */
+/* line 335, ../sass/screen.sass */
 body.activities .missing {
   display: inline;
   position: relative;
   top: -0.25em;
 }
-/* line 339, ../sass/screen.sass */
+/* line 341, ../sass/screen.sass */
 body.activities .missing .filler {
   margin: 0 10px;
   visibility: hidden !important;
@@ -480,7 +482,7 @@ body.activities .missing .filler {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
   opacity: 0;
 }
-/* line 347, ../sass/screen.sass */
+/* line 349, ../sass/screen.sass */
 body.activities .missing label {
   position: absolute;
   top: 0;
@@ -488,7 +490,7 @@ body.activities .missing label {
   right: 0;
   cursor: pointer;
 }
-/* line 354, ../sass/screen.sass */
+/* line 356, ../sass/screen.sass */
 body.activities .missing input {
   width: inherit !important;
   min-width: 0 !important;
@@ -504,24 +506,24 @@ body.activities .missing input {
   height: 1em;
   display: inline-block;
 }
-/* line 373, ../sass/screen.sass */
+/* line 375, ../sass/screen.sass */
 body.activities .missing.guessing label {
   display: none;
 }
-/* line 376, ../sass/screen.sass */
+/* line 378, ../sass/screen.sass */
 body.activities ul.choices {
   margin: 20px;
 }
-/* line 379, ../sass/screen.sass */
+/* line 381, ../sass/screen.sass */
 body.activities ul.choices li {
   margin: 10px;
 }
 
-/* line 383, ../sass/screen.sass */
+/* line 385, ../sass/screen.sass */
 .users .user-link {
   position: relative;
 }
-/* line 386, ../sass/screen.sass */
+/* line 388, ../sass/screen.sass */
 .users .user-link .name {
   display: inline-block;
   max-width: 38%;
@@ -529,18 +531,18 @@ body.activities ul.choices li {
   overflow: hidden;
   white-space: nowrap;
 }
-/* line 393, ../sass/screen.sass */
+/* line 395, ../sass/screen.sass */
 .users .user-link .school {
   position: absolute;
   left: 40%;
 }
-/* line 396, ../sass/screen.sass */
+/* line 398, ../sass/screen.sass */
 .users .user-link .grade {
   position: absolute;
   right: 40px;
 }
 
-/* line 401, ../sass/screen.sass */
+/* line 403, ../sass/screen.sass */
 .users #content, .units #content, .activities #content {
   background: white;
   border: 2px solid #b0e68b;
@@ -548,34 +550,34 @@ body.activities ul.choices li {
   padding: 20px 40px;
 }
 
-/* line 409, ../sass/screen.sass */
+/* line 411, ../sass/screen.sass */
 .units form {
   position: relative;
 }
-/* line 412, ../sass/screen.sass */
+/* line 414, ../sass/screen.sass */
 .units form .delete {
   position: absolute;
   right: 0;
   top: 0;
 }
-/* line 417, ../sass/screen.sass */
+/* line 419, ../sass/screen.sass */
 .units form .delete:active {
   left: auto;
   right: -1px;
   top: 1px;
 }
-/* line 422, ../sass/screen.sass */
+/* line 424, ../sass/screen.sass */
 .units form h2 {
   display: inline;
 }
-/* line 425, ../sass/screen.sass */
+/* line 427, ../sass/screen.sass */
 .units form .stretch {
   overflow: hidden;
   *zoom: 1;
   line-height: 1.75em;
   position: relative;
 }
-/* line 430, ../sass/screen.sass */
+/* line 432, ../sass/screen.sass */
 .units form .stretch div {
   display: block;
   width: auto;
@@ -586,49 +588,49 @@ body.activities ul.choices li {
   margin-left: 135px;
   text-align: right;
 }
-/* line 440, ../sass/screen.sass */
+/* line 442, ../sass/screen.sass */
 .units form .stretch div input {
   width: 95%;
 }
-/* line 443, ../sass/screen.sass */
+/* line 445, ../sass/screen.sass */
 .units form input.unit, .units form input.sentence, .units form input.answer, .units form input.question-text {
   border: 2px solid #b0e68b;
 }
-/* line 446, ../sass/screen.sass */
+/* line 448, ../sass/screen.sass */
 .units form input.unit {
   width: 300px;
   height: 20px;
 }
 
-/* line 451, ../sass/screen.sass */
+/* line 453, ../sass/screen.sass */
 li.unit button, li.unit a, li.user button, li.user a {
   display: block;
 }
 
-/* line 454, ../sass/screen.sass */
+/* line 456, ../sass/screen.sass */
 li.lesson {
   border: 2px solid #b0e68b;
   padding: 10px;
   margin: 20px 0px;
   position: relative;
 }
-/* line 460, ../sass/screen.sass */
+/* line 462, ../sass/screen.sass */
 li.lesson .image-name {
   padding-left: 20px;
   padding-bottom: 10px;
   font-size: 18px;
   color: #adb7a5;
 }
-/* line 466, ../sass/screen.sass */
+/* line 468, ../sass/screen.sass */
 li.lesson .upload-picture {
   overflow: hidden;
   *zoom: 1;
 }
-/* line 468, ../sass/screen.sass */
+/* line 470, ../sass/screen.sass */
 li.lesson .upload-picture > label {
   float: left;
 }
-/* line 471, ../sass/screen.sass */
+/* line 473, ../sass/screen.sass */
 li.lesson .upload-picture .image-holder {
   position: relative;
   margin-left: 18%;
@@ -636,7 +638,7 @@ li.lesson .upload-picture .image-holder {
   overflow: hidden;
   *zoom: 1;
 }
-/* line 477, ../sass/screen.sass */
+/* line 479, ../sass/screen.sass */
 li.lesson .upload-picture .image-holder .image {
   float: left;
   width: 50%;
@@ -644,92 +646,92 @@ li.lesson .upload-picture .image-holder .image {
   position: relative;
   height: 200px;
 }
-/* line 484, ../sass/screen.sass */
+/* line 486, ../sass/screen.sass */
 li.lesson .upload-picture .image-holder .image .image-name.old-image {
   display: none;
 }
-/* line 487, ../sass/screen.sass */
+/* line 489, ../sass/screen.sass */
 li.lesson .upload-picture .image-holder .image.active {
   background-color: #e8f8dc;
 }
-/* line 492, ../sass/screen.sass */
+/* line 494, ../sass/screen.sass */
 li.lesson .upload-picture .image-holder .image label {
   height: 200px;
 }
-/* line 495, ../sass/screen.sass */
+/* line 497, ../sass/screen.sass */
 li.lesson .upload-picture .image-holder .image.new-image label {
   padding-top: 10%;
 }
-/* line 498, ../sass/screen.sass */
+/* line 500, ../sass/screen.sass */
 li.lesson .upload-picture .image-holder .image img {
   height: 100%;
   max-width: 100%;
 }
-/* line 502, ../sass/screen.sass */
+/* line 504, ../sass/screen.sass */
 li.lesson .upload-picture .image-holder .image .file-holder {
   margin: auto;
 }
-/* line 505, ../sass/screen.sass */
+/* line 507, ../sass/screen.sass */
 li.lesson .upload-picture .image-holder .image input[type=radio] {
   position: absolute;
   top: 5px;
   left: 5px;
   z-index: 2;
 }
-/* line 511, ../sass/screen.sass */
+/* line 513, ../sass/screen.sass */
 li.lesson li.question {
   display: block;
 }
-/* line 513, ../sass/screen.sass */
+/* line 515, ../sass/screen.sass */
 li.lesson li.question .remove {
   z-index: 1;
 }
-/* line 515, ../sass/screen.sass */
+/* line 517, ../sass/screen.sass */
 li.lesson li.question:hover .answer .help {
   visibility: visible;
 }
-/* line 518, ../sass/screen.sass */
+/* line 520, ../sass/screen.sass */
 li.lesson li.question .answer {
   overflow: hidden;
   *zoom: 1;
 }
-/* line 521, ../sass/screen.sass */
+/* line 523, ../sass/screen.sass */
 li.lesson li.question .answer .help {
   float: left;
   width: 28%;
   padding: 15px 0;
   visibility: hidden;
 }
-/* line 526, ../sass/screen.sass */
+/* line 528, ../sass/screen.sass */
 li.lesson li.question .answer .help h4 {
   font-size: 16px;
 }
-/* line 528, ../sass/screen.sass */
+/* line 530, ../sass/screen.sass */
 li.lesson li.question .answer .help p {
   font-size: 14px;
 }
-/* line 530, ../sass/screen.sass */
+/* line 532, ../sass/screen.sass */
 li.lesson li.question .answer .answers {
   float: right;
   text-align: right;
   width: 70%;
   margin-right: 2px;
 }
-/* line 536, ../sass/screen.sass */
+/* line 538, ../sass/screen.sass */
 li.lesson li.question .answer .answers fieldset.answer {
   margin: 5px 0;
   overflow: hidden;
   *zoom: 1;
 }
-/* line 540, ../sass/screen.sass */
+/* line 542, ../sass/screen.sass */
 li.lesson li.question .answer .answers fieldset.answer input {
   display: inline-block;
 }
-/* line 542, ../sass/screen.sass */
+/* line 544, ../sass/screen.sass */
 li.lesson li.question .answer .answers fieldset.answer input[type=text] {
   width: 90%;
 }
-/* line 545, ../sass/screen.sass */
+/* line 547, ../sass/screen.sass */
 li.lesson label {
   display: block;
 }
