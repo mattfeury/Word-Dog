@@ -175,7 +175,7 @@ $(document).ready(function(){
                 difficulty = item;
                 renderNextLesson();
                 $('#content .activity').show();    
-                $('.choose-difficulty').hide();
+                $('.choose-difficulty').remove();
                 // Print after difficulty has been chosen
                 if(isPrint) renderPrint();
               })
@@ -183,6 +183,7 @@ $(document).ready(function(){
       )
     });
   } else {
+    $('.choose-difficulty').remove();
     renderNextLesson();
   }
   
