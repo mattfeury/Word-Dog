@@ -5,13 +5,17 @@
   var ATTEMPTS_COOKIE = 'WORDDOG_ATTEMPS';
   var CORRECT = createCookieIfNeeded(CORRECT_COOKIE, 0, 1);
   var ATTEMPTS = createCookieIfNeeded(ATTEMPTS_COOKIE, 0, 1);
+  
+  // Reinforcement wait time before fadeout in milliseconds
+  var DELAY_SPEED = 1600;
 
   function correct() {
     createCookie(CORRECT_COOKIE, ++CORRECT, 1);
     createCookie(ATTEMPTS_COOKIE, ++ATTEMPTS, 1);
     updateScore();
 
-    $('.reinforcement').text('Correct!');
+    $('.reinforcement').show();
+    $('.reinforcement').text('Correct!').delay(DELAY_SPEED).fadeOut();
     $('.reinforcement').addClass('correct'); 
     $('.reinforcement').removeClass('incorrect');
   }
@@ -19,7 +23,8 @@
     createCookie(ATTEMPTS_COOKIE, ++ATTEMPTS, 1);
     updateScore();
 
-    $('.reinforcement').text('Incorrect');
+    $('.reinforcement').show();
+    $('.reinforcement').text('Incorrect').delay(DELAY_SPEED).fadeOut();
     $('.reinforcement').addClass('incorrect'); 
     $('.reinforcement').removeClass('correct');    
   }
