@@ -19,7 +19,9 @@ class Activities extends CI_Controller {
           'instruction' => 'Write a sentence for the picture below. Be sure to use correct capitalization and punctuation!',
           'requires_images' => true,
           'requires_questions' => false,
-          'data' => array()),
+          'data' => array(
+            'printInstruction' => 'Write the answer to the questions below.'
+          )),
     1 => array(
           'view' => 'answer_questions',
           'name' => 'Answer Questions 1',
@@ -27,7 +29,8 @@ class Activities extends CI_Controller {
           'requires_images' => true,
           'requires_questions' => true,
           'data' => array(
-                      'hideChoices' => false
+                      'hideChoices' => false,
+                      'printInstruction' => 'Choose the correct answers to the questions from the choices below.'
                     )),
     2 => array(
           'view' => 'answer_questions',
@@ -36,7 +39,8 @@ class Activities extends CI_Controller {
           'requires_images' => true,
           'requires_questions' => true,
           'data' => array(
-                      'hideChoices' => true
+                      'hideChoices' => true,
+                      'printInstruction' => 'Write the answers to the questions below.'
                     )),
 
     // Memory
@@ -48,7 +52,8 @@ class Activities extends CI_Controller {
           'requires_questions' => false,
           'data' => array(
                       'cover' => CoverConditions::RETYPE,
-                      'needsHandwriting' => true
+                      'needsHandwriting' => true,
+                      'printInstruction' => 'Memorize the sentences then flip the page over and write the sentences.'
                     )),
     4 => array(
           'view' => 'memory',
@@ -59,7 +64,8 @@ class Activities extends CI_Controller {
           'data' => array(
                       'cover' => CoverConditions::RETYPE,
                       'coverPicture' => true,
-                      'needsHandwriting' => true
+                      'needsHandwriting' => true,
+                      'printInstruction' => 'Memorize the sentences then flip the page over and write the sentences.'
                     )),
     5 => array(
           'view' => 'memory',
@@ -71,7 +77,8 @@ class Activities extends CI_Controller {
                       'cover' => CoverConditions::RETYPE,
                       'difficulties' => 'time',
                       'needsHandwriting' => true,
-                      'coverPrintPicture' => true
+                      'coverPrintPicture' => true,
+                      'printInstruction' => 'Memorize the sentences then flip the page over and write the sentences.'
                     )),
     6 => array(
           'view' => 'memory',
@@ -83,7 +90,8 @@ class Activities extends CI_Controller {
                       'cover' => CoverConditions::RETYPE,
                       'coverPicture' => true,
                       'difficulties' => 'time',
-                      'needsHandwriting' => true
+                      'needsHandwriting' => true,
+                      'printInstruction' => 'Memorize the sentences then flip the page over and write the sentences.'
                     )),
 
     // Jumble
@@ -94,7 +102,8 @@ class Activities extends CI_Controller {
           'requires_images' => true,
           'requires_questions' => false,
           'data' => array(
-                      'hidePicture' => false
+                      'hidePicture' => false,
+                      'printInstruction' => 'Unjumble the sentences.'
                     )),
     8 => array(
           'view' => 'jumble',
@@ -103,7 +112,8 @@ class Activities extends CI_Controller {
           'requires_images' => true,
           'requires_questions' => false,
           'data' => array(
-                      'hidePicture' => true            
+                      'hidePicture' => true,
+                      'printInstruction' => 'Unjumble the sentences.'            
                     )),
     9 => array(
           'view' => 'memory',
@@ -114,7 +124,8 @@ class Activities extends CI_Controller {
           'data' => array(
                       'cover' => CoverConditions::RETYPE,
                       'jumbleSentence' => true,
-                      'needsHandwriting' => true
+                      'needsHandwriting' => true,
+                      'printInstruction' => 'Unjumble the sentences then flip the page over to write them.'
                     )),
     10 => array(
           'view' => 'memory',
@@ -126,7 +137,8 @@ class Activities extends CI_Controller {
                       'cover' => CoverConditions::RETYPE,
                       'jumbleSentence' => true,
                       'coverPicture' => true,
-                      'needsHandwriting' => true
+                      'needsHandwriting' => true,
+                      'printInstruction' => 'Unjumble the sentences then flip the page over to write them.'
                     )),
     11 => array(
           'view' => 'memory',
@@ -138,7 +150,8 @@ class Activities extends CI_Controller {
                       'cover' => CoverConditions::RETYPE,
                       'jumbleSentence' => true,
                       'difficulties' => 'time',
-                      'needsHandwriting' => true
+                      'needsHandwriting' => true,
+                      'printInstruction' => 'Unjumble the sentences then flip the page over to write them.'
                     )),
     12 => array(
           'view' => 'memory',
@@ -151,7 +164,8 @@ class Activities extends CI_Controller {
                       'jumbleSentence' => true,
                       'coverPicture' => true,
                       'difficulties' => 'time',
-                      'needsHandwriting' => true
+                      'needsHandwriting' => true,
+                      'printInstruction' => 'Unjumble the sentences then flip the page over to write them.'
                     )),
 
     // Cloze
@@ -163,7 +177,8 @@ class Activities extends CI_Controller {
           'requires_questions' => false,
           'data' => array(
                       'displayPicture' => true,
-                      'showChoices' => true
+                      'showChoices' => true,
+                      'printInstruction' => 'Fill in the answers to the blanks.'
                     )),
     14 => array(
           'view' => 'cloze',
@@ -173,7 +188,8 @@ class Activities extends CI_Controller {
           'requires_questions' => false,
           'data' => array(
                       'displayPicture' => false,
-                      'showChoices' => true
+                      'showChoices' => true,
+                      'printInstruction' => 'Fill in the answers to the blanks using the choices below.'
                     )),
     15 => array(
           'view' => 'cloze',
@@ -183,7 +199,8 @@ class Activities extends CI_Controller {
           'requires_questions' => false,
           'data' => array(
                       'displayPicture' => false,
-                      'showChoices' => false
+                      'showChoices' => false,
+                      'printInstruction' => 'Fill in the answers to the blanks.'
                     )),
     16 => array(
           'view' => 'memory',
@@ -195,7 +212,8 @@ class Activities extends CI_Controller {
                       'cover' => CoverConditions::CLOZE,
                       'difficulties' => 'numBlanks',
                       'randomizePrintSentences' => true,
-                      'printWithDifficulties' => true
+                      'printWithDifficulties' => true,
+                      'printInstruction' => 'Fill in the answers to the blanks below using the sentences above.'
                     )),
     17 => array(
           'view' => 'memory',
@@ -208,7 +226,8 @@ class Activities extends CI_Controller {
                       'difficulties' => 'numBlanks',
                       'coverPicture' => true,
                       'randomizePrintSentences' => true,
-                      'printWithDifficulties' => true
+                      'printWithDifficulties' => true,
+                      'printInstruction' => 'Fill in the answers to the blanks below using the sentences above.'
                     )),
     18 => array(
           'view' => 'memory',
@@ -221,7 +240,8 @@ class Activities extends CI_Controller {
                       'difficulties' => 'numBlanksAndTime',
                       'chooseDifficulty' => true,
                       'randomizePrintSentences' => true,
-                      'printWithDifficulties' => true
+                      'printWithDifficulties' => true,
+                      'printInstruction' => 'Fill in the answers to the blanks below using the sentences above.'
                     )),
     19 => array(
           'view' => 'memory',
@@ -235,7 +255,8 @@ class Activities extends CI_Controller {
                       'coverPicture' => true,
                       'chooseDifficulty' => true,
                       'randomizePrintSentences' => true,
-                      'printWithDifficulties' => true
+                      'printWithDifficulties' => true,
+                      'printInstruction' => 'Fill in the answers to the blanks below using the sentences above.'
                     )),
     
     // Multiple Choice
@@ -245,7 +266,9 @@ class Activities extends CI_Controller {
           'instruction' => 'Choose the sentence that best describes the picture.',
           'requires_images' => true,
           'requires_questions' => false,
-          'data' => array()),
+          'data' => array(
+            'printInstruction' => 'Choose the sentence that best describes the picture.'
+          )),
     21 => array(
           'view' => 'multiple_choice_memory',
           'name' => 'Multiple Choice / Memory',
@@ -253,7 +276,9 @@ class Activities extends CI_Controller {
           'requires_images' => true,
           'requires_questions' => false,
           'name' => 'Multiple Choice / Memory', //TODO
-          'data' => array()),
+          'data' => array(
+            'printInstruction' => 'Draw a line from each picture to the sentence that best describes it.'
+          )),
   );
 
   public function index() {

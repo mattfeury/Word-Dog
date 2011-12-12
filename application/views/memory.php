@@ -127,9 +127,11 @@ function uncover() {
 }
 
 function renderPrint() {
+  // Set print instructions only if defined
+  var printInstruction = config.printInstruction ? config.printInstruction : '';
   var $print = $('<div/>')
-    .append('<h1>' + $('h1').text() + '</h1>')
-    .append('<h2>Memorize the sentence and flip the page over to write them.</h2>');
+   .append('<h1>' + $('h1').text() + '</h1>')
+   .append('<h2>' +  printInstruction  + '</h2>');
    $.each(unit.lessons, function(index, lesson) {
      var $template = $('<div><img class="picture" /><div class="sentence"></div><div class="input covered"><input name="sentence" class="answer" type="text" autocomplete="off" /></div></div>');
      defineActivityForLesson(lesson, $template);
