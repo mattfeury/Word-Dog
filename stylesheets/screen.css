@@ -609,14 +609,15 @@ body.activities ul.choices li {
   position: relative;
 }
 /* line 458, ../sass/screen.sass */
+.units form .stretch span {
+  display: block;
+  float: left;
+}
+/* line 462, ../sass/screen.sass */
 .units form .stretch div {
   display: block;
   width: auto;
-  position: absolute;
-  right: 0;
-  left: 0;
-  top: 0;
-  margin-left: 135px;
+  margin-left: 75px;
   text-align: right;
 }
 /* line 468, ../sass/screen.sass */

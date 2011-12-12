@@ -2,13 +2,26 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Word, Dog (beta)</title>
+  <title>Word, Dog (beta)</title>
+  <?= link_tag(array(
+                    'href' => 'stylesheets/screen.css',
+                    'rel' => 'stylesheet',
+                    'type' => 'text/css',
+                    'media' => 'screen, projection'
+              )); ?>
   <script src="<?= base_url() ?>scripts/jquery-1.6.4.min.js"></script>
   <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
   <!--[if lte IE 7]>
     <script src="<?= base_url() ?>scripts/json2.js"></script>
+    <?= link_tag(array(
+                    'href' => 'stylesheets/ie.css',
+                    'rel' => 'stylesheet',
+                    'type' => 'text/css',
+                    'media' => 'screen, projection'
+              )); ?>
+
   <![endif]-->
 
   <script>
@@ -32,11 +45,5 @@
       });
     });
   </script>
-  <?= link_tag(array(
-                    'href' => 'stylesheets/screen.css',
-                    'rel' => 'stylesheet',
-                    'type' => 'text/css',
-                    'media' => 'screen, projection'
-              )); ?>
 </head>
 <body class="<?= $this->router->class . ' ' . ($this->session->userdata('logged_in') ? 'logged-in' : 'logged-out') ?>">
