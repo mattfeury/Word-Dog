@@ -34,7 +34,6 @@
 function defineActivityForLesson(lesson, $target) {
   var forPrint = ! $target ? false : true;
   $target = ! $target ? $('#lesson') : $target;
-  console.log($target);
   var sentence = (config.jumbleSentence) ? jumbleSentence(lesson['sentence']) : lesson['sentence'];
 
   // Replace image and sentence
@@ -65,9 +64,12 @@ function defineActivityForLesson(lesson, $target) {
   
   // Printing
   if(forPrint) {
-    $target.find('.answer').hide();
-    // hides for both flash memories and anything with cover picture
-    if(config.coverPicture || config.difficulties.length) $target.find('.picture').hide();
+    // Hide input boxes
+    $target.find('input').hide();
+    // Put in handwritten blanks
+    $target.find('.missing').replaceWith('<span class="blank"></span>');
+    // Hides picture for all coverPictures and special case where print is different than game
+    if(config.coverPicture || config.coverPrintPicture) $target.find('.picture').hide();
   }
   
 }
@@ -124,6 +126,37 @@ function uncover() {
   resetCoverTimer($('#lesson').find('.sentence').text());
 }
 
+function renderPrint() {
+  var $print = $('<div/>')
+    .append('<h1>' + $('h1').text() + '</h1>')
+    .append('<h2>Memorize the sentence and flip the page over to write them.</h2>');
+   $.each(unit.lessons, function(index, lesson) {
+     var $template = $('<div><img class="picture" /><div class="sentence"></div><div class="input covered"><input name="sentence" class="answer" type="text" autocomplete="off" /></div></div>');
+     defineActivityForLesson(lesson, $template);
+     $print.append($template.html());
+   });
+   //break page so users write on back - only for memory activities
+   if(config.needsHandwriting) {
+     $print
+      .append('<p class="pagebreak"></p>');
+     $.each(unit.lessons, function() {
+       $print
+        .append('<div class="handwrite top-line"> </div>')
+        .append('<div class="handwrite"> </div>')
+        .append('<div class="handwrite bottom-line"> </div>');
+     });
+   }
+   // Move blank sentences to bottom and randomize for memory-cloze
+   if(config.randomizePrintSentences) {
+     var blankSentences = $print.find('.input');
+     // Randomize
+     blankSentences.sort(function() {return 0.5 - Math.random()});
+     $print.append('<div class="random-sentences"></div');
+     $print.find('.random-sentences').append(blankSentences);
+   }
+   printActivity($print.html());
+}
+
 //Cover for memory
 $(document).ready(function(){
 
@@ -142,6 +175,8 @@ $(document).ready(function(){
                 renderNextLesson();
                 $('#content .activity').show();    
                 $('.difficulties').hide();
+                // Print after difficulty has been chosen
+                if(isPrint) renderPrint();
               })
         )
       )
@@ -171,31 +206,9 @@ $(document).ready(function(){
     }
        
   });
-  //specify html for printing for every lesson in the unit
-  if(isPrint){
-    var $print = $('<div/>')
-      .append('<h1>' + $('h1').text() + '</h1>')
-      .append('<h2>Memorize the sentence and flip the page over to write them.</h2>');
-     $.each(unit.lessons, function(index, lesson) {
-       //print pictures only if static1 activity
-       // if(!config.coverPicture && !config.difficulties.length) 
-       //  $print.append('<img src = "' + BASE_SRC + 'uploads/' + this['image'] + '"/>');
-       // $print
-       //  .append('<p>' + this['sentence'] + '</p>');
-       var $template = $('<div><img class="picture" /><div class="sentence"></div><div class="input covered"><input name="sentence" class="answer" type="text" autocomplete="off" /></div></div>');
-       defineActivityForLesson(lesson, $template);
-       $print.append($template.html());
-     });
-     //break page so users write on back
-     $print
-      .append('<p class="pagebreak"></p>');
-     $.each(unit.lessons, function() {
-       $print
-        .append('<div class="handwrite top-line"> </div>')
-        .append('<div class="handwrite"> </div>')
-        .append('<div class="handwrite bottom-line"> </div>');
-     });
-     printActivity($print.html());
+  // Print if in print mode and activity has no difficulties
+  if(isPrint && !config.difficulties.length){
+    renderPrint();
    }
   $('.answer').live('keypress', function(e) {
     if(e.which == 13) {
