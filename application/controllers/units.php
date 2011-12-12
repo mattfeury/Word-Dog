@@ -59,8 +59,8 @@ class Units extends CI_Controller {
     $this->load->view('unit', $data);
   }
 
-  public function delete($unitId) {
-    if (! $this->session->userdata('logged_in')) {
+  public function delete($unitId = false) {
+    if (! $this->session->userdata('logged_in') || ! $unitId) {
       redirect(base_url());
       return;
     }
