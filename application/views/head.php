@@ -4,6 +4,10 @@
 	<meta charset="utf-8">
 	<title>Word, Dog (beta)</title>
   <script src="<?= base_url() ?>scripts/jquery-1.6.4.min.js"></script>
+  <!--[if lt IE 9]>
+  <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
   <script>
     var config = {
       base: "<?php echo base_url(); ?>",
