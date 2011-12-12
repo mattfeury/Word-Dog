@@ -165,7 +165,7 @@ a.logo-holder, ul.rows a
 
 ul.rows
   border: $border-width solid $border-color
-  max-height: 405px
+  max-height: 450px
   overflow-y: auto
   overflow-x: hidden
 
@@ -180,7 +180,17 @@ ul.rows
       background: #F8F8F8
 
     a
-      padding: 7px 15px  
+      padding: 7px 15px
+
+    .edit, .print
+      position: absolute
+      right: 0
+      top: 0
+      
+      &:active
+        left: auto
+        top: 1px
+        right: -1px
   
 .file-holder
   position: relative
@@ -308,14 +318,6 @@ form
 
 // Any activity page inherits this
 body.activities
-  .play
-    +clearfix
-
-    .activities
-      float: left
-    .levels
-      float: right
-
   img
     display: block
     margin: auto
@@ -396,16 +398,6 @@ body.activities
     padding: 20px 40px
     
 .units
-  li.unit .edit
-    position: absolute
-    right: 0
-    top: 0
-    
-    &:active
-      left: auto
-      top: 1px
-      right: -1px
-
   // Add / edit unit form
   form
     position: relative
