@@ -40,3 +40,21 @@ li {
 .sentence, .input {
   margin: 50px 0px;
 }
+
+/* line 32, ../sass/print.sass */
+.connector-bank {
+  float: right;
+}
+/* line 35, ../sass/print.sass */
+.connector-bank .choice {
+  margin: 50px 0px;
+}
+
+/* line 38, ../sass/print.sass */
+.connector-images {
+  float: left;
+}
+/* line 40, ../sass/print.sass */
+.connector-images img {
+  display: block;
+}
