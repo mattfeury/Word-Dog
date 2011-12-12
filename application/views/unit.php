@@ -218,7 +218,7 @@
         var question = {},
             answers = [];
 
-        question["question"] = ($question.find('.question-text').val() || '').trim();
+        question["question"] = $.trim($question.find('.question-text').val() || '');
         question["answer"] = parseInt($question.find('.answer:checked').val());
 
         $question.find('.answer:text').each(function(i, answer) {
