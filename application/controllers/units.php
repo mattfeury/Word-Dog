@@ -105,7 +105,7 @@ class Units extends CI_Controller {
     $user->email = $email;
     $user->validate()->get();    
     if (! $user->canEdit($unit)) {
-      echo 'You are not authorized to edit this unit.';
+      show_error('You are not authorized to edit this unit.', 403);
       return false;
     }
 
@@ -158,7 +158,7 @@ class Units extends CI_Controller {
     $user->validate()->get();
 
     if (! $email || empty($user->id)) {
-      echo 'You are not logged in.';
+      show_error('You are not logged in.', 404);
       return false;
     }
 
@@ -170,7 +170,7 @@ class Units extends CI_Controller {
       $unit->where('id', $unitId)->get();
 
       if (! $user->canEdit($unit)) {
-        echo 'You are not authorized to edit this unit.';
+        show_error('You are not authorized to edit this unit.', 403);
         return false;
       }
     }
