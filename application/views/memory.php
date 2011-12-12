@@ -97,7 +97,7 @@ function cover() {
     .find('.sentence, .input')
       .toggleClass('covered')
     .end()
-    .find('input:visible')
+    .find('input:visible:not(.cloze)')
       .val('')
       .focus()
     .end()

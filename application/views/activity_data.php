@@ -298,7 +298,7 @@
         )
         .append(
           $('<input id="answer'+totalBlanksCreated+'" name="answer'+totalBlanksCreated+'" type="text" />')
-            .addClass('answer')
+            .addClass('answer cloze')
             .attr('data-answer', missingWord)
         )
         .append(
