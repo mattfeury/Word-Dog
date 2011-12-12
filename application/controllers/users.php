@@ -7,8 +7,6 @@ class Users extends CI_Controller {
       redirect(base_url());
       return;
     }
-
-    //$this->load->view('teacher');
   }
   
   public function show() {
@@ -39,8 +37,8 @@ class Users extends CI_Controller {
       $this->_setSessionForUser($email);
       redirect('/units');
     } else {
-      //TODO return errors
-      redirect(base_url());
+      $this->session->set_userdata(array('errors' => $u->error->string));
+      redirect(base_url() . '?error=login');
     }
 
   }
@@ -68,8 +66,8 @@ class Users extends CI_Controller {
       $this->_setSessionForUser($email);
       redirect('/units');
     } else {
-      //TODO return errors
-      redirect(base_url());
+      $this->session->set_userdata(array('errors' => $u->error->string));
+      redirect(base_url() . '?error=signup');
     }
   }
 

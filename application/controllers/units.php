@@ -185,8 +185,6 @@ class Units extends CI_Controller {
       $i++;
     }
 
-    //TODO handle errors and return
-
     redirect('/units');
   }
 
