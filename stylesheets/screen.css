@@ -347,51 +347,56 @@ header .score .percentage {
   text-align: center;
 }
 /* line 240, ../sass/screen.sass */
+#container #content #instruction {
+  line-height: 1.5em;
+}
+/* line 243, ../sass/screen.sass */
 #container #content #lesson {
   text-align: center;
   padding: 60px;
   font-size: 24px;
+  line-height: 1.5em;
 }
-/* line 245, ../sass/screen.sass */
+/* line 249, ../sass/screen.sass */
 #container #content #lesson .sentence, #container #content #lesson .question, #container #content #lesson .answers, #container #content #lesson .answer {
   font-size: 28px;
   margin: 5px;
 }
-/* line 249, ../sass/screen.sass */
+/* line 253, ../sass/screen.sass */
 #container #content #lesson input[type="text"] {
   width: 80%;
   min-width: 500px;
   border: 2px solid #b0e68b;
 }
-/* line 254, ../sass/screen.sass */
+/* line 258, ../sass/screen.sass */
 #container #content #action-menu {
   padding-top: 20px;
   text-align: center;
 }
 
-/* line 261, ../sass/screen.sass */
+/* line 265, ../sass/screen.sass */
 form label {
   display: block;
   margin: 3px 0px;
   font-size: 18px;
 }
-/* line 266, ../sass/screen.sass */
+/* line 270, ../sass/screen.sass */
 form input {
   font-size: 18px;
   color: #adb7a5;
   padding-left: 5px;
 }
-/* line 271, ../sass/screen.sass */
+/* line 275, ../sass/screen.sass */
 form input.info {
   border: 2px solid #b0e68b;
 }
 
-/* line 274, ../sass/screen.sass */
+/* line 278, ../sass/screen.sass */
 .removable {
   position: relative;
 }
 
-/* line 276, ../sass/screen.sass */
+/* line 280, ../sass/screen.sass */
 .remove {
   background: url("../images/close.png") no-repeat;
   border: none;
@@ -403,56 +408,56 @@ form input.info {
   position: absolute;
   z-index: 2;
 }
-/* line 286, ../sass/screen.sass */
+/* line 290, ../sass/screen.sass */
 .remove:hover {
   -moz-box-shadow: 0 0 0 0;
   -webkit-box-shadow: 0 0 0 0;
   -o-box-shadow: 0 0 0 0;
   box-shadow: 0 0 0 0;
 }
-/* line 289, ../sass/screen.sass */
+/* line 293, ../sass/screen.sass */
 .remove + * {
   padding-left: 40px;
 }
 
-/* line 296, ../sass/screen.sass */
+/* line 300, ../sass/screen.sass */
 .landing #container {
   width: 50%;
   text-align: center;
 }
-/* line 300, ../sass/screen.sass */
+/* line 304, ../sass/screen.sass */
 .landing #container .about {
   display: block;
   margin: auto;
   padding: 30px 15px;
 }
 
-/* line 307, ../sass/screen.sass */
+/* line 311, ../sass/screen.sass */
 body.activities .play {
   overflow: hidden;
   *zoom: 1;
 }
-/* line 310, ../sass/screen.sass */
+/* line 314, ../sass/screen.sass */
 body.activities .play .activities {
   float: left;
 }
-/* line 312, ../sass/screen.sass */
+/* line 316, ../sass/screen.sass */
 body.activities .play .levels {
   float: right;
 }
-/* line 315, ../sass/screen.sass */
+/* line 319, ../sass/screen.sass */
 body.activities img {
   display: block;
   margin: auto;
   padding-bottom: 3%;
 }
-/* line 320, ../sass/screen.sass */
+/* line 324, ../sass/screen.sass */
 body.activities .missing {
   display: inline;
   position: relative;
   top: -0.25em;
 }
-/* line 326, ../sass/screen.sass */
+/* line 330, ../sass/screen.sass */
 body.activities .missing .filler {
   margin: 0 10px;
   visibility: hidden !important;
@@ -462,15 +467,15 @@ body.activities .missing .filler {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
   opacity: 0;
 }
-/* line 334, ../sass/screen.sass */
+/* line 338, ../sass/screen.sass */
 body.activities .missing label {
   position: absolute;
-  top: 0.3em;
+  top: 0;
   left: 0;
   right: 0;
   cursor: pointer;
 }
-/* line 341, ../sass/screen.sass */
+/* line 345, ../sass/screen.sass */
 body.activities .missing input {
   width: inherit !important;
   min-width: 0 !important;
@@ -486,24 +491,24 @@ body.activities .missing input {
   height: 1em;
   display: inline-block;
 }
-/* line 360, ../sass/screen.sass */
+/* line 364, ../sass/screen.sass */
 body.activities .missing.guessing label {
   display: none;
 }
-/* line 363, ../sass/screen.sass */
+/* line 367, ../sass/screen.sass */
 body.activities ul.choices {
   margin: 20px;
 }
-/* line 366, ../sass/screen.sass */
+/* line 370, ../sass/screen.sass */
 body.activities ul.choices li {
   margin: 10px;
 }
 
-/* line 370, ../sass/screen.sass */
+/* line 374, ../sass/screen.sass */
 .users .user-link {
   position: relative;
 }
-/* line 373, ../sass/screen.sass */
+/* line 377, ../sass/screen.sass */
 .users .user-link .name {
   display: inline-block;
   max-width: 38%;
@@ -511,18 +516,18 @@ body.activities ul.choices li {
   overflow: hidden;
   white-space: nowrap;
 }
-/* line 380, ../sass/screen.sass */
+/* line 384, ../sass/screen.sass */
 .users .user-link .school {
   position: absolute;
   left: 40%;
 }
-/* line 383, ../sass/screen.sass */
+/* line 387, ../sass/screen.sass */
 .users .user-link .grade {
   position: absolute;
   right: 40px;
 }
 
-/* line 388, ../sass/screen.sass */
+/* line 392, ../sass/screen.sass */
 .users #content, .units #content, .activities #content {
   background: white;
   border: 2px solid #b0e68b;
@@ -530,40 +535,40 @@ body.activities ul.choices li {
   padding: 20px 40px;
 }
 
-/* line 395, ../sass/screen.sass */
+/* line 399, ../sass/screen.sass */
 .units li.unit .edit {
   position: absolute;
   right: 0;
   top: 0;
 }
-/* line 400, ../sass/screen.sass */
+/* line 404, ../sass/screen.sass */
 .units li.unit .edit:active {
   left: auto;
   top: 1px;
   right: -1px;
 }
-/* line 406, ../sass/screen.sass */
+/* line 410, ../sass/screen.sass */
 .units form {
   position: relative;
 }
-/* line 409, ../sass/screen.sass */
+/* line 413, ../sass/screen.sass */
 .units form .delete {
   position: absolute;
   right: 0;
   top: 0;
 }
-/* line 414, ../sass/screen.sass */
+/* line 418, ../sass/screen.sass */
 .units form h2 {
   display: inline;
 }
-/* line 417, ../sass/screen.sass */
+/* line 421, ../sass/screen.sass */
 .units form .stretch {
   overflow: hidden;
   *zoom: 1;
   line-height: 1.75em;
   position: relative;
 }
-/* line 422, ../sass/screen.sass */
+/* line 426, ../sass/screen.sass */
 .units form .stretch div {
   display: block;
   width: auto;
@@ -574,49 +579,49 @@ body.activities ul.choices li {
   margin-left: 135px;
   text-align: right;
 }
-/* line 432, ../sass/screen.sass */
+/* line 436, ../sass/screen.sass */
 .units form .stretch div input {
   width: 95%;
 }
-/* line 435, ../sass/screen.sass */
+/* line 439, ../sass/screen.sass */
 .units form input.unit, .units form input.sentence, .units form input.answer, .units form input.question-text {
   border: 2px solid #b0e68b;
 }
-/* line 438, ../sass/screen.sass */
+/* line 442, ../sass/screen.sass */
 .units form input.unit {
   width: 300px;
   height: 20px;
 }
 
-/* line 443, ../sass/screen.sass */
+/* line 447, ../sass/screen.sass */
 li.unit button, li.unit a, li.user button, li.user a {
   display: block;
 }
 
-/* line 446, ../sass/screen.sass */
+/* line 450, ../sass/screen.sass */
 li.lesson {
   border: 2px solid #b0e68b;
   padding: 10px;
   margin: 20px 0px;
   position: relative;
 }
-/* line 452, ../sass/screen.sass */
+/* line 456, ../sass/screen.sass */
 li.lesson .image-name {
   padding-left: 20px;
   padding-bottom: 10px;
   font-size: 18px;
   color: #adb7a5;
 }
-/* line 458, ../sass/screen.sass */
+/* line 462, ../sass/screen.sass */
 li.lesson .upload-picture {
   overflow: hidden;
   *zoom: 1;
 }
-/* line 460, ../sass/screen.sass */
+/* line 464, ../sass/screen.sass */
 li.lesson .upload-picture > label {
   float: left;
 }
-/* line 463, ../sass/screen.sass */
+/* line 467, ../sass/screen.sass */
 li.lesson .upload-picture .image-holder {
   position: relative;
   margin-left: 18%;
@@ -624,7 +629,7 @@ li.lesson .upload-picture .image-holder {
   overflow: hidden;
   *zoom: 1;
 }
-/* line 469, ../sass/screen.sass */
+/* line 473, ../sass/screen.sass */
 li.lesson .upload-picture .image-holder .image {
   float: left;
   width: 50%;
@@ -632,92 +637,92 @@ li.lesson .upload-picture .image-holder .image {
   position: relative;
   height: 200px;
 }
-/* line 476, ../sass/screen.sass */
+/* line 480, ../sass/screen.sass */
 li.lesson .upload-picture .image-holder .image .image-name.old-image {
   display: none;
 }
-/* line 479, ../sass/screen.sass */
+/* line 483, ../sass/screen.sass */
 li.lesson .upload-picture .image-holder .image.active {
   background-color: #e8f8dc;
 }
-/* line 484, ../sass/screen.sass */
+/* line 488, ../sass/screen.sass */
 li.lesson .upload-picture .image-holder .image label {
   height: 200px;
 }
-/* line 487, ../sass/screen.sass */
+/* line 491, ../sass/screen.sass */
 li.lesson .upload-picture .image-holder .image.new-image label {
   padding-top: 10%;
 }
-/* line 490, ../sass/screen.sass */
+/* line 494, ../sass/screen.sass */
 li.lesson .upload-picture .image-holder .image img {
   height: 100%;
   max-width: 100%;
 }
-/* line 494, ../sass/screen.sass */
+/* line 498, ../sass/screen.sass */
 li.lesson .upload-picture .image-holder .image .file-holder {
   margin: auto;
 }
-/* line 497, ../sass/screen.sass */
+/* line 501, ../sass/screen.sass */
 li.lesson .upload-picture .image-holder .image input[type=radio] {
   position: absolute;
   top: 5px;
   left: 5px;
   z-index: 2;
 }
-/* line 503, ../sass/screen.sass */
+/* line 507, ../sass/screen.sass */
 li.lesson li.question {
   display: block;
 }
-/* line 505, ../sass/screen.sass */
+/* line 509, ../sass/screen.sass */
 li.lesson li.question .remove {
   z-index: 1;
 }
-/* line 507, ../sass/screen.sass */
+/* line 511, ../sass/screen.sass */
 li.lesson li.question:hover .answer .help {
   visibility: visible;
 }
-/* line 510, ../sass/screen.sass */
+/* line 514, ../sass/screen.sass */
 li.lesson li.question .answer {
   overflow: hidden;
   *zoom: 1;
 }
-/* line 513, ../sass/screen.sass */
+/* line 517, ../sass/screen.sass */
 li.lesson li.question .answer .help {
   float: left;
   width: 28%;
   padding: 15px 0;
   visibility: hidden;
 }
-/* line 518, ../sass/screen.sass */
+/* line 522, ../sass/screen.sass */
 li.lesson li.question .answer .help h4 {
   font-size: 16px;
 }
-/* line 520, ../sass/screen.sass */
+/* line 524, ../sass/screen.sass */
 li.lesson li.question .answer .help p {
   font-size: 14px;
 }
-/* line 522, ../sass/screen.sass */
+/* line 526, ../sass/screen.sass */
 li.lesson li.question .answer .answers {
   float: right;
   text-align: right;
   width: 70%;
   margin-right: 2px;
 }
-/* line 528, ../sass/screen.sass */
+/* line 532, ../sass/screen.sass */
 li.lesson li.question .answer .answers fieldset.answer {
   margin: 5px 0;
   overflow: hidden;
   *zoom: 1;
 }
-/* line 532, ../sass/screen.sass */
+/* line 536, ../sass/screen.sass */
 li.lesson li.question .answer .answers fieldset.answer input {
   display: inline-block;
 }
-/* line 534, ../sass/screen.sass */
+/* line 538, ../sass/screen.sass */
 li.lesson li.question .answer .answers fieldset.answer input[type=text] {
   width: 90%;
 }
-/* line 537, ../sass/screen.sass */
+/* line 541, ../sass/screen.sass */
 li.lesson label {
   display: block;
 }
