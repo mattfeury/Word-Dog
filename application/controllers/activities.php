@@ -275,7 +275,7 @@ class Activities extends CI_Controller {
           'instruction' => 'Read the sentences and click "Cover".  Look at the picture and select the button of the sentence that best describes the picture.',
           'requires_images' => true,
           'requires_questions' => false,
-          'name' => 'Multiple Choice / Memory', //TODO
+          'name' => 'Multiple Choice / Memory',
           'data' => array(
             'printInstruction' => 'Draw a line from each picture to the sentence that best describes it.'
           )),

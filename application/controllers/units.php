@@ -135,6 +135,7 @@ class Units extends CI_Controller {
 
     $lessonsJson = $this->input->post('lessons_json', TRUE);
     $unitName = $this->input->post('unit', TRUE);
+    $showDistractor = $this->input->post('show_distractor', TRUE);
 
     // Config image upload goodies
     $field_name = 'picture';
@@ -176,6 +177,7 @@ class Units extends CI_Controller {
     }
 
     $unit->name = $unitName;
+    $unit->showDistractor = $showDistractor == "true" ? 1 : 0;
     $unit->save();
 
     if ($isNew)
