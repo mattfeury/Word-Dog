@@ -1,5 +1,9 @@
 <script type="text/javascript">
-
+  
+  /**
+   * Holds functions and data used by all activities.
+   */
+   
   // Scores
   var CORRECT_COOKIE = 'WORDDOG_CORRECT';
   var ATTEMPTS_COOKIE = 'WORDDOG_ATTEMPS';
@@ -9,6 +13,7 @@
   // Reinforcement wait time before fadeout in milliseconds
   var DELAY_SPEED = 1600;
 
+  // Handles updates if a lesson is correct
   function correct() {
     createCookie(CORRECT_COOKIE, ++CORRECT, 1);
     createCookie(ATTEMPTS_COOKIE, ++ATTEMPTS, 1);
@@ -19,6 +24,7 @@
     $('.reinforcement').addClass('correct'); 
     $('.reinforcement').removeClass('incorrect');
   }
+  // Handles updates if a lesson is incorrect
   function incorrect() {
     createCookie(ATTEMPTS_COOKIE, ++ATTEMPTS, 1);
     updateScore();
@@ -28,9 +34,11 @@
     $('.reinforcement').addClass('incorrect'); 
     $('.reinforcement').removeClass('correct');    
   }
+  // Creates percentage from corrects and attempts
   function getPercentage() {
     return ((CORRECT / ATTEMPTS * 100 || 0) + '').split('.').shift() + '%';
   }
+  // Updates the user's score
   function updateScore() {
     $('header .score')
       .find('.correct')
@@ -121,9 +129,10 @@
   window.config = $.extend(window.config || {}, activity_config);
   var currentLesson = -1;
 
-  // Printing
+  // Returns if print is passed in URL parameter
   var isPrint = <?= ($print == '') ? 0 : 1 ?>;
 
+  // Difficulty data for activities with difficulties
   var difficulties = [];
   switch (config.difficulties) {
     case 'time':
@@ -150,6 +159,7 @@
   }
   config.difficulties = difficulties;
 
+  // Gets the next lesson in the unit to be loaded
   function getNextLesson() {
     currentLesson++;
     if (currentLesson < unit.lessons.length)
@@ -157,6 +167,7 @@
     else
       return null;
   }
+  // Loads the next lesson in the unit
   function renderNextLesson() {
     // Remove correct indicator
     $('.reinforcement')
@@ -169,7 +180,7 @@
     else
       unitOver();
   }
-  // Redirects to activities
+  // Shows message after lesson is complete and redirects
   function unitOver() {
     alert("Lesson complete. Great job!");
     redirectToActivities();
@@ -194,6 +205,7 @@
     document.close();
   }
   
+  // Redirects to activities view
   function redirectToActivities() {
     var redirect_url = "<?= site_url('activities/with') ?>" + '/' + unit.id;
     window.location = redirect_url;
@@ -274,7 +286,7 @@
     totalBlanksCreated = 0;
     return createClozeFromSentence(sentence, numBlanks);
   }
-
+  // Removes words from sentence for cloze
   function createClozeFromSentence(sentence, numBlanks) {
     // Base case. If we don't need to create any more blanks, just return the text.
     if (totalBlanksCreated >= numBlanks)
@@ -356,7 +368,7 @@
     else var expires = "";
     document.cookie = name+"="+value+expires+"; path=/";
   }
-
+  // Parses javascript cookie
   function readCookie(name) {
     var nameEQ = name + "=";
     var ca = document.cookie.split(';');
@@ -368,6 +380,7 @@
     return null;
   }
 
+  // Creates cookie for given duration. Used for score.
   function createCookieIfNeeded(name, value, days) {
     if (! readCookie(name))
       createCookie(name, value, days);
@@ -375,6 +388,7 @@
     return readCookie(name);
   }
 
+  // Removes cookie
   function eraseCookie(name) {
     createCookie(name,"",-1);
   }

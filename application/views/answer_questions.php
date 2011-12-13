@@ -143,6 +143,7 @@ $(document).ready(function(){
       });
       printActivity($print.html());
     }
+    // Mimics 'go' press on enter key press
    $('.sentence').keypress(function(e) {
            if(e.which == 13) {
                $('.go').click();

@@ -1,7 +1,11 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+/**
+ * A lesson object contains sentences, images, questions and answers and makes up a unit.
+ */
 class Lesson extends DataMapper {
   
+  // Define relationships for Lesson object
   var $has_one = array('unit');
   var $default_order_by = array('id' => 'asc');
 
@@ -24,7 +28,9 @@ class Lesson extends DataMapper {
   //     "Lawyer"
   //   ]
   //
-  // }  
+  // }
+  
+  // Validation for forms  
   var $validation = array(
     'sentence' => array(
       'label' => 'Sentence',
@@ -40,18 +46,28 @@ class Lesson extends DataMapper {
     )
   );
 
+  /**
+   * Determines if lesson has an image
+   */
   function hasImage() {
     if (! isset($this->image) || $this->image == "")
       return false;
 
     return true;
   }
+  
+  /**
+   * Determines if lesson has a question
+   */
   function hasQuestion() {
     if (! isset($this->questions) || $this->questions == "[]" || count($this->questions) == 0)
       return false;
     return true;
   }
 
+  /**
+   * Creates a new object to pass as JSON since datamapper adds too much data to JSON encoded objects
+   */
   function pruned() {
     $pruned = new stdClass;
     $pruned->id = $this->id;
@@ -62,6 +78,9 @@ class Lesson extends DataMapper {
     return $pruned;
   }
 
+  /**
+   * Creates JSON data structure for given field
+   */
   function _json_as_array($field) // optional second parameter is not used
   {
     if (!empty($this->{$field})) {

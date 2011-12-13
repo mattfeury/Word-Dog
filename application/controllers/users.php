@@ -1,5 +1,8 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+/**
+ * Handles data for user views.
+ */
 class Users extends CI_Controller {
 
 	var $helpers = array('Html', 'Form');
@@ -12,6 +15,9 @@ class Users extends CI_Controller {
     }
   }
   
+  /**
+   * Loads view that lists all teachers for students to pick
+   */
   public function show() {
     // Get all users
     $user = new User();
@@ -22,11 +28,17 @@ class Users extends CI_Controller {
 		$this->load->view('teachers', $data);
 	}
 
+  /**
+   * Destroys user session
+   */
   public function logout() {
     $this->session->sess_destroy();
     redirect(base_url());
   }
 
+  /**
+   * Handles form input for login. Creates a user session if user and password are found in database.
+   */
   public function login() {
   
     $email = $this->input->post('email', TRUE);
@@ -47,6 +59,9 @@ class Users extends CI_Controller {
 
   }
 
+  /**
+   * Handles form input to register a new user in the database.
+   */
   public function register() {
     $email = $this->input->post('email', TRUE);
     $password = $this->input->post('password', TRUE);
@@ -74,7 +89,10 @@ class Users extends CI_Controller {
       redirect(base_url() . '?error=signup');
     }
   }
-
+  
+  /**
+   * Sets a user session with the email and name of the given user
+   */
   private function _setSessionForUser($user) {
     $session_data = array(
                       'email'     => $user->email,
@@ -85,6 +103,9 @@ class Users extends CI_Controller {
 
   }
   
+  /**
+   * Loads change account information view for logged in user
+   */
   public function modify() {
     $email = $this->session->userdata('email');
 	
@@ -96,11 +117,17 @@ class Users extends CI_Controller {
 
   }
   
+  /**
+   * Loads forgot password view with a new user object
+   */
   public function forgotPage(){
   	$data = new User();
 	  $this->load->view('forgot',$data);
 	}
   
+  /**
+   * Handles form in put for change account information
+   */
   public function changeAccount() {
     $email = $this->input->post('email', TRUE);
     $oldpassword = $this->input->post('oldpassword', TRUE);
@@ -128,6 +155,9 @@ class Users extends CI_Controller {
     $this->load->view('account', $data);
 	}
 	
+	/**
+   * Handles form input for forgotten password request and creates email for that address
+   */
 	function forgotPassword() {
 	
 		$email = $this->input->post('email',TRUE);
@@ -168,6 +198,9 @@ class Users extends CI_Controller {
 		}
 	}
 	
+	/**
+   * Verifies token from email from password reset
+   */
 	function verify()
 	{	
 	  $token = $_GET['t'];	
@@ -203,8 +236,9 @@ class Users extends CI_Controller {
 		}
 	}
 	
-
-
+	/**
+   * Handles form input for forgotten password update and updates database
+   */
 	function resetPassword() 
 	{
 		$token = $this->input->post('token',TRUE);
@@ -231,6 +265,4 @@ class Users extends CI_Controller {
 			}
 		}
 	}
-
-	
 }

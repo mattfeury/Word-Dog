@@ -25,11 +25,11 @@
       .find('.picture')
         .attr('src', BASE_SRC + 'uploads/' + lesson['image']);
   }
-  
+  // Checks if a string ends with a suffix
   function endsWith(str, suffix) {
     return str.indexOf(suffix, str.length - suffix.length) !== -1;
   }
-  
+  // Checks if a string is uppercase
   function isUpperCase( string ) {
     return string == string.toUpperCase();
   }
@@ -68,6 +68,7 @@ $(document).ready(function(){
      });
      printActivity($print.html());
    }
+    // Mimics 'go' press on enter key press
    $('.sentence').keypress(function(e) {
            if(e.which == 13) {
                $('.go').click();

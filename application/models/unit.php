@@ -1,12 +1,17 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+/**
+ * A unit object is a collection of lessons that is used to play an activity.
+ */
 class Unit extends DataMapper {
   
+  // Define relationships for Unit object
   var $has_one = array('user');
   var $has_many = array('lesson');
   
   var $default_order_by = array('id' => 'asc');
   
+  // Validation for forms  
   var $validation = array(
     'name' => array(
       'label' => 'Name',
@@ -14,6 +19,9 @@ class Unit extends DataMapper {
     )    
   );
 
+  /**
+   * Determines if this unit has images
+   */
   function hasImages() {
     if ($this->lessons->count() == 0)
       return false;
@@ -24,6 +32,10 @@ class Unit extends DataMapper {
 
     return true;
   }
+  
+  /**
+   * Determines if this unit has questions
+   */
   function hasQuestions() {
     if ($this->lessons->count() == 0)
       return false;
@@ -35,6 +47,9 @@ class Unit extends DataMapper {
     return true;
   }
 
+  /**
+   * Creates a new object to pass as JSON since datamapper adds too much data to JSON encoded objects
+   */
   function pruned() {
     $pruned = new stdClass;
     $pruned->id = $this->id;

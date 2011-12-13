@@ -11,6 +11,8 @@ class Landing extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
+	
+	// Loads landing view for website 
   public function index() {
     $data['errors'] = $this->session->userdata('errors');    
     $this->load->view('landing', $data);
