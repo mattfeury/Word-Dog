@@ -105,11 +105,14 @@
     function removeDistractor() {
       $('#distractor').stop(true, false).animate({ right: -1 * distractorWidth + 'px' }, 'slow');
     }
-    distractionTimer = setInterval(function() {
-      removeDistractor();
-      makeDistractor();
-      setTimeout(removeDistractor, distractorLength);
-    }, distractorLength + waitTimeBetweenDistractions * 1000);
+
+    if (unit.showDistractor) {
+      distractionTimer = setInterval(function() {
+        removeDistractor();
+        makeDistractor();
+        setTimeout(removeDistractor, distractorLength);
+      }, distractorLength + waitTimeBetweenDistractions * 1000);
+    }
   });
    
   // Units and lessons

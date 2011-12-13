@@ -57,4 +57,5 @@ li {
 /* line 40, ../sass/print.sass */
 .connector-images img {
   display: block;
+  max-height: 30%;
 }

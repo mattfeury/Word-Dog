@@ -39,6 +39,8 @@ class Unit extends DataMapper {
     $pruned = new stdClass;
     $pruned->id = $this->id;
     $pruned->name = $this->name;
+    $pruned->showDistractor = intval($this->showDistractor);
+
     $pruned->lessons = array();
     foreach ($this->lessons->get() as $lesson)
       $pruned->lessons[] = $lesson->pruned();

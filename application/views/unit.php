@@ -15,7 +15,12 @@
     ?>
       <h2>Name of Unit:</h2>
       <input type="text" class="unit" name="unit" value="<?= $unit->name ?>" />
-      <?= anchor('/units/delete/'.$unit->id, 'Delete', array('class' => 'delete')); ?>
+
+      <div class="mgmt">
+        <label><input type="checkbox" name="show_distractor" value="true" <?= ($unit->showDistractor == 1) ? 'checked' : '' ?> /> Show Distractor</label>
+        <input type="submit" class="save" value="Save" />
+        <?= anchor('/units/delete/'.$unit->id, 'Delete', array('class' => 'delete')); ?>
+      </div>
 
       <ul class="lessons">
         <? $i=0; foreach($lessons as $lesson): ?>
