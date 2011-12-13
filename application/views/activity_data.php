@@ -86,43 +86,6 @@
 
   });
 
-  // "Distractor" character
-  var distractionTimer = -1,
-      distractorHeight = 451,
-      distractorWidth = 252,
-      distractorLength = 3500, //length of distraction animation in millis
-      waitTimeBetweenDistractions = 12; //10 seconds average between distractions
-  $(function() {
-    function makeDistractor() {
-      if (! $('body').find('#distractor').length) {
-
-        $('body')
-          .append(
-            $('<div/>')
-              .attr('id', 'distractor')
-              .addClass('shades')
-          );
-      }
-      var height = $(document).height(),
-          randomTop = Math.random() * (height - distractorHeight);
-
-      $('#distractor')
-        .stop(true, false)
-        .animate({ 'top': randomTop + 'px', 'right': 0 }, 'slow');
-    }
-    function removeDistractor() {
-      $('#distractor').stop(true, false).animate({ right: -1 * distractorWidth + 'px' }, 'slow');
-    }
-
-    if (unit.showDistractor) {
-      distractionTimer = setInterval(function() {
-        removeDistractor();
-        makeDistractor();
-        setTimeout(removeDistractor, distractorLength);
-      }, distractorLength + waitTimeBetweenDistractions * 1000);
-    }
-  });
-   
   // Units and lessons
   var unit = <?= $unit_json ?>;
   var activity_config = <?= $activity_data ?>;
@@ -175,9 +138,12 @@
       .text('');
     
     var lesson = getNextLesson();
-    if (lesson)
+    if (lesson) {
       defineActivityForLesson(lesson); //defined by the activity in its view
-    else
+
+      if (unit.showDistractor)
+        resetDistractor();
+    } else
       unitOver();
   }
   // Shows message after lesson is complete and redirects
@@ -185,6 +151,44 @@
     alert("Lesson complete. Great job!");
     redirectToActivities();
   }
+
+  // "Distractor" character
+  var distractionTimer = -1,
+      distractorHeight = 451,
+      distractorWidth = 252,
+      distractorLength = 3500, //length of distraction animation in millis
+      waitTimeBetweenDistractions = 25; //10 seconds average between distractions
+  function resetDistractor() {
+    function makeDistractor() {
+      if (! $('body').find('#distractor').length) {
+
+        $('body')
+          .append(
+            $('<div/>')
+              .attr('id', 'distractor')
+              .addClass('shades')
+          );
+      }
+      var height = $(document).height(),
+          randomTop = Math.random() * (height - distractorHeight);
+
+      $('#distractor')
+        .stop(true, false)
+        .animate({ 'top': randomTop + 'px', 'right': 0 }, 'slow');
+    }
+    function removeDistractor() {
+      $('#distractor').stop(true, false).animate({ right: -1 * distractorWidth + 'px' }, 'slow');
+    }
+
+    clearTimeout(distractionTimer);
+
+    removeDistractor();
+    makeDistractor();
+    setTimeout(removeDistractor, distractorLength);
+
+    distractionTimer = setTimeout(resetDistractor, distractorLength + waitTimeBetweenDistractions * 1000);
+  }
+
   //for multiple choice: gets other lessons
   function getOtherLessons() {
     var randomLessons = new Array();
