@@ -214,6 +214,7 @@ $(document).ready(function(){
   if(isPrint && !config.printWithDifficulties){
     renderPrint();
    }
+  // Mimics 'go' press on enter key press
   $('.answer').live('keypress', function(e) {
     if(e.which == 13) {
       $('.go').click();

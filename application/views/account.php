@@ -1,4 +1,4 @@
-  <? $this->load->view('head'); ?>
+<? $this->load->view('head'); ?>
 <header>
   <?= anchor('/units', 'Teacher Zone', 'class="teacherzone home"'); ?>
 
@@ -10,7 +10,6 @@
   <section id="content">
     
     <?     
-    //print_r( $user);
 	  echo form_open('users/changeAccount');
     ?>
 	  

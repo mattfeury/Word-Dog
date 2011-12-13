@@ -9,9 +9,13 @@ class CoverConditions {
   const RETYPE = 'retype'; // Basic memory. Just retype the original sentence.
 }
 
+/**
+ * Handles data for activity views.
+ */
 class Activities extends CI_Controller {
-
-  // TODO INSTRUCTIONS
+  /**
+  * Activity data that gets passed to the view. Constraints for activities (i.e. must have images) defined here.
+  */
   public static $activitiesById = array(
     0 => array(
           'view' => 'write_sentence',
@@ -283,7 +287,9 @@ class Activities extends CI_Controller {
 
   public function index() {
   }
-
+  /**
+  * Loads activity list for a given unit
+  */
   public function with($id) {
     $unit = new Unit();
     $unit->id = $id;
@@ -312,6 +318,9 @@ class Activities extends CI_Controller {
 		$this->load->view('activity', $data);
   }
 	
+	/**
+	 * Loads game for activity and unit. Loads print version if passed print parameter. 
+	 */
 	public function play($activityId, $unitId, $print = false) {
     $unit = new Unit();
     $unit->id = $unitId;

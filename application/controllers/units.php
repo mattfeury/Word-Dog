@@ -1,5 +1,8 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+/**
+ * Handles data for unit views.
+ */
 class Units extends CI_Controller {
 
   public function index() {
@@ -43,6 +46,9 @@ class Units extends CI_Controller {
 		$this->load->view('units', $data);
 	}
 
+  /**
+   * Create a unit in the database
+   */
   public function create() {
     if (! $this->session->userdata('logged_in')) {
       redirect(base_url());
@@ -59,6 +65,9 @@ class Units extends CI_Controller {
     $this->load->view('unit', $data);
   }
 
+  /**
+   * Delete a unit from the database
+   */
   public function delete($unitId = false) {
     if (! $this->session->userdata('logged_in') || ! $unitId) {
       redirect(base_url());
@@ -87,7 +96,10 @@ class Units extends CI_Controller {
 
     redirect('/units');
   }
- 
+  
+  /**
+   * Edit a unit of the given id.
+   */
   public function edit($id) {
     if (! $this->session->userdata('logged_in')) {
       redirect(base_url());

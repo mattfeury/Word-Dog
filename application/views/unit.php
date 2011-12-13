@@ -145,6 +145,7 @@
   </ul>
 </div>
 <script type="text/javascript">
+  // Renames inputs based on lesson index so that inputs are unique
   function renameInputs() {
     $('.lesson:not(.template)').each(function(i) {
       $(this)
@@ -168,6 +169,7 @@
     //DOM ready
     renameInputs();
     
+    // Uploading
     $('input[type=file]').live('change', function(e){
       var $uploadtext = $(this).val().split("\\").pop();
       $(this).closest('.file-holder').siblings('.image-name').text($uploadtext).addClass('changed');
@@ -180,7 +182,8 @@
         .end()
         .addClass('active');
     });
-
+    
+    // Add a sentence
     $('#add-sentence').click(function() {
       var $newLesson = $('.lesson.template').clone();
       $newLesson.removeClass('template');
@@ -192,6 +195,7 @@
       renameInputs();
       return false;
     });
+    // Add a question
     $('.add-question').live('click', function() {
       var $newQuestion = $('.lesson.template .question').clone();
       
@@ -210,6 +214,7 @@
       return false;
     });
     
+    // Remove lesson 
     $('.lessons').delegate('.remove', 'click', function() {
       $(this)
         .closest('.removable')
@@ -220,6 +225,7 @@
       return false;
     });
 
+    // Prepare questions for JSON storage
     function decodeQuestionsToJson($questions) {
       var questions = [];
 
@@ -250,6 +256,7 @@
       return JSON.stringify(questions);
     };
 
+    // Saves a unit. Sends questions as JSON and updates lessons
     $('#unit').submit(function() {
       // This is the backbone here.
       var lessons = [];

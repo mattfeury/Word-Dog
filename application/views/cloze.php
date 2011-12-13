@@ -110,6 +110,7 @@ $(document).ready(function(){
     
     printActivity($print.html());
   }
+  // Mimics 'go' press on enter key press
   $('.answer').live('keypress', function(e) {
     if(e.which == 13) {
       checkAnswer($(this));
