@@ -39,7 +39,8 @@
       <label>Email: <input name="email" class="email" type="text" /></label>
       <label>Password: <input name="password" class="password" type="password" /></label>
       <input class="submit" type="submit" />
-    </form>
+	  <?= anchor('/users/forgotPage', 'Forgot Password'); ?>
+	 </form>
     <button class="close">Close</button>
   </div>
   <div class="signup dialog<? if (isset($_GET['error']) && $_GET['error'] == 'signup') echo ' current'; ?>">

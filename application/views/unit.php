@@ -48,8 +48,7 @@
               <ul class="questions">
                 <? $j=0; foreach($lesson->questions as $question): ?>        
                   <li class="question removable">
-                    <button class="remove">(x)</button>
-                    <label class="stretch"><span>Question: </span><div><input type="text" class="question-text" name="question<?= $j ?>" value="<?= $question['question'] ?>" /></div></label>
+                    <button class="remove">(x)</button><label class="stretch"><span>Question: </span><div><input type="text" class="question-text" name="question<?= $j ?>" value="<?= $question['question'] ?>" /></div></label>
                     <div class="answer">
                       <div class="help">
                         <h4>Three Answer Choices:</h4>
@@ -196,8 +195,13 @@
         .append($newQuestion.hide());
       $newQuestion.slideDown();
       renameInputs();
-      $newQuestion.find('input:radio:first').attr('checked','checked');
-      
+      $newQuestion
+        .addClass('ie-fixer')
+        .find('input:radio:first')
+          .attr('checked','checked');
+
+      // IE7 won't auto render the styles so we trigger it hackishly
+      setTimeout(function() { $newQuestion.removeClass('ie-fixer') }, 50);
       return false;
     });
     
@@ -218,7 +222,7 @@
         var question = {},
             answers = [];
 
-        question["question"] = ($question.find('.question-text').val() || '').trim();
+        question["question"] = $.trim($question.find('.question-text').val() || '');
         question["answer"] = parseInt($question.find('.answer:checked').val());
 
         $question.find('.answer:text').each(function(i, answer) {
@@ -238,7 +242,6 @@
         if (question)
           questions.push(question);
       });
-      console.log(questions);
       return JSON.stringify(questions);
     };
 

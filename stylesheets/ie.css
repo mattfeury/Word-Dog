@@ -3,3 +3,15 @@
  * <!--[if IE]>
  *   <link href="/stylesheets/ie.css" media="screen, projection" rel="stylesheet" type="text/css" />
  * <![endif]--> */
+/* line 7, ../sass/ie.sass */
+li.lesson {
+  *zoom: 1;
+}
+/* line 10, ../sass/ie.sass */
+li.lesson .stretch {
+  *display: inline-block;
+}
+/* line 13, ../sass/ie.sass */
+li.lesson .upload-picture .image-holder .image {
+  *width: 48%;
+}

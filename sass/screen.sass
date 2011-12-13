@@ -26,6 +26,10 @@ html, body
   min-height: 100%
   color: $main-text-color
 
+// Reset HTML5 for IE
+article, aside, figure, footer, header, hgroup, menu, nav, section
+  display: block
+
 .templates, .template
   display: none
 
@@ -328,6 +332,10 @@ form
 
 // Any activity page inherits this
 body.activities
+  // To hide the distractor off screen
+  overflow-x: hidden
+  width: 100%
+
   #distractor
     position: absolute
     z-index: 4
@@ -451,14 +459,14 @@ body.activities
       line-height: 1.75em
       position: relative
 
+      span
+        display: block
+        float: left
+
       div
         display: block
         width: auto
-        position: absolute
-        right: 0
-        left: 0
-        top: 0
-        margin-left: 135px
+        margin-left: 75px
         text-align: right
 
         input

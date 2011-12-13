@@ -202,7 +202,7 @@
       var what, a= arguments, L= a.length, ax;
       while(L && this.length){
           what= a[--L];
-          while((ax= this.indexOf(what))!= -1){
+          while((ax= $.inArray(what, this))!= -1){
               this.splice(ax, 1);
           }
       }
@@ -307,8 +307,8 @@
         );
 
     var leftHtml, rightHtml,
-        leftLength = left.trim().split(' ').length,
-        rightLength = right.trim().split(' ').length;
+        leftLength = $.trim(left).split(' ').length,
+        rightLength = $.trim(right).split(' ').length;
 
     // Recurse on the side with more words first
     if (leftLength > rightLength) {
@@ -333,7 +333,7 @@
         .closest('.missing')
           .addClass('guessing')
     }).live('blur', function() {
-      if ($(this).val().trim() === '')
+      if ($.trim($(this).val()) === '')
         $(this)
           .closest('.missing')
           .removeClass('guessing')

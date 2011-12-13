@@ -2,6 +2,9 @@
 
 class Users extends CI_Controller {
 
+	var $helpers = array('Html', 'Form');
+	var $components = array('Email');
+
   public function index() {
     if (! $this->session->userdata('logged_in')) {
       redirect(base_url());
@@ -24,9 +27,9 @@ class Users extends CI_Controller {
   }
 
   public function login() {
+  
     $email = $this->input->post('email', TRUE);
     $password = $this->input->post('password', TRUE);
-
     $u = new User();
     $u->email = $email;
     $u->password = $password;
@@ -92,6 +95,11 @@ class Users extends CI_Controller {
 
   }
   
+  public function forgotPage(){
+	$data = new User();
+	$this->load->view('forgot',$data);
+	}
+  
   public function changeAccount() {
     $email = $this->input->post('email', TRUE);
 	$oldpassword = $this->input->post('oldpassword', TRUE);
@@ -117,5 +125,111 @@ class Users extends CI_Controller {
     $u->save();
 	$data['user'] = $u;
 	$this->load->view('account', $data);
-}
+	}
+	
+	function forgotPassword() {
+	
+		$email = $this->input->post('email',TRUE);
+		$email2 = $this->input->post('email2',TRUE);
+		if($email != $email2){
+			echo("<p> Your emails did not match. Please re-enter </p>");
+		}
+		else{
+			$user = new User();
+      $user->where('email', $email)->get();
+      if (! $email || empty($user->id)) {
+        show_error('User not found',404);
+        return false;
+      }
+
+			$hash=sha1($user->email.rand(0,100));
+			$user->tokenhash=$hash;			
+			$user->save();
+			
+			$ms='Click on the link below to reset your password ';
+			$ms.=site_url().'/users/verify?t='.$hash.'&n='.$email.'';
+			$ms=wordwrap($ms,70);
+
+			$to = $this->input->post('email', TRUE);;
+			$subject = "Hi!";
+			$body = $ms;
+			$from = "worddog.forgot.pass@gmail.com";
+			$headers = "From: $from";
+			if (mail($to, $subject, $body, $headers)) {
+			  echo "<script>alert('The reset link has been sent to the email address in our records.'); window.location = '" . SITE_URL() . "'</script>";
+			  			  
+			}
+			else {
+			  echo "<script>alert('Message delivery failed. Please try again.'); history.back();</script>";
+			  
+			}
+			
+		}
+	}
+	
+	function verify()
+	{	
+	$token = $_GET['t'];	
+	$email = $_GET['n'];	
+		if (!empty($token) && !empty($email))
+		{
+			$results = new User();
+			$results->where('email', $email)->get();	
+			if (!empty($results->tokenhash))
+			{	
+				if($results->tokenhash==$token)
+				{						
+					$results->save();
+					$data['user'] = $results;
+					$this->load->view('resetPass', $data);
+				}
+				else
+				{
+					echo("Wrong token. Please request a new token.");
+					$this->load->view('forgot');
+				}
+			}
+			else 
+			{
+				echo("Token has alredy been used");				
+				$this->load->view('forgot');
+			}
+		}
+		else
+		{
+			echo("Token corrupted. Please re-register");
+			$this->redirect('/users/forgotPassword');
+		}
+	}
+	
+
+
+	function resetPassword() 
+	{
+		$token = $this->input->post('token',TRUE);
+		$email = $this->input->post('email',TRUE);
+		$password = $this->input->post('password',TRUE);
+		$password2 = $this->input->post('password2',TRUE);
+		$user = new User();
+		$user->where('email', $email)->get();
+		
+		if($token != $user->tokenhash){
+			echo "<script>alert('Incorrect token. Please retry.'); window.location = '" . SITE_URL() . "'</script>";			
+		}
+		else{
+			if($password == $password2){
+				$u = new User();
+				$u->where('email', $email)->get();
+				$u->password = $password;
+				$u->tokenhash = null;
+				$u->save();
+				echo "<script>alert('Your password has successfully been changed.'); window.location = '" . SITE_URL() . "'</script>";			
+			}
+			else{
+				echo "<script>alert('Your passwords did not match. Please try again'); history.back();</script>";			
+			}
+		}
+	}
+
+	
 }

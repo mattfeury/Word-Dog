@@ -223,6 +223,6 @@ class Units extends CI_Controller {
       $i++;
     }
 
-    redirect('/units/show/'.$unit->user->get()->id);
+    redirect('/units');
   }
 }
