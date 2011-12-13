@@ -13,15 +13,16 @@ class Users extends CI_Controller {
   }
   
   public function show() {
+    // Get all users
     $user = new User();
-		$user->limit(5)->get();
+		$user->get();
     $data['users'] = $user;
+
+    // Send them to the view for rendering
 		$this->load->view('teachers', $data);
 	}
 
   public function logout() {
-    //TODO decide if we should destroy everything here
-    //we could just as well unset the necessary fields
     $this->session->sess_destroy();
     redirect(base_url());
   }
@@ -96,35 +97,35 @@ class Users extends CI_Controller {
   }
   
   public function forgotPage(){
-	$data = new User();
-	$this->load->view('forgot',$data);
+  	$data = new User();
+	  $this->load->view('forgot',$data);
 	}
   
   public function changeAccount() {
     $email = $this->input->post('email', TRUE);
-	$oldpassword = $this->input->post('oldpassword', TRUE);
-	$newpassword1 = $this->input->post('newpassword1', TRUE);
+    $oldpassword = $this->input->post('oldpassword', TRUE);
+    $newpassword1 = $this->input->post('newpassword1', TRUE);
     $newpassword2 = $this->input->post('newpassword2', TRUE);
     $name = $this->input->post('name', TRUE);
-	$school = $this->input->post('school', TRUE);
+    $school = $this->input->post('school', TRUE);
     $grade = $this->input->post('grade', TRUE);
 
-	$u = new User();
-	$oldemail = $this->session->userdata('email');
+    $u = new User();
+    $oldemail = $this->session->userdata('email');
     $u->where('email', $oldemail)->get();
-		
+
     $u->email = $email;
     $u->name = $name;
     $u->school = $school;
     $u->grade = $grade;
-	
-	if(md5($oldpassword) == $u->password)
-		if($newpassword1 == $newpassword2)
-			$u->password = $newpassword1;				
+    
+    if(md5($oldpassword) == $u->password)
+      if($newpassword1 == $newpassword2)
+        $u->password = $newpassword1;				
 
     $u->save();
-	$data['user'] = $u;
-	$this->load->view('account', $data);
+    $data['user'] = $u;
+    $this->load->view('account', $data);
 	}
 	
 	function forgotPassword() {
@@ -169,8 +170,8 @@ class Users extends CI_Controller {
 	
 	function verify()
 	{	
-	$token = $_GET['t'];	
-	$email = $_GET['n'];	
+	  $token = $_GET['t'];	
+    $email = $_GET['n'];	
 		if (!empty($token) && !empty($email))
 		{
 			$results = new User();
